@@ -22,8 +22,5 @@
   "homepage": "https://github.com/kngurley25/dg-score-card#readme",
   "devDependencies": {
     "concurrently": "^7.0.0"
-  },
-  "dependencies": {
-    "mongoose": "^6.2.2"
   }
 }
