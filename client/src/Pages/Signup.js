@@ -5,16 +5,13 @@ import Auth from '../utils/auth';
 
 const Signup = () => {
 
-
-
-
   return (
     <main class="d-flex justify-content-center">
-    <div>
+        <div className="form">
         <div>
           <h2 class="d-flex justify-content-center">Sign Up</h2>
-          <div class="d-flex justify-content-center">
-            <form class="col-12 col-md-6">
+            <div class="d-flex justify-content-center">
+            <form class="col-12 col-md-3">
               <input
                 className='form-input'
                 placeholder='Your username'
@@ -36,16 +33,15 @@ const Signup = () => {
                 type='password'
                 id='password'
               />
-              <div>
-              <button type='submit'>
+              <div class="d-flex justify-content-center">
+              <button type="button" class="btn btn-primary d-flex justify-content-center" value="submit">
                 Submit
               </button>
             </div>
             </form>
-        
-          </div>
-        </div>
-    </div>
+            </div>
+            </div>
+            </div>
     </main>
   );
 };

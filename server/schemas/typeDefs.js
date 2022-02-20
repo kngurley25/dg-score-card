@@ -9,9 +9,42 @@ const typeDefs = gql`
         friends: [User]
     }
 
+    type Course {
+        _id: ID
+        courseName: String
+        location: String
+        holes: [Hole]
+        holeCount: Int
+    }
+
+    type Hole {
+        _id: ID
+        holeNumber: Int
+        par: Int
+    }
+
+    type Round {
+        _id: ID
+        courseName: String
+        date: String
+        username: String
+        scores: [Score]
+        totalScore: Int
+    }
+
+    type Score {
+        _id: ID
+        holeNumber: Int
+        stroke: Int
+    }
+
     type Query {
         users: [User]
         user(username: String): User
+        courses: [Course]
+        course(courseName: String): Course
+        rounds: [Round]
+        round(username: String): Round
     }
 
     type Mutation {
