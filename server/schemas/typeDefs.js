@@ -42,9 +42,9 @@ const typeDefs = gql`
         users: [User]
         user(username: String): User
         courses: [Course]
-        course(_id: ID!): Course
-        rounds(username: String): [Round]
-        round(_id: ID!): Round
+        course(courseName: String): Course
+        rounds: [Round]
+        round(username: String): Round
     }
 
     type Mutation {
