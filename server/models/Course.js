@@ -1,15 +1,5 @@
 const { Schema, model } = require('mongoose');
-
-const holeSchema = new Schema({
-    holeNumber: {
-        type: Number,
-        required: true,
-    },
-    par: {
-        type: Number,
-        required: true
-    }
-});
+const holeSchema = require('./Hole');
 
 const courseSchema = new Schema(
     {

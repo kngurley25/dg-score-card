@@ -1,15 +1,5 @@
 const { Schema, model } = require('mongoose');
-
-const scoreSchema = new Schema({
-    holeNumber: {
-        type: Number,
-        required: true
-    },
-    stroke: {
-        type: Number,
-        required: true
-    }
-});
+const scoreSchema = require('./Score');
 
 const roundSchema = new Schema(
     {

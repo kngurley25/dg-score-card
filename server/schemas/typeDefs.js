@@ -9,6 +9,22 @@ const typeDefs = gql`
         friends: [User]
     }
 
+    type Course {
+        _id: ID
+        courseName: String
+        location: String
+        holes: [Hole]
+        holeCount: Int
+    }
+
+    type Round {
+        _id: ID
+        courseName: String
+        date: String
+        scores: [Score]
+        totalScore: Int
+    }
+
     type Query {
         users: [User]
         user(username: String): User
