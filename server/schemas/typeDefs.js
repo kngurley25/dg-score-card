@@ -17,17 +17,34 @@ const typeDefs = gql`
         holeCount: Int
     }
 
+    type Hole {
+        _id: ID
+        holeNumber: Int
+        par: Int
+    }
+
     type Round {
         _id: ID
         courseName: String
         date: String
+        username: String
         scores: [Score]
         totalScore: Int
+    }
+
+    type Score {
+        _id: ID
+        holeNumber: Int
+        stroke: Int
     }
 
     type Query {
         users: [User]
         user(username: String): User
+        courses: [Course]
+        course(_id: ID!): Course
+        rounds(username: String): [Round]
+        round(_id: ID!): Round
     }
 
     type Mutation {
