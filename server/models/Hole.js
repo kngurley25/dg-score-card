@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const holeSchema = new Schema({
-    number: {
+    holeNumber: {
         type: Number,
         required: true,
     },

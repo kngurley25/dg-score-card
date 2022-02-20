@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const holeSchema = require('./Hole');
 
 const courseSchema = new Schema({
-    name: {
+    courseName: {
         type: String,
         required: true,
         unique: true
