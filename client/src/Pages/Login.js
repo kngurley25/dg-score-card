@@ -7,7 +7,7 @@ const Login = () => {
 
   return (
     <main class="d-flex justify-content-center">
-      <div>
+      <div className="form">
         <div>
           <h2 class="d-flex justify-content-center">Login</h2>
           <div class="d-flex justify-content-center">
@@ -27,9 +27,11 @@ const Login = () => {
                      id='password'
 
               />
-              <button type='submit'>
+              <div class="d-flex justify-content-center">
+              <button type="button" class="btn btn-primary d-flex justify-content-center" value="submit">
                 Submit
               </button>
+              </div>
             </form>
           
           </div>
