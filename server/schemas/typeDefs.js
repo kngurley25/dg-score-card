@@ -27,7 +27,7 @@ const typeDefs = gql`
     type Round {
         _id: ID
         courseName: String
-        date: String
+        createAt: String
         username: String
         scores: [Score]
         totalScore: Int
@@ -54,6 +54,8 @@ const typeDefs = gql`
         addFriend(friendId: ID!): User
         createCourse(courseName: String!, location: String!): Course
         addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
+        createRound(courseName: String!, username: String!): Round
+        addScore(roundId: ID!, holeNumber: Int!, stroke: Int!): Round
     }
 
     type Auth {

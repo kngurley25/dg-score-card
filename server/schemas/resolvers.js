@@ -82,6 +82,25 @@ const resolvers = {
               return updatedCourse;
         }
         throw new AuthenticationError('You need to be logged in!');
+    },
+    createRound: async (parent, args, context) => {
+        if (context.user) {
+            const round = await Round.create(args);
+            return round;
+        }
+        throw new AuthenticationError('You need to be logged in!');
+    },
+    addScore: async (parent, { roundId, holeNumber, stroke }, context) => {
+        if (context.user) {
+            const updatedRound = await Round.findOneAndUpdate(
+                { _id: roundId },
+                { $push: { scores: { holeNumber, stroke } } },
+                { new: true, runValidators: true }
+              );
+          
+              return updatedRound;
+        }
+        throw new AuthenticationError('You need to be logged in!');
     }
 
   },
