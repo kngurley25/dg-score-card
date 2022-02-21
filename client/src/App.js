@@ -3,10 +3,16 @@ import React from 'react';
 //import ViewCourses from './pages/ViewCourses';
 import Home from './Pages/Home';
 import './App.css';
+import ScorePage from './components/ScorePage';
 
 function App() {
   return (
-          <Home></Home>
+    <div>
+      <main>
+        <Home></Home>
+        <ScorePage></ScorePage>
+      </main>
+    </div>
   );
 }
 
