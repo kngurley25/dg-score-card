@@ -1,0 +1,22 @@
+#dropdownMenuButton1 {
+    background-color: white;
+    border: white;
+}
+
+#dropdownMenuButton1::after {
+  display: none;
+}
+
+.dropdown-icon {
+  width: 30px;
+}
+
+.logo {
+  height: 20px;
+}
+
+.menu-icon {
+    color: black;
+    font-size: 50px;
+}
+
