@@ -7,8 +7,12 @@ import ScorePage from './components/ScorePage';
 
 function App() {
   return (
-    <Home></Home>,
-    <ScorePage></ScorePage>
+    <div>
+      <main>
+        <Home></Home>
+        <ScorePage></ScorePage>
+      </main>
+    </div>
   );
 }
 
