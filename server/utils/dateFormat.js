@@ -59,6 +59,8 @@ const addDateSuffix = date => {
     let minutes = dateObj.getMinutes();
     if (minutes.length === 1) {
       minutes = 0 + minutes
+    } else if (minutes === null) {
+        minutes = 00;
     }
   
     // set `am` or `pm`
