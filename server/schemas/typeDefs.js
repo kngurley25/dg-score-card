@@ -15,6 +15,7 @@ const typeDefs = gql`
         location: String
         holes: [Hole]
         holeCount: Int
+        parTotal: Int
     }
 
     type Hole {
@@ -51,6 +52,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addFriend(friendId: ID!): User
+        createCourse(courseName: String!, location: String!): Course
+        addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
     }
 
     type Auth {

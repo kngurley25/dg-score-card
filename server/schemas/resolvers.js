@@ -64,6 +64,26 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+    createCourse: async (parent, args, context) => {
+        if (context.user) {
+            const course = await Course.create(args);
+            return course;
+        }
+        throw new AuthenticationError("You need to be logged in!");
+    },
+    addHole: async (parent, { courseId, holeNumber, par }, context) => {
+        if (context.user) {
+            const updatedCourse = await Course.findOneAndUpdate(
+                { _id: courseId },
+                { $push: { holes: { holeNumber, par } } },
+                { new: true, runValidators: true }
+              );
+          
+              return updatedCourse;
+        }
+        throw new AuthenticationError('You need to be logged in!');
+    }
+
   },
 };
 
