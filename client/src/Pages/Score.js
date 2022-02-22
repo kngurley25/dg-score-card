@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import ScorePageClasses from './ScorePage.css';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
+
 function ScorePage() {
-  const [inputValue, setInputValue] = useState(1);
+  const [stroke, setStroke] = useState(1);
 
   const addStroke = () => {
     let score = document.getElementById('strokeTotal').value;
     let newScore = ++score;
-    return setInputValue(newScore);
+    return setStroke(newScore);
   };
 
   const removeStroke = () => {
@@ -19,11 +19,11 @@ function ScorePage() {
       return;
     }
     let newScore = --score;
-    return setInputValue(newScore);
+    return setStroke(newScore);
   };
 
   return (
-    <main className={ScorePageClasses.ScorePage}>
+    <main>
       <div className='d-flex flex-column align-items-center'>
         <div className='my-5 text-center'>
           <h1>Hole 1</h1>
@@ -44,8 +44,8 @@ function ScorePage() {
             id='strokeTotal'
             min={1}
             className='text-center w-50 fs-1 mt-3'
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            value={stroke}
+            onChange={(e) => setStroke(e.target.value)}
           />
         </div>
         <button

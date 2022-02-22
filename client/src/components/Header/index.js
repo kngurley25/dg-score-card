@@ -1,68 +1,83 @@
 import React from 'react';
 import HeaderClasses from './Header.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Auth from '../../utils/auth';
 import {
-  faBars,
   faHouse,
   faUser,
   faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   return (
     <main className={HeaderClasses.Header}>
-      <div className='d-flex justify-content-between dropdown my-3 mx-4 fs-1'>
-        <button
-          className='btn btn-secondary dropdown-toggle'
-          type='button'
-          id='dropdownMenuButton1'
-          data-bs-toggle='dropdown'
-          aria-expanded='false'
-        >
-          <FontAwesomeIcon icon={faBars} className='menu-icon' />
-        </button>
-        <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-          <li>
-            <button className='dropdown-item fs-1' as={NavLink} to={'/'}>
-              <FontAwesomeIcon className='dropdown-icon' icon={faHouse} />
-              <span className='ms-3'>Home</span>
-            </button>
-          </li>
-          <li>
-            <button className='dropdown-item fs-1' as={NavLink} to={'/'}>
-              <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-              <span className='ms-3'>Profile</span>
-            </button>
-          </li>
-          <li>
-            <button className='dropdown-item fs-1' as={NavLink} to={'/'}>
-              <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-              <span className='ms-3'>Login</span>
-            </button>
-          </li>
-          <li>
-            <button className='dropdown-item fs-1' as={NavLink} to={'/'}>
-              <FontAwesomeIcon
-                className='dropdown-icon'
-                icon={faArrowRightFromBracket}
-              />
-              <span className='ms-3'>Logout</span>
-            </button>
-          </li>
-        </ul>
-        <div className='d-flex'>
-          <h1>
-            DG-Sc
-            <img
-              className='logo'
-              src={require('../../assets/images/favicon.png')}
-              alt='logo'
-            />
-            recard
-          </h1>
+      <nav>
+        <div className='navbar'>
+          <div className='container nav-container'>
+            <input className='checkbox' type='checkbox' />
+            <div className='hamburger-lines'>
+              <span className='line line1'></span>
+              <span className='line line2'></span>
+              <span className='line line3'></span>
+            </div>
+            <div className='logo'>
+              <h1>
+                DG-Sc
+                <img
+                  src={require('../../assets/images/favicon.png')}
+                  className='disc-icon'
+                  alt='disc icon'
+                />
+                recard
+              </h1>
+            </div>
+            <div className='menu-items'>
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faHouse} />
+                <Link to="/">
+                <button as={NavLink} to={'/'}>
+                  Home
+                </button>
+                </Link>
+              </li>
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <button as={NavLink} to={'/'}>
+                  Profile
+                </button>
+              </li>
+              {Auth.loggedIn() ? (
+              <li>
+                <FontAwesomeIcon
+                  className='dropdown-icon'
+                  icon={faArrowRightFromBracket}
+                />
+                <button as={NavLink} to={'/'}>
+                  <a href="/" onClick={logout}>
+                  Logout
+                  </a>
+                </button>
+              </li>
+               ) : (
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <Link to="/login">
+                <button as={NavLink} to={'/'}>
+                  Login
+                </button>
+                </Link>
+              </li>
+               )}
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
     </main>
   );
 }

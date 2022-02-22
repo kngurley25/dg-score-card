@@ -15,7 +15,7 @@ const NewRound = () => {
                           />
 
 
-            <button type="button" class="btn btn-info" type='submit'>
+            <button type="button" className="btn btn-info" type='submit'>
                 Submit
               </button>
                 </form>
