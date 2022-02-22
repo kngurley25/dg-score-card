@@ -1,16 +1,20 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_COURSES } from '../utils/queries';
+import CourseList from '../components/CourseList';
+
+
+
 
 const ViewCourses = () => {
-
+    
 
 
 return (
     <main>
-        <h1>View our courses</h1>
+        <h1 className="d-flex justify-content-center">Courses:</h1>
         {
-            //this will be a list of courses with 
-            //href to the course and then a list 
-            //of scores for each course
+           <CourseList></CourseList>
         }
     </main>
 )
