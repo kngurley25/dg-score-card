@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -25,7 +25,7 @@ code {
 .footer {
   margin: 1%;
 }
- 
+
 /* styles for button on score page */
 .button-stroke {
   display: inline-block;
@@ -95,7 +95,6 @@ code {
   transform: translate(0, 4px);
 }
 
-
 .button-next {
   display: inline-block;
   text-decoration: none;
@@ -109,7 +108,7 @@ code {
   background-image: linear-gradient(
     to bottom,
     rgb(91, 180, 73) 0%,
-    rgb(97, 203, 97)  100%
+    rgb(97, 203, 97) 100%
   );
 
   background-image: -webkit-gradient(
@@ -117,7 +116,7 @@ code {
     left bottom,
     left top,
     color-stop(0, rgb(91, 180, 73)),
-    color-stop(1, rgb(97, 203, 97) )
+    color-stop(1, rgb(97, 203, 97))
   );
   border-radius: 10px;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
@@ -159,7 +158,25 @@ code {
   );
   box-shadow: 0px 2px 0px #378f2b, 0px 1px 6px rgba(0, 0, 0, 0.4),
     inset 0px 1px 0px rgba(255, 255, 255, 0.3),
-    inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+    inset 0px 0px 3px rgb1a(255, 255, 255, 0.5);
   transform: translate(0, 4px);
   transition: all 0.03s ease-in-out;
 }
+
+/* styles for profile page */
+.favCourse-link {
+  text-decoration: underline !important;
+}
+
+.history-btn {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* styles for profile page */

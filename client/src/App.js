@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import ViewCourses from './pages/ViewCourses';
 import Home from './Pages/Home';
 import './App.css';
@@ -14,30 +10,26 @@ import Footer from './components/Footer';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import ViewCourses from './Pages/ViewCourses';
-
+import Profile from './Pages/Profile';
 
 function App() {
   return (
     <div>
       <Router>
-      <Header></Header>
-      <main>
-        
+        <Header></Header>
+        <main>
           <Routes>
-       
-              <Route exact path="/login" element={<Login/>} />
-              
-              <Route exact path="/signup" element={<Signup/>}/>
-              
-              <Route exact path="/viewcourses" element={<ViewCourses/>} />
-            </Routes>
-        <Home>
-        </Home>
+            <Route exact path='/login' element={<Login />} />
 
-        <ScorePage></ScorePage>
+            <Route exact path='/signup' element={<Signup />} />
 
-      </main>
-      <Footer></Footer>
+            <Route exact path='/viewcourses' element={<ViewCourses />} />
+          </Routes>
+          <Home></Home>
+          <ScorePage></ScorePage>
+          <Profile></Profile>
+        </main>
+        <Footer></Footer>
       </Router>
     </div>
   );
