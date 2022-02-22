@@ -2,6 +2,7 @@ import React from 'react';
 import HeaderClasses from './Header.css';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Auth from '../../utils/auth';
 import {
   faHouse,
   faUser,
@@ -9,6 +10,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   return (
     <main className={HeaderClasses.Header}>
       <nav>
@@ -46,21 +52,28 @@ function Header() {
                   Profile
                 </button>
               </li>
-              <li>
-                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <button as={NavLink} to={'/'}>
-                  Login
-                </button>
-              </li>
+              {Auth.loggedIn() ? (
               <li>
                 <FontAwesomeIcon
                   className='dropdown-icon'
                   icon={faArrowRightFromBracket}
                 />
                 <button as={NavLink} to={'/'}>
+                  <a href="/" onClick={logout}>
                   Logout
+                  </a>
                 </button>
               </li>
+               ) : (
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <Link to="/login">
+                <button as={NavLink} to={'/'}>
+                  Login
+                </button>
+                </Link>
+              </li>
+               )}
             </div>
           </div>
         </div>
