@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const scoreSchema = new Schema({
     holeNumber: {
@@ -16,11 +17,11 @@ const roundSchema = new Schema(
         courseName: {
             type: String,
             required: true,
-            unique: true
         },
         createAt: {
             type: Date,
-            default: Date.now
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
         },
         username: {
             type: String,
@@ -37,7 +38,7 @@ const roundSchema = new Schema(
 );
 
 roundSchema.virtual('totalScore').get(function() {
-    let strokeValues = scoreSchema.map(score => {
+    let strokeValues = this.scores.map(score => {
         return score.stroke;
     });
     let totalScore = strokeValues.reduce((acc, value) => acc + value, 0);

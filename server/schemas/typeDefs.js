@@ -7,6 +7,8 @@ const typeDefs = gql`
         email: String
         friendCount: Int
         friends: [User]
+        courses: [Course]
+        rounds: [Round]
     }
 
     type Course {
@@ -15,6 +17,7 @@ const typeDefs = gql`
         location: String
         holes: [Hole]
         holeCount: Int
+        parTotal: Int
     }
 
     type Hole {
@@ -26,7 +29,7 @@ const typeDefs = gql`
     type Round {
         _id: ID
         courseName: String
-        date: String
+        createAt: String
         username: String
         scores: [Score]
         totalScore: Int
@@ -51,6 +54,12 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addFriend(friendId: ID!): User
+        addCourse(courseId: ID!): User
+        addRound(roundId: ID!): User
+        createCourse(courseName: String!, location: String!): Course
+        addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
+        createRound(courseName: String!, username: String!): Round
+        addScore(roundId: ID!, holeNumber: Int!, stroke: Int!): Round
     }
 
     type Auth {

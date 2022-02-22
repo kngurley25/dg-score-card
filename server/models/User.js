@@ -27,6 +27,18 @@ const userSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: 'User'
         }
+      ],
+      courses: [
+        {
+          type: Schema.Types.ObjectId,
+          ref:'Course'
+        }
+      ],
+      rounds: [
+        {
+          type: Schema.Types.ObjectId,
+          ref:'Round'
+        }
       ]
     },
     {
