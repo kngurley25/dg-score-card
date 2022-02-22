@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 const Signup = () => {
 
   return (
-    <main class="d-flex justify-content-center">
+    <main className="d-flex justify-content-center">
         <div className="form">
         <div>
           <h2 class="d-flex justify-content-center">Sign Up</h2>
