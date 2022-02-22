@@ -21,7 +21,7 @@ function App() {
       <Router>
       <Header></Header>
       <main>
-        <Home>
+        
           <Routes>
        
               <Route exact path="/login" element={<Login/>} />
@@ -30,6 +30,7 @@ function App() {
               
               <Route exact path="/viewcourses" element={<ViewCourses/>} />
             </Routes>
+        <Home>
         </Home>
 
         <ScorePage></ScorePage>
