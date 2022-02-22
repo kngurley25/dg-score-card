@@ -1,28 +1,40 @@
 import React from 'react';
 import Login from './Login.js';
+import { Link } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import Signup from './Signup.js';
+import Footer from '../components/Footer/index.js';
+import ViewCourses from './ViewCourses.js';
 
-const Home = () => {
-   // const loggedIn = Auth.loggedIn();
+const Home = (props) => {
+
+   
     return (
-        <main>
+        
+        <section>
             <div class="d-flex justify-content-center">
-            <h1> No Bogeys!</h1>
+            <h1> No Bogeys! 🥏</h1>
             </div>
             <div class= "d-flex justify-content-center">
-            <p> Login or Sign up to use our disc gold score keeping App</p>
-            </div>
-            <Login></Login>
-            <Signup></Signup>
-            <div class="d-flex justify-content-center">
-            <a href> View Courses and Scores</a>
+            <p> Login or Sign up to use our DiscGolf ScoreKeeper App</p>
             </div>
             <div class="d-flex justify-content-center">
-            <a href> Start New Round</a>
+            <Link to="/login">
+            <button  className="btn btn-primary d-flex justify-content-center mb-3">Login</button>
+            </Link>
             </div>
-        </main>
+            <div class="d-flex justify-content-center">
+            <Link to="/signup">
+            <button type="button" className="btn btn-primary d-flex justify-content-center mb-3">Sign up</button>
+            </Link>
+            </div>
+            <div class="d-flex justify-content-center mb-1">
+            <Link to="/viewcourses">
+            <button type="button" className="btn btn-primary d-flex justify-content-center mb-3">View our Courses</button>
+            </Link>
+            </div>
+        </section>
     )
 }
 

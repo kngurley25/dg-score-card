@@ -14,8 +14,8 @@ const NewRound = () => {
                           id='course'
                           />
 
-                    
-            <button type='submit'>
+
+            <button type="button" class="btn btn-info" type='submit'>
                 Submit
               </button>
                 </form>

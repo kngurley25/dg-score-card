@@ -22,7 +22,7 @@ code {
   border-bottom: solid;
 }
 
-footer {
+.footer {
   margin: 1%;
 }
  
@@ -163,5 +163,3 @@ footer {
   transform: translate(0, 4px);
   transition: all 0.03s ease-in-out;
 }
-
-/* styles for button on score page */

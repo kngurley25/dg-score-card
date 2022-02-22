@@ -1,16 +1,31 @@
 const { Schema, model } = require('mongoose');
-const scoreSchema = require('./Score');
+const dateFormat = require('../utils/dateFormat');
+
+const scoreSchema = new Schema({
+    holeNumber: {
+        type: Number,
+        required: true
+    },
+    stroke: {
+        type: Number,
+        required: true
+    }
+});
 
 const roundSchema = new Schema(
     {
         courseName: {
             type: String,
             required: true,
-            unique: true
         },
-        date: {
+        createAt: {
             type: Date,
-            default: Date.now
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
+        },
+        username: {
+            type: String,
+            required: true
         },
         scores: [scoreSchema]
     },
@@ -23,7 +38,7 @@ const roundSchema = new Schema(
 );
 
 roundSchema.virtual('totalScore').get(function() {
-    let strokeValues = scoreSchema.map(score => {
+    let strokeValues = this.scores.map(score => {
         return score.stroke;
     });
     let totalScore = strokeValues.reduce((acc, value) => acc + value, 0);
