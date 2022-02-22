@@ -7,7 +7,8 @@ import {
 //import ViewCourses from './pages/ViewCourses';
 import Home from './Pages/Home';
 import './App.css';
-import ScorePage from './components/ScorePage';
+
+import ScorePage from './Pages/Score';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './Pages/Login';
