@@ -9,9 +9,9 @@ const Signup = () => {
     <section className="d-flex justify-content-center">
         <div className="form">
         <div>
-          <h2 class="d-flex justify-content-center">Sign Up</h2>
-            <div class="d-flex justify-content-center">
-            <form class="col-12 col-md-3">
+          <h2 className="d-flex justify-content-center">Sign Up</h2>
+            <div className="d-flex justify-content-center">
+            <form className="col-12 col-md-3">
               <input
                 className='form-input'
                 placeholder='Your username'
@@ -33,8 +33,8 @@ const Signup = () => {
                 type='password'
                 id='password'
               />
-              <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-primary d-flex justify-content-center" value="submit">
+              <div className="d-flex justify-content-center">
+              <button type="button" className="btn btn-primary d-flex justify-content-center" value="submit">
                 Submit
               </button>
             </div>
