@@ -7,7 +7,7 @@ const Login = (props) => {
   
 
   return (
-    <main class="d-flex justify-content-center">
+    <section class="d-flex justify-content-center">
       <div className="form">
         <div>
           <h2 class="d-flex justify-content-center">Login</h2>
@@ -38,7 +38,7 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 
