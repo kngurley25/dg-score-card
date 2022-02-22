@@ -47,3 +47,30 @@ export const QUERY_USER = gql `
             }
         }
     }`
+
+    export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      courses {
+        _id
+        courseName
+        location
+        rounds {
+          courseName
+          createAt
+          scores {
+              holeNumber
+              stroke
+          } 
+        }
+      friends {
+        _id
+        username
+      }
+    }
+    }
+  }
+`;

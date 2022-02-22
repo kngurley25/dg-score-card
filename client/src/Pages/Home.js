@@ -1,11 +1,7 @@
 import React from 'react';
-import Login from './Login.js';
 import { Link } from "react-router-dom";
-import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
-import Signup from './Signup.js';
-import Footer from '../components/Footer/index.js';
-import ViewCourses from './ViewCourses.js';
+
 
 const Home = (props) => {
   return (
