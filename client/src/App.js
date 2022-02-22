@@ -21,16 +21,16 @@ function App() {
       <Router>
       <Header></Header>
       <main>
-        
+      
           <Routes>
-       
+
               <Route exact path="/login" element={<Login/>} />
               
               <Route exact path="/signup" element={<Signup/>}/>
               
               <Route exact path="/viewcourses" element={<ViewCourses/>} />
             </Routes>
-        <Home>
+          <Home>
         </Home>
 
         <ScorePage></ScorePage>

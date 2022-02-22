@@ -3,6 +3,7 @@ import ScorePageClasses from './ScorePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
+
 function ScorePage() {
   const [inputValue, setInputValue] = useState(1);
 
