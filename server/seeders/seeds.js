@@ -1,5 +1,6 @@
 const db = require('../config/connection');
 const { User, Course, Round } = require('../models');
+const courseData = require('./course-seeds');
 const { faker } = require('@faker-js/faker');
 
 db.once('open', async() => {
@@ -7,6 +8,7 @@ db.once('open', async() => {
     await Course.deleteMany({});
     await Round.deleteMany({});
 
+    // create Users
     const userData = [];
     for (let i = 0; i < 10; i += 1) {
         const username = faker.internet.userName();
@@ -16,7 +18,8 @@ db.once('open', async() => {
     }
     const seededUsers = await User.collection.insertMany(userData);
 
+    // create Courses
+    const seededCourses = await Course.create(courseData);
 
 
-    
 })
