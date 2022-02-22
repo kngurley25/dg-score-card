@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderClasses from './Header.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
@@ -12,15 +12,15 @@ function Header() {
   return (
     <main className={HeaderClasses.Header}>
       <nav>
-        <div class='navbar'>
-          <div class='container nav-container'>
-            <input class='checkbox' type='checkbox' />
-            <div class='hamburger-lines'>
-              <span class='line line1'></span>
-              <span class='line line2'></span>
-              <span class='line line3'></span>
+        <div className='navbar'>
+          <div className='container nav-container'>
+            <input className='checkbox' type='checkbox' />
+            <div className='hamburger-lines'>
+              <span className='line line1'></span>
+              <span className='line line2'></span>
+              <span className='line line3'></span>
             </div>
-            <div class='logo'>
+            <div className='logo'>
               <h1>
                 DG-Sc
                 <img
@@ -31,12 +31,14 @@ function Header() {
                 recard
               </h1>
             </div>
-            <div class='menu-items'>
+            <div className='menu-items'>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faHouse} />
+                <Link to="/">
                 <button as={NavLink} to={'/'}>
                   Home
                 </button>
+                </Link>
               </li>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
