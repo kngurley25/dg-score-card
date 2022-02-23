@@ -5,20 +5,35 @@ const courseData = require('./course-seeds');
 
 db.once('open', async() => {
     await User.deleteMany({});
-    await Course.deleteMany({});
     await Round.deleteMany({});
+    await Course.deleteMany({});
 
     // create users
     await User.collection.insertMany(userData);
+    const generatedUserId = userData.map(userId => { return userId._id })
+    const generatedUsers = userData.map(user => { return user.username})
 
+    // add user friends
+    for (let i = 0; i < 20; i += 1) {
+        const randomUserIndex = Math.floor(Math.random() * 9) + 1;
+        const randomFriendIndex = Math.floor(Math.random() * 9) + 1;
+        const userId = generatedUserId[randomUserIndex];
+        const friendId = generatedUserId[randomFriendIndex];
+        if ( userId != friendId ) {
+            await User.updateOne(
+                { _id: userId },
+                { $addToSet: { friends: friendId }}
+            );
+        };
+    };
+        
     // create courses
     await Course.collection.insertMany(courseData);
+    const generatedCourses = courseData.map(course => { return course.courseName})
     
     // create rounds
     const roundData = [];
-    const generatedUsers = userData.map(user => { return user.username})
-    const generatedCourses = courseData.map(course => { return course.courseName})
-
+    
     for (let i = 0; i < 10; i += 1) {
         const randomUserIndex = Math.floor(Math.random() * i) + 1;
         const username = generatedUsers[randomUserIndex];
