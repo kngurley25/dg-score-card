@@ -28,12 +28,13 @@ const userSchema = new Schema(
           ref: 'User'
         }
       ],
-      courses: [
-        {
-          type: Schema.Types.ObjectId,
-          ref:'Course'
-        }
-      ],
+      // use virtual here since these values can be queried through rounds?
+      // courses: [
+      //   {
+      //     type: Schema.Types.ObjectId,
+      //     ref:'Course'
+      //   }
+      // ],
       rounds: [
         {
           type: Schema.Types.ObjectId,
@@ -63,9 +64,16 @@ userSchema.methods.isCorrectPassword = async function(password) {
     return bcrypt.compare(password, this.password);
   };
   
-  userSchema.virtual('friendCount').get(function() {
+userSchema.virtual('friendCount').get(function() {
     return this.friends.length;
+});
+
+userSchema.virtual('coursesPlayed').get(function() {
+  let coursesPlayed = this.rounds.map(course => {
+    return course.courseName;
   });
+  return coursesPlayed;
+});
 
 const User = model('User', userSchema);
 
