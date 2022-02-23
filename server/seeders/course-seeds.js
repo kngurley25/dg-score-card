@@ -9,26 +9,31 @@ const courseData = [
     {
         courseName: 'Swope Park Disc Golf Course',
         location: 'Missouri',
+        holeCount: 18,
         holes: holeData
     },
     {
         courseName: 'Rosedal Disc Golf Course',
         location: 'Kansas',
+        holeCount: 18,
         holes: holeData
     },
     {
         courseName: 'Lenexa Disc Golf Course',
         location: 'Kansas',
+        holeCount: 18,
         holes: holeData
     },
     {
         courseName: 'Blue Valley Park Disc Golf Course',
         location: 'Missouri',
+        holeCount: 18,
         holes: holeData
     },
     {
         courseName: 'California Trail Disc Golf Course',
         location: 'Kansas',
+        holeCount: 18,
         holes: holeData
     },
 ]

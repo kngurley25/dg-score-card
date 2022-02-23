@@ -16,10 +16,10 @@ db.once('open', async() => {
         const password = faker.internet.password();
         userData.push({ username, email, password });
     }
-    const seededUsers = await User.collection.insertMany(userData);
+    await User.collection.insertMany(userData);
 
     // create courses
-    const seededCourses = await Course.collection.insertMany(courseData);
+    await Course.collection.insertMany(courseData);
     
     // create rounds
     const roundData = [];
@@ -27,24 +27,21 @@ db.once('open', async() => {
     const generatedCourses = courseData.map(course => { return course.courseName})
 
     for (let i = 0; i < 10; i += 1) {
-        const randomUserIndex = Math.floor(Math.random() * (i - 1) + 1);
+        const randomUserIndex = Math.floor(Math.random() * i) + 1;
         const username = generatedUsers[randomUserIndex];
 
-        const randomCourseIndex = Math.floor(Math.random() * (i - 1) + 1);
+        const randomCourseIndex = Math.floor(Math.random() * 4) + 1;
         const courseName = generatedCourses[randomCourseIndex];
 
-        roundData.push({username, courseName});
+        const scores = [];
+            for (let i = 0; i < 18; i++) {
+            const holeNumber = i + 1;
+            const stroke = Math.floor(Math.random() * 7) + 1;
+            scores.push({ holeNumber, stroke });
+        }
+        roundData.push({username, courseName, scores: scores});
     }
-    
-    const scoreData = [];
-    for (let i = 0; i < 18; i++) {
-        const holeNumber = i + 1;
-        const stroke = Math.floor(Math.random() * 7);
-        scoreData.push({ holeNumber, stroke });
-    }
-
-    console.log(roundData);
-
+    await Round.collection.insertMany(roundData);
 
     // add friends to users
     // add courses to users
