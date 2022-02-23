@@ -28,13 +28,13 @@ const userSchema = new Schema(
           ref: 'User'
         }
       ],
-      // use virtual here since these values can be queried through rounds?
-      // courses: [
-      //   {
-      //     type: Schema.Types.ObjectId,
-      //     ref:'Course'
-      //   }
-      // ],
+      // note use of virtual below if only want to list course names from rounds data
+      courses: [
+        {
+          type: Schema.Types.ObjectId,
+          ref:'Course'
+        }
+      ],
       rounds: [
         {
           type: Schema.Types.ObjectId,

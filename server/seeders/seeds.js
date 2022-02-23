@@ -41,8 +41,20 @@ db.once('open', async() => {
         roundData.push(createdRound);
     }
 
-    // add courses to users
     // add friends to users
+    // const friends = [];
+    // for (let i = 0; i < 15; i += 1) {
+    //     const randomUserIndex = Math.floor(Math.random() * i) + 1;
+    //     const friend = generatedUsers[randomUserIndex];
+    //     const username = generatedUsers[randomUserIndex];
+    //     if (username != friend) {
+    //         friends.push(friend);
+    //     }
+    //     await User.updateOne(
+    //         { username: username}, 
+    //         { $addToSet: {friends: friends }}
+    //     );
+    // }    
 
     console.log('Database has been seeded.');
     process.exit(0);
