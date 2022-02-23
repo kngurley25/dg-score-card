@@ -1,25 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const NewRound = () => {
+    
+
     return (
         <main>
-            <div>
-                <h2> Start a new round! </h2>
-                <form>
-                    <input 
-                          className='form-input'
-                          placeholder='course name'
-                          name='course'
-                          type='course'
-                          id='course'
-                          />
-
-
-            <button type="button" className="btn btn-info" type='submit'>
-                Submit
-              </button>
-                </form>
-            </div>
+            
         </main>
     )
 }

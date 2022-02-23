@@ -67,3 +67,14 @@ export const ADD_COURSE = gql `
         }
       }
     }`
+
+    export const ADD_SCORE = gql `
+    mutation addScore ($roundId: ID!, $holeNumber: Int!, $stroke: Int!) {
+      addScore(roundId: $roundId, holeNumber: $holeNumber, stroke: $stroke) {
+        totalScore
+        scores {
+          holeNumber
+          stroke
+        }
+      }
+    }`

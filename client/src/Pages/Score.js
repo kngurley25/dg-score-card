@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
-
+import { useMutation } from '@apollo/client';
+import { ADD_SCORE } from '../utils/mutations';
 
 function ScorePage() {
+  const [holeNumber, setHoleNumber] = useState(1);
   const [stroke, setStroke] = useState(1);
+
+  const [addScore, { error }] = useMutation(ADD_SCORE);
 
   const addStroke = () => {
     let score = document.getElementById('strokeTotal').value;
@@ -15,7 +19,7 @@ function ScorePage() {
   const removeStroke = () => {
     let score = document.getElementById('strokeTotal').value;
     if (score <= 1) {
-      alert('Score cannot be less than 1');
+      score = 1;
       return;
     }
     let newScore = --score;
