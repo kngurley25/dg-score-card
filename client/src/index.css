@@ -27,6 +27,9 @@ code {
 }
  
 /* styles for button on score page */
+.scoreCrd {
+}
+
 .button-stroke {
   display: inline-block;
   text-decoration: none;
