@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
+
 
 function ScoreModal({ show, handleClose }) {
   return (
@@ -14,7 +16,7 @@ function ScoreModal({ show, handleClose }) {
         <Modal.Title>Scorecard</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <table className='table table-striped'>
+        <Table striped bordered hover size='sm'>
           <thead>
             <tr>
               <th scope='col'>Hole #</th>
@@ -43,7 +45,7 @@ function ScoreModal({ show, handleClose }) {
               <td>-1</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </Modal.Body>
     </Modal>
   );
