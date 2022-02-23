@@ -25,7 +25,7 @@ code {
 .footer {
   margin: 1%;
 }
- 
+
 /* styles for button on score page */
 .scoreCrd {
 }
@@ -98,7 +98,6 @@ code {
   transform: translate(0, 4px);
 }
 
-
 .button-next {
   display: inline-block;
   text-decoration: none;
@@ -112,7 +111,7 @@ code {
   background-image: linear-gradient(
     to bottom,
     rgb(91, 180, 73) 0%,
-    rgb(97, 203, 97)  100%
+    rgb(97, 203, 97) 100%
   );
 
   background-image: -webkit-gradient(
@@ -120,7 +119,7 @@ code {
     left bottom,
     left top,
     color-stop(0, rgb(91, 180, 73)),
-    color-stop(1, rgb(97, 203, 97) )
+    color-stop(1, rgb(97, 203, 97))
   );
   border-radius: 10px;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
@@ -165,4 +164,19 @@ code {
     inset 0px 0px 3px rgba(255, 255, 255, 0.5);
   transform: translate(0, 4px);
   transition: all 0.03s ease-in-out;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  resize: none;
+}
+
+.form-input:focus {
+  border-radius: 12px;
+  border: lightgrey;
 }
