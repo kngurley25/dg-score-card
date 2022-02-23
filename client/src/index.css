@@ -180,3 +180,17 @@ code {
   cursor: pointer;
 }
 /* styles for profile page */
+.form-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  resize: none;
+}
+
+.form-input:focus {
+  border-radius: 12px;
+  border: lightgrey;
+}
