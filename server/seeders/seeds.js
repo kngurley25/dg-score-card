@@ -27,10 +27,10 @@ db.once('open', async() => {
     const generatedCourses = courseData.map(course => { return course.courseName})
 
     for (let i = 0; i < 10; i += 1) {
-        const randomUserIndex = Math.floor(Math.random() * i);
+        const randomUserIndex = Math.floor(Math.random() * (i - 1) + 1);
         const username = generatedUsers[randomUserIndex];
 
-        const randomCourseIndex = Math.floor(Math.random() * i);
+        const randomCourseIndex = Math.floor(Math.random() * (i - 1) + 1);
         const courseName = generatedCourses[randomCourseIndex];
 
         roundData.push({username, courseName});
