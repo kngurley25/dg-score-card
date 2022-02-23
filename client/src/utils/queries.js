@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+//for a specific user's courses
 export const QUERY_COURSES = gql `
     query courses($username: String) {
         courses(username: $username) {
@@ -13,18 +14,33 @@ export const QUERY_COURSES = gql `
         }
     }`
 
+//for all courses
+export const QUERY_ALL_COURSES = gql `
+query allCourses{
+    courses {
+      _id
+    courseName
+    location
+    holes {
+      holeNumber
+      par
+    }
+  }
+}
+`
+
 export const QUERY_COURSE = gql `
-    query course($courseName: String!) {
-        course(courseName: $courseName) {
-            _id
-            courseName
-            location
-            holes {
-                holeNumber
-                pad
-            }
+query course($courseName: String!) {
+    course(courseName: $courseName) {
+        _id
+        courseName
+        location
+        holes {
+            holeNumber
+            par
         }
-    }`
+    }
+}`
 
 export const QUERY_USER = gql `
     query user($username: String!) {

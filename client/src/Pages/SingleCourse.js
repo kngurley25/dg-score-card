@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_COURSE } from '../utils/queries';
+import { QUERY_ALL_COURSES } from '../utils/queries';
 //import CourseList from '../components/CourseList';
 
 const SingleCourse = props => {
     const { id: courseName } = useParams();
   
-    const { loading, data } = useQuery(QUERY_COURSE, {
+    const { loading, data } = useQuery(QUERY_ALL_COURSES, {
       variables: { id: courseName }
     });
     
@@ -16,7 +16,7 @@ const SingleCourse = props => {
       return <div>Loading. . . </div>
     }
     return (
-      <div>DG Course: {course}</div>
+      <div>DG Course: {course.courseName}</div>
     )
 
   };
