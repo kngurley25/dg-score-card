@@ -13,8 +13,11 @@ const SingleCourse = props => {
     
     const course = data?.course || {};
     if(loading) {
-
+      return <div>Loading. . . </div>
     }
+    return (
+      <div>DG Course: {course}</div>
+    )
 
   };
   
