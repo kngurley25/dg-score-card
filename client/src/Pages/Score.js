@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+<<<<<<< HEAD
 import { useMutation } from '@apollo/client';
 import { ADD_SCORE } from '../utils/mutations';
+=======
+import ScoreModal from '../components/ScoreModal';
+
+>>>>>>> develop
 
 function ScorePage() {
   const [holeNumber, setHoleNumber] = useState(1);
   const [stroke, setStroke] = useState(1);
+  const [show, setShow] = useState(true);
+  
+  const toggleModal = (project, i) => {
+    // setCurrentProject({ ...project, index: i });
+    setShow(!show);
+  };
 
   const [addScore, { error }] = useMutation(ADD_SCORE);
 
@@ -28,11 +39,18 @@ function ScorePage() {
 
   return (
     <main>
+      <ScoreModal show={show} handleClose={toggleModal} />
       <div className='d-flex flex-column align-items-center'>
-        <div className='my-5 text-center'>
+        <div className='text-center'>
           <h1>Hole 1</h1>
           <h2>Par 3</h2>
         </div>
+        <button
+          className='btn btn-secondary btn-lg my-3'
+          onClick={() => toggleModal()}
+        >
+          View Score Card
+        </button>
         <p className='fs-3'>Enter Total Strokes:</p>
         <button
           id='addBtn'
@@ -41,7 +59,7 @@ function ScorePage() {
         >
           <FontAwesomeIcon icon={faArrowUp} className='fs-1' />
         </button>
-        <div className='d-flex justify-content-center my-2'>
+        <div className='d-flex justify-content-center my-1'>
           <input
             type='number'
             pattern='[0-9]*'

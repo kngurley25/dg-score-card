@@ -38,22 +38,19 @@ export const ADD_FRIEND = gql`
   }
 `;
 
-export const ADD_COURSE = gql `
-  mutation addCourse($courseName: String!) {
-    addCourse(courseName: $courseName) {
-      course {
-      _id
-      courseName
-      location
-      holes {
-        holeNumber
-      }
-    } 
-    }
-    }
-  `
-  ;
 
+export const CREATE_COURSE = gql `
+mutation createCourse($courseName: String!, $location: String!) {
+  createCourse(courseName: $courseName, location: $location) {
+    _id
+    courseName
+    location
+    holes {
+      holeNumber
+  } 
+  }
+  }
+`
 
   export const ADD_ROUND = gql `
     mutation addRound ($username: String!) {
