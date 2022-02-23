@@ -6,7 +6,7 @@ import ScoreModal from '../components/ScoreModal';
 
 function ScorePage() {
   const [stroke, setStroke] = useState(1);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   
   const toggleModal = (project, i) => {
     // setCurrentProject({ ...project, index: i });

@@ -18,6 +18,7 @@ import Signup from './Pages/Signup';
 import ViewCourses from './Pages/ViewCourses';
 import CourseForm from './components/CreateCourse';
 import CourseList from './components/CourseList';
+import Profile from './Pages/Profile'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -55,7 +56,7 @@ function App() {
 
               <Route exact path="/viewcourses" element={<ViewCourses />} />
             </Routes>
-            
+            <Profile></Profile>
             <ScorePage></ScorePage>
             <CourseForm></CourseForm>
             

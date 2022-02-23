@@ -56,10 +56,10 @@ const CourseForm = () => {
     return (
     <div className="">
       <div className="d-flex justify-content-center">
-    <p className={` ${characterCount === 280 || error ? 'text-error' : 'too many letters'}`}>
+    <div className={` ${characterCount === 280 || error ? 'text-error' : 'too many letters'}`}>
     <h1>Create a new course:</h1>
     {error && <span className="ml-2">Something went wrong...</span>}
-    </p>
+    </div>
     </div>
     <div className="d-flex justify-content-center">
     <form
