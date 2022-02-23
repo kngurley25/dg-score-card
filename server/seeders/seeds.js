@@ -29,6 +29,7 @@ db.once('open', async() => {
         
     // create courses
     await Course.collection.insertMany(courseData);
+    const generatedCourseId = courseData.map(courseId => { return courseId._id })
     const generatedCourses = courseData.map(course => { return course.courseName})
     
     // create rounds
@@ -39,6 +40,7 @@ db.once('open', async() => {
         const username = generatedUsers[randomUserIndex];
         const randomCourseIndex = Math.floor(Math.random() * 4) + 1;
         const courseName = generatedCourses[randomCourseIndex];
+        const courseId = generatedCourseId[randomCourseIndex];
 
         const scores = [];
             for (let i = 0; i < 18; i++) {
@@ -48,28 +50,13 @@ db.once('open', async() => {
         }
         const createdRound = await Round.create({username, courseName, scores: scores});
         
-        // add round data to user
+        // add round and course data to user
         await User.updateOne(
             { username: username },
-            { $push: { rounds: createdRound._id }}
+            { $push: { rounds: createdRound._id, courses: courseId }}
         );
         roundData.push(createdRound);
-    }
-
-    // add friends to users
-    // const friends = [];
-    // for (let i = 0; i < 15; i += 1) {
-    //     const randomUserIndex = Math.floor(Math.random() * i) + 1;
-    //     const friend = generatedUsers[randomUserIndex];
-    //     const username = generatedUsers[randomUserIndex];
-    //     if (username != friend) {
-    //         friends.push(friend);
-    //     }
-    //     await User.updateOne(
-    //         { username: username}, 
-    //         { $addToSet: {friends: friends }}
-    //     );
-    // }    
+    }  
 
     console.log('Database has been seeded.');
     process.exit(0);
