@@ -26,6 +26,10 @@ const courseSchema = new Schema(
             require: true,
             trim: true
         },
+        holeCount: {
+            type: Number,
+            required: true,
+        },
         holes: [holeSchema]
     },
     {
@@ -35,10 +39,6 @@ const courseSchema = new Schema(
         }
     }
 );
-
-courseSchema.virtual('holeCount').get(function() {
-    return this.holes.length;
-});
 
 courseSchema.virtual('parTotal').get(function() {
     const parArr = this.holes.map(hole => {return hole.par});
