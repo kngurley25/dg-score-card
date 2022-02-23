@@ -1,6 +1,6 @@
 const holeData = [];
 for (let i = 0; i < 18; i++) {
-    const holeNumber = i;
+    const holeNumber = i + 1;
     const par = 3;
     holeData.push({ holeNumber, par });
 }
