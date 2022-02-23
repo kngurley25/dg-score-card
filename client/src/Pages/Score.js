@@ -32,7 +32,7 @@ function ScorePage() {
     <main>
       <ScoreModal show={show} handleClose={toggleModal} />
       <div className='d-flex flex-column align-items-center'>
-        <div className='my- text-center'>
+        <div className='text-center'>
           <h1>Hole 1</h1>
           <h2>Par 3</h2>
         </div>
