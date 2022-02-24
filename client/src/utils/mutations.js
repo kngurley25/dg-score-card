@@ -52,6 +52,15 @@ mutation createCourse($courseName: String!, $location: String!) {
   }
 `
 
+export const SET_HOLE_COUNT = gql `
+mutation setHoles($courseId: ID!, $holeCount: Int!) {
+  setHoles(courseId: $courseId, holes: $holes) {
+    _id
+    holeNumber
+  }
+}
+`
+
   export const ADD_ROUND = gql `
     mutation addRound ($username: String!) {
       addRound(username: $username) {
