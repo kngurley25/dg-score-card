@@ -16,8 +16,9 @@ import Footer from './components/Footer';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import ViewCourses from './Pages/ViewCourses';
+import background from './assets/images/dg-basket.png'
 import CourseForm from './components/CreateCourse';
-import CourseList from './components/CourseList';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,7 +46,12 @@ function App() {
       <div>
         <Router>
           <Header></Header>
-          <main>
+          <main style={{
+            backgroundImage: `url(${background})`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+            
+          }}>
             <Routes>
               <Route exact path="/" element={<Home />} />
 
@@ -54,10 +60,10 @@ function App() {
               <Route exact path="/signup" element={<Signup />} />
 
               <Route exact path="/viewcourses" element={<ViewCourses />} />
+              <Route exact path="/courseform" element={<CourseForm />} />
             </Routes>
             
             <ScorePage></ScorePage>
-            <CourseForm></CourseForm>
             
           </main>
           <Footer></Footer>

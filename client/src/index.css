@@ -12,14 +12,39 @@ code {
     monospace;
 }
 
+.heading {
+  color: darkgray;
+  padding-top: 24px;
+  font-size: 36px;
+}
+
 .form-input {
   padding: 5px 10px;
   margin: 10px 10px;
+  height: 50px;
 }
 
 .form {
   padding: 5%;
   border-bottom: solid;
+}
+
+.course-form {
+  margin: 10px 10px;
+  border-radius: 8px;
+  border: solid;
+  width: 80%;
+}
+
+ul {
+}
+
+ul li {
+  text-decoration: none;
+}
+
+.btn {
+  margin-bottom: 10px;
 }
 
 .footer {
@@ -177,6 +202,5 @@ code {
 }
 
 .form-input:focus {
-  border-radius: 12px;
   border: lightgrey;
 }

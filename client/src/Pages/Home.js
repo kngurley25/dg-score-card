@@ -9,9 +9,11 @@ const Home = (props) => {
       <div className="d-flex justify-content-center">
         <h1> No Bogeys! 🥏</h1>
       </div>
+      {!Auth.loggedIn() && 
       <div className="d-flex justify-content-center">
         <p> Login or Sign up to use our DiscGolf ScoreKeeper App</p>
       </div>
+      }
       {!Auth.loggedIn() && 
       <div className="d-flex justify-content-center">
         <Link to="/login">
