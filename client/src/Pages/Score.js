@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< HEAD
 import { useMutation } from '@apollo/client';
 import { ADD_SCORE } from '../utils/mutations';
-=======
 import ScoreModal from '../components/ScoreModal';
 
->>>>>>> develop
 
 function ScorePage() {
   const [holeNumber, setHoleNumber] = useState(1);
