@@ -21,7 +21,9 @@ query allCourses{
       _id
     courseName
     location
+    holeCount
     holes {
+      _id
       holeNumber
       par
     }
