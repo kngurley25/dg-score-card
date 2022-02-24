@@ -11,6 +11,7 @@ import Home from './Pages/Home';
 import './App.css';
 
 import ScorePage from './Pages/Score';
+import NewRound from './Pages/NewRound';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './Pages/Login';
@@ -60,12 +61,12 @@ function App() {
               <Route exact path="/login" element={<Login />} />
 
               <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/newround/:courseId" element={<NewRound />} />
+              <Route exact path="/score/:roundId" element={<ScorePage />} />
 
               <Route exact path="/viewcourses" element={<ViewCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />
             </Routes>
-            
-            <ScorePage></ScorePage>
             
           </main>
           <Footer></Footer>

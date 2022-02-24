@@ -48,9 +48,11 @@ function Header() {
               </li>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <Link to="/profile">
                 <button as={NavLink} to={'/'}>
                   Profile
                 </button>
+                </Link>
               </li>
               {Auth.loggedIn() ? (
               <li>

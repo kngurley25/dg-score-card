@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_SCORE } from '../utils/mutations';
+import { QUERY_ROUND } from '../utils/queries';
 import ScoreModal from '../components/ScoreModal';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 function ScorePage() {
+  const navigate = useNavigate();
+  const { roundId: roundParam } = useParams();
+  const [addScore, { error }] = useMutation(ADD_SCORE);
+
+  const { loading, data } = useQuery(QUERY_ROUND, {
+    variables: { roundId: roundParam },
+  });
+  const round = data?.round || {};
+  // const totalScore = round.totalScore;
+  
+    
+  const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
   const [stroke, setStroke] = useState(1);
-  const [show, setShow] = useState(true);
-  
+  const [show, setShow] = useState(false);
+ 
+
   const toggleModal = (project, i) => {
     // setCurrentProject({ ...project, index: i });
     setShow(!show);
   };
 
-  const [addScore, { error }] = useMutation(ADD_SCORE);
+  
 
   const addStroke = () => {
     let score = document.getElementById('strokeTotal').value;
@@ -33,14 +48,43 @@ function ScorePage() {
     let newScore = --score;
     return setStroke(newScore);
   };
+  let total;
+  const handleAddScore = (event) => {
+    event.preventDefault();
+    total = totalScore + stroke;
 
+
+    try {
+     addScore({
+          variables: { roundId: roundParam , holeNumber, stroke },
+      });
+      
+      setStroke(1);
+      if (holeNumber === 18) {
+        navigate(`/profile`);
+      } else {
+        
+      setHoleNumber(holeNumber + 1);
+      setTotalScore(total)
+      }
+  } catch (e) {
+      console.error(e);
+  }
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <main>
       <ScoreModal show={show} handleClose={toggleModal} />
       <div className='d-flex flex-column align-items-center'>
+        
         <div className='text-center'>
-          <h1>Hole 1</h1>
-          <h2>Par 3</h2>
+          <h1>Hole {holeNumber}</h1>
+          <h2>{round.courseName}</h2>
+          <h3>Total Score: {totalScore}</h3>
         </div>
         <button
           className='btn btn-secondary btn-lg my-3'
@@ -75,10 +119,11 @@ function ScorePage() {
           <FontAwesomeIcon icon={faArrowDown} className='fs-1' />
         </button>
         <div>
-          <button className='button-next my-5'>
+          <button onClick={handleAddScore} className='button-next my-5'>
             <p>Next Hole</p>
           </button>
         </div>
+        {error && <div>Something went wront...</div>}
       </div>
     </main>
   );

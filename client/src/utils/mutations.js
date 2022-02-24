@@ -62,8 +62,8 @@ mutation setHoles($courseId: ID!, $holeCount: Int!) {
 `
 
   export const ADD_ROUND = gql `
-    mutation addRound ($username: String!) {
-      addRound(username: $username) {
+    mutation addRound ($courseName: String!) {
+      addRound(courseName: $courseName) {
         _id
         courseName
         createAt
