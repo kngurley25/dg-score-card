@@ -1,53 +1,33 @@
 import React, {useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_COURSE } from '../../utils/mutations';
-import { QUERY_COURSES, QUERY_ME } from '../../utils/queries';
+import { CREATE_COURSE } from '../../utils/mutations';
+
 
 const CourseForm = () => {
-    const [addCourse, { error }] = useMutation(ADD_COURSE, {
-      update(cache, { data: { addCourse } }) {
-        try {
-          // could potentially not exist yet, so wrap in a try...catch
-          const { courses } = cache.readQuery({ query: QUERY_COURSES});
-          cache.writeQuery({
-            query: QUERY_COURSES,
-            data: { courses: [addCourse, ...courses] }
-          });
-        } catch (e) {
-          console.error(e);
-        }
-    
-        // update me object's cache, appending new thought to the end of the array
-        const { me } = cache.readQuery({ query: QUERY_ME });
-        cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: { ...me, courses: [...me.courses, addCourse] } }
-        });
-      }
+  const [formState, setFormState] = useState({ courseName: '', location: '', holes: '' });
+  const [createCourse, { error }] = useMutation(CREATE_COURSE);
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
     });
-  
-    const [{courseName, location, holes}, setText] = useState('');
-    const [characterCount, setCharacterCount] = useState(0);
-  
-  const handleChange = event => {
-    if (event.target.value.length <= 280) {
-      setText(event.target.value);
-      setCharacterCount(event.target.value.length);
-    }
   };
-  
-  const handleFormSubmit = async event => {
+
+  // submit form
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-  
+    
+    // use try/catch instead of promises to handle errors
     try {
-      // add thought to database
-      await addCourse({
-        variables: { courseName, location, holes }
+      // execute addUser mutation and pass in variable data from form
+      const { data } = await createCourse({
+        variables: { ...formState }
       });
+
   
-      // clear form value
-      setText('');
-      setCharacterCount(0);
     } catch (e) {
       console.error(e);
     }
@@ -56,10 +36,8 @@ const CourseForm = () => {
     return (
     <div className="">
       <div className="d-flex justify-content-center">
-    <div className={` ${characterCount === 280 || error ? 'text-error' : 'too many letters'}`}>
-    <h1>Create a new course:</h1>
-    {error && <span className="ml-2">Something went wrong...</span>}
-    </div>
+  
+    <h1>Create a new course:</h1> 
     </div>
     <div className="d-flex justify-content-center">
     <form
@@ -69,21 +47,27 @@ const CourseForm = () => {
 
         <textarea
     placeholder="Course Name"
-    value={courseName}
+    value={formState.courseName}
+    name='courseName'
+    type='courseName'
     className="form-input col-9 col-md-9 col-sd-9"
     onChange={handleChange}
   ></textarea>
 
           <textarea
     placeholder="Course Location"
-    value={location}
+    value={formState.location}
     className="form-input col-6 col-md-6 col-sd-3"
+    name='location'
+    type='location'
     onChange={handleChange}
   ></textarea>
 
   <textarea
-    placeholder="Number of holes"
-    value={holes}
+    placeholder="# of holes"
+    value={formState.holes}
+    name='holes'
+    type='holes'
     className="form-input col-3 col-md-3 col-sd-3"
     onChange={handleChange}
   ></textarea>
@@ -94,9 +78,12 @@ const CourseForm = () => {
           </button>
           </div>
         </form>
+        {error && <span className="ml-2">Something went wrong...</span>}
         </div>
     </div>
+    
     );
+  
   };
   
   export default CourseForm;
