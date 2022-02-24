@@ -69,10 +69,13 @@ const CourseForm = () => {
     onChange={handleChange}
   ></textarea>
 
-  <div className="d-flex justify-content-center">
-          <button className="btn btn-primary d-flex justify-content-center" type="submit">
-            Submit
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-primary d-flex justify-content-center"
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
         {error && <span className="ml-2">Something went wrong...</span>}

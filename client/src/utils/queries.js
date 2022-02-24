@@ -32,14 +32,28 @@ query allCourses{
 `
 
 export const QUERY_COURSE = gql `
-query course($courseName: String!) {
-    course(courseName: $courseName) {
+query course($_id: ID!) {
+    course(_id: $_id) {
         _id
         courseName
         location
         holes {
             holeNumber
             par
+        }
+    }
+}`
+
+export const QUERY_ROUND = gql `
+query round($roundId: ID!) {
+    round(roundId: $roundId) {
+        _id
+        totalScore
+        courseName
+        username
+        scores {
+            holeNumber
+            stroke
         }
     }
 }`
@@ -76,19 +90,19 @@ export const QUERY_USER = gql `
         _id
         courseName
         location
-        rounds {
-          courseName
-          createAt
-          scores {
-              holeNumber
-              stroke
+      }
+      rounds {
+        courseName
+        createAt
+        scores {
+            holeNumber
+            stroke
           } 
         }
       friends {
         _id
         username
       }
-    }
     }
   }
 `;
