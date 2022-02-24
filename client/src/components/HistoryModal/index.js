@@ -1,9 +1,21 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../../utils/queries';
 import ModalClasses from './HistoryModal.css';
 
 function HistoryModal({ show, handleClose }) {
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: 'Cesar_Wisoky' },
+  });
+
+  const user = data?.user || [];
+  const rounds = data?.user.rounds || [];
+
+  console.log(user);
+  console.log(rounds);
+
   return (
     <div className={ModalClasses.HistoryModal}>
       <Modal
@@ -16,7 +28,7 @@ function HistoryModal({ show, handleClose }) {
         <Modal.Header closeButton>
           <Modal.Title>Round History</Modal.Title>
         </Modal.Header>
-        <Modal.Body scrollable>
+        <Modal.Body>
           <Table striped bordered hover size='sm'>
             <thead>
               <tr>
@@ -27,24 +39,14 @@ function HistoryModal({ show, handleClose }) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope='row'>1/1/2022</th>
-                <td>Course Name</td>
-                <td>72</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <th scope='row'>1/1/2022</th>
-                <td>Course Name</td>
-                <td>72</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <th scope='row'>1/1/2022</th>
-                <td>Course Name</td>
-                <td>72</td>
-                <td>80</td>
-              </tr>
+              {rounds.map((round, i) => (
+                <tr key={i}>
+                  <th scope='row'>{round.createAt.split('at')[0]}</th>
+                  <td>{round.courseName}</td>
+                  <td>72</td>
+                  <td>{round.totalScore}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Modal.Body>
