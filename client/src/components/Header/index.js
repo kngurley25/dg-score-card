@@ -34,13 +34,15 @@ function Header() {
             <div class='menu-items'>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faHouse} />
-                <button as={NavLink} to={'/'}>
+                <Link to="/">
+                <button>
                   Home
-                </button>
+                  </button>
+                  </Link>
               </li>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <button as={NavLink} to={'/'}>
+                <button>
                   Profile
                 </button>
               </li>
@@ -55,9 +57,20 @@ function Header() {
                   className='dropdown-icon'
                   icon={faArrowRightFromBracket}
                 />
-                <button as={NavLink} to={'/'}>
+                <button>
+                  <a className='logoutBtn' href="/" onClick={logout}>
                   Logout
+                  </a>
                 </button>
+              </li>
+               ) : (
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <Link to="/login">
+                <button>
+                  Login
+                  </button>
+                  </Link>
               </li>
             </div>
           </div>
