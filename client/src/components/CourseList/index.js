@@ -1,33 +1,48 @@
 import React from "react";
-//add Link to single course pages
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardHeader,
+  MDBListGroup,
+  MDBListGroupItem,
+} from "mdb-react-ui-kit";
 
 const CourseList = ({ courses, title }) => {
+  if (!courses.length) {
+    return <h3 className="d-flex justify-content-center">No Courses Yet</h3>;
+  }
 
-    if (!courses.length) {
-        return <h3 className="d-flex justify-content-center">No Courses Yet</h3>;
-       
-    }
+  return (
+    <section>
+      <div>
+        <Link to="/">
+          <div className="d-flex justify-content-center">
+            <button
+              type="button"
+              className="btn btn-primary d-flex justify-content-center"
+            >
+              Go Back
+            </button>
+          </div>
+        </Link>
+      </div>
 
-    return (
-        <div>
-            <h3>{title}</h3>
-            <ul>
-            {courses &&
-             courses.map(course => (
-          <li key={course._id} className="d-flex justify-content-center">
-              <Link
-              to={`/courses/${course.courseName}`}
-              //add a className & add styling in CSS
-              className=""
+      <MDBCard style={{ width: "18rem" }}>
+        <MDBCardHeader>{title}</MDBCardHeader>
+        <MDBListGroup flush>
+          {courses &&
+            courses.map((course) => (
+              <MDBListGroupItem
+                key={course._id}
+                className="list d-flex justify-content-center"
               >
-              {course.courseName}, {course.location} 
-              </Link>
-          </li>
-        ))}
-        </ul>
-        </div>
-    )
-}
+                {course.courseName}, {course.location}
+              </MDBListGroupItem>
+            ))}
+        </MDBListGroup>
+      </MDBCard>
+    </section>
+  );
+};
 
 export default CourseList;

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
@@ -13,14 +14,42 @@ code {
 }
 
 .heading {
-  padding-top: 24px;
+  padding: 2px 2px 2px 2px;
+  margin-top: 40px;
+  border-radius: 12px;
   font-size: 36px;
+  background-color: white;
+}
+
+.sub-heading {
+  padding: 2px 2px 2px 2px;
+  margin-top: 40px;
+  border-radius: 12px;
+  font-size: 24px;
+  background-color: white;
+}
+
+.information {
+  padding: 2px 2px 2px 2px;
+  margin-top: 40px;
+  border-radius: 12px;
+  font-size: 18px;
+  text-align: center;
+  background-color: white;
 }
 
 .form-input {
   padding: 5px 10px;
   margin: 10px 10px;
   height: 50px;
+}
+
+.list {
+  background-color: white;
+  padding: 1px 1px 1px 1px;
+  margin: 2px 2px;
+  border-radius: 12px;
+  font-size: 18px;
 }
 
 .form {
@@ -33,24 +62,29 @@ code {
   border-radius: 8px;
 }
 
-ul {
+.form-group {
+  height: 50%;
+  position: relative;
+  text-align: center;
 }
 
-ul li {
-  text-decoration: none;
+.footer,
+.push {
+  height: 50px;
+}
+
+.hole-form {
+  border-radius: 12px;
+  border: solid;
+  margin-right: 20px;
+  background-color: white;
 }
 
 .btn {
   margin-bottom: 10px;
 }
 
-.footer {
-  margin: 1%;
-}
-
 /* styles for button on score page */
-.scoreCrd {
-}
 
 .button-stroke {
   display: inline-block;
