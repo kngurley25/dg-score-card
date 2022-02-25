@@ -4,6 +4,18 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+        if (context.user) {
+         const userData = await User.findOne({ _id: context.user._id })
+           .select("-__v -password")
+           .populate("friends")
+           .populate("courses")
+           .populate("rounds");
+   
+         return userData;
+        }
+        throw new AuthenticationError('Not logged in');
+       },
     // get all users
     users: async () => {
       return User.find().select("-__v -password")
@@ -22,15 +34,15 @@ const resolvers = {
     courses: async () => {
       return Course.find();
     },
-    course: async (parent, { courseName }) => {
-      const params = courseName ? { courseName } : {};
+    course: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
       return Course.findOne(params).sort({ courseName: 1 });
     },
     rounds: async () => {
       return Round.find();
     },
-    round: async (parent, { username }) => {
-      const params = username ? { username } : {};
+    round: async (parent, { roundId }) => {
+      const params = roundId ? { roundId } : {};
       return Round.findOne(params).sort({ createAt: -1 });
     },
   },
@@ -82,15 +94,17 @@ const resolvers = {
   
         throw new AuthenticationError("You need to be logged in!");
       },
-    addRound: async (parent, { roundId }, context) => {
+    addRound: async (parent, args, context) => {
         if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
+            const round = await Round.create({ ...args, username: context.user.username });
+            
+          await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { rounds: roundId } },
+            { $addToSet: { rounds: round._id } },
             { new: true }
-          ).populate("rounds");
+          );
   
-          return updatedUser;
+          return round;
         }
   
         throw new AuthenticationError("You need to be logged in!");
@@ -114,13 +128,7 @@ const resolvers = {
         }
         throw new AuthenticationError('You need to be logged in!');
     },
-    createRound: async (parent, args, context) => {
-        if (context.user) {
-            const round = await Round.create(args);
-            return round;
-        }
-        throw new AuthenticationError('You need to be logged in!');
-    },
+   
     addScore: async (parent, { roundId, holeNumber, stroke }, context) => {
         if (context.user) {
             const updatedRound = await Round.findOneAndUpdate(

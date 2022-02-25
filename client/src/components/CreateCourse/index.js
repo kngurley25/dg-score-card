@@ -34,30 +34,27 @@ const CourseForm = () => {
   };
   
     return (
-    <div className="">
-      <div className="d-flex justify-content-center">
-  
-    <h1>Create a new course:</h1> 
-    </div>
+   
     <div className="d-flex justify-content-center">
     <form
-    className="col-12 col-md-6 justify-content-center"
+    className="course-form col-12 col-md-6"
     onSubmit={handleFormSubmit}
   >
+    <h1 className="heading d-flex justify-content-center">New Course:</h1> 
 
         <textarea
     placeholder="Course Name"
     value={formState.courseName}
     name='courseName'
     type='courseName'
-    className="form-input col-9 col-md-9 col-sd-9"
+    className="form-input col-10 offset-1"
     onChange={handleChange}
   ></textarea>
 
           <textarea
     placeholder="Course Location"
     value={formState.location}
-    className="form-input col-6 col-md-6 col-sd-3"
+    className="form-input col-6 offset-1"
     name='location'
     type='location'
     onChange={handleChange}
@@ -68,20 +65,21 @@ const CourseForm = () => {
     value={formState.holes}
     name='holes'
     type='holes'
-    className="form-input col-3 col-md-3 col-sd-3"
+    className="form-input col-4"
     onChange={handleChange}
   ></textarea>
 
-  <div className="d-flex justify-content-center">
-          <button className="btn btn-primary d-flex justify-content-center" type="submit">
-            Submit
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-primary d-flex justify-content-center"
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
         {error && <span className="ml-2">Something went wrong...</span>}
         </div>
-    </div>
-    
     );
   
   };
