@@ -57,7 +57,9 @@ function Header() {
               </li>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <button onClick={() => setChecked(false)}>Profile</button>
+                <Link to={'/profile'}>
+                  <button onClick={() => setChecked(false)}>Profile</button>
+                </Link>
               </li>
               {Auth.loggedIn() ? (
                 <li>

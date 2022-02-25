@@ -5,16 +5,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
 import ModalClasses from './HistoryModal.css';
 
-function HistoryModal({ show, handleClose }) {
-  const { loading, data } = useQuery(QUERY_USER, {
-    variables: { username: 'Cesar_Wisoky' },
-  });
+function HistoryModal({ show, handleClose, user }) {
 
-  const user = data?.user || [];
-  const rounds = data?.user.rounds || [];
-
-  // console.log(user);
-  // console.log(rounds);
+  console.log(user);
 
   return (
     <div className={ModalClasses.HistoryModal}>
@@ -39,12 +32,12 @@ function HistoryModal({ show, handleClose }) {
               </tr>
             </thead>
             <tbody>
-              {rounds.map((round, i) => (
+              {user.rounds.map((round, i) => (
                 <tr key={i}>
                   <th scope='row'>{round.createAt.split('at')[0]}</th>
-                  <td>{round.courseName}</td>
+                  <td>{user.round.courseName}</td>
                   <td>72</td>
-                  <td>{round.totalScore}</td>
+                  <td>{user.round.totalScore}</td>
                 </tr>
               ))}
             </tbody>
