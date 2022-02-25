@@ -40,23 +40,31 @@ export const ADD_FRIEND = gql`
 
 
 export const CREATE_COURSE = gql `
-mutation createCourse($courseName: String!, $location: String!) {
-  createCourse(courseName: $courseName, location: $location) {
+mutation createCourse($courseName: String!, $location: String!, $holeCount: Int!) {
+  createCourse(courseName: $courseName, location: $location, holeCount: $holeCount) {
     _id
     courseName
     location
+    holeCount
     holes {
+      _id
       holeNumber
-  } 
+      par
+    }
   }
   }
 `
 
-export const SET_HOLE_COUNT = gql `
-mutation setHoles($courseId: ID!, $holeCount: Int!) {
-  setHoles(courseId: $courseId, holes: $holes) {
+export const ADD_HOLE = gql `
+mutation addHole($courseId: ID!, $holeNumber: Int!, $par: Int!) {
+  addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par) {
     _id
-    holeNumber
+    holeCount
+    holes {
+      _id
+      holeNumber
+      par
+    }
   }
 }
 `

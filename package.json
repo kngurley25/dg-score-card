@@ -28,6 +28,7 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@popperjs/core": "^2.11.2",
     "jsonwebtoken": "^8.5.1",
+    "mdb-react-ui-kit": "^2.3.0",
     "nodemon": "^2.0.15"
   }
 }
