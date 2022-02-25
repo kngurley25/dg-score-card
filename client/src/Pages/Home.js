@@ -5,13 +5,15 @@ import Auth from '../utils/auth';
 
 const Home = (props) => {
   return (
-    <section>
+    <section className="p-4">
       <div className="d-flex justify-content-center">
-        <h1> No Bogeys! 🥏</h1>
+        <h1 className="heading"> No Bogeys! 🥏</h1>
       </div>
-      <div className="d-flex justify-content-center">
-        <p> Login or Sign up to use our DiscGolf ScoreKeeper App</p>
+      {!Auth.loggedIn() && 
+      <div className="d-flex justify-content-center p-4">
+        <p className="information"> Login or Sign up to use our DiscGolf ScoreKeeper App</p>
       </div>
+      }
       {!Auth.loggedIn() && 
       <div className="d-flex justify-content-center">
         <Link to="/login">
@@ -32,11 +34,11 @@ const Home = (props) => {
         </Link>
       </div>
         }
-      <div className="d-flex justify-content-center mb-1">
+      <div className="d-flex justify-content-center">
         <Link to="/viewcourses">
           <button
             type="button"
-            className="btn btn-primary d-flex justify-content-center mb-3">
+            className="btn btn-primary d-flex justify-content-center m-4">
             View our Courses
           </button>
         </Link>
