@@ -50,6 +50,7 @@ const Signup = () => {
                 id='username'
                 value={formState.username}
                 onChange={handleChange}
+                autoComplete='on'
               />
               <input
                 className='form-input'
@@ -59,6 +60,7 @@ const Signup = () => {
                 id='email'
                 value={formState.email}
                 onChange={handleChange}
+                autoComplete='on'
               />
               <input
                 className='form-input'
@@ -68,12 +70,13 @@ const Signup = () => {
                 id='password'
                 value={formState.password}
                 onChange={handleChange}
+                autoComplete='on'
               />
-                {error && (
-                  <div class='alert alert-danger text-center' role='alert'>
-                    Signup Failed!
-                  </div>
-                )}
+              {error && (
+                <div class='alert alert-danger text-center' role='alert'>
+                  Signup Failed!
+                </div>
+              )}
               <div className='d-flex justify-content-center'>
                 <button
                   type='submit'

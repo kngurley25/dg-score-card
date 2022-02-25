@@ -54,6 +54,7 @@ const Login = (props) => {
                 id='email'
                 value={formState.email}
                 onChange={handleChange}
+                autoComplete='on'
               />
               <input
                 className='form-input'
@@ -63,6 +64,7 @@ const Login = (props) => {
                 id='password'
                 value={formState.password}
                 onChange={handleChange}
+                autoComplete='on'
               />
                 {error && (
                   <div class='alert alert-danger text-center' role='alert'>
