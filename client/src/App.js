@@ -22,18 +22,9 @@ import background from "./assets/images/dg-basket.png";
 import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
 
-import Home from './Pages/Home';
 import './App.css';
 
-import ScorePage from './Pages/Score';
 import NewRound from './Pages/NewRound';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
-import ViewCourses from './Pages/ViewCourses';
-import background from './assets/images/dg-basket.png'
-import CourseForm from './components/CreateCourse';
 import Profile from './Pages/Profile';
 
 
@@ -91,14 +82,6 @@ function App() {
               <Route exact path="/addhole" element={<AddHole />} />
               <Route exact path="/scorepage" element={<ScorePage />} />
             </Routes>
-<<<<<<< HEAD
-            <Profile></Profile>
-            <ScorePage></ScorePage>
-            <CourseForm></CourseForm>
-            
-=======
-
->>>>>>> develop
           </main>
           <Footer></Footer>
         </Router>

@@ -7,6 +7,7 @@ import { faUpRightFromSquare, faStar } from '@fortawesome/free-solid-svg-icons';
 import HistoryModal from '../components/HistoryModal';
 
 function Profile() {
+  const [show, setShow] = useState(false);
   const { loading, data } = useQuery(QUERY_ME, {
   });
   const user = data?.me || {};
@@ -21,8 +22,7 @@ function Profile() {
       </h4>
     );
   }
-        
-          const [show, setShow] = useState(false);
+  
   const toggleModal = () => {
     setShow(!show);
   };
@@ -36,7 +36,7 @@ function Profile() {
           <h2 className='text-center'>or</h2>
           <h2 className='text-center'>stick with a favorite</h2>
           <ul className='list-group list-group-flush text-center'>
-            {courses.map((course, i) => (
+            {user.courses.map((course, i) => (
               <button
                 className='favCourse-link list-group-item fs-5 my-2 fw-bold'
                 as={Link}
