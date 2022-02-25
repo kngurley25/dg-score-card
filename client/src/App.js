@@ -90,10 +90,6 @@ function App() {
               <Route exact path="/addhole" element={<AddHole />} />
               <Route exact path="/scorepage" element={<ScorePage />} />
             </Routes>
-<<<<<<< Updated upstream
-=======
-            
->>>>>>> Stashed changes
           </main>
           <Footer></Footer>
         </Router>
