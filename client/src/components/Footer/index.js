@@ -2,7 +2,8 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer class="d-flex justify-content-center">a DiscGolf ScoreKeeper App</footer>
+        <footer className="d-flex justify-content-center p-4">a DiscGolf ScoreKeeper App</footer>
+
     )
 }
 

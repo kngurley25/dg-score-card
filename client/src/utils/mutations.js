@@ -23,3 +23,44 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($id: ID!) {
+    addFriend(friendId: $id) {
+      _id
+      username
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+
+export const CREATE_COURSE = gql `
+mutation createCourse($courseName: String!, $location: String!) {
+  createCourse(courseName: $courseName, location: $location) {
+    _id
+    courseName
+    location
+    holes {
+      holeNumber
+  } 
+  }
+  }
+`
+
+  export const ADD_ROUND = gql `
+    mutation addRound ($username: String!) {
+      addRound(username: $username) {
+        _id
+        courseName
+        createAt
+        scores {
+          holeNumber
+          stroke
+        }
+      }
+    }`

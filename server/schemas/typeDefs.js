@@ -9,6 +9,7 @@ const typeDefs = gql`
         friends: [User]
         courses: [Course]
         rounds: [Round]
+        coursesPlayed: [String]
     }
 
     type Course {

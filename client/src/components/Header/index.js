@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import HeaderClasses from './Header.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Auth from '../../utils/auth';
 import {
   faHouse,
   faUser,
@@ -9,18 +10,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
+  const [checked, setChecked] = useState(false);
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
+  // const checkbox = document.getElementById('checkbox');
+  // const checkbox = useRef('checkbox');
+
+  // console.log(checkbox);
+
   return (
     <main className={HeaderClasses.Header}>
       <nav>
-        <div class='navbar'>
-          <div class='container nav-container'>
-            <input class='checkbox' type='checkbox' />
-            <div class='hamburger-lines'>
-              <span class='line line1'></span>
-              <span class='line line2'></span>
-              <span class='line line3'></span>
+        <div className='navbar'>
+          <div className='container nav-container' id='menu'>
+            <input
+              checked={checked}
+              className='checkbox'
+              type='checkbox'
+              onChange={() => setChecked(!checked)}
+            />
+            <div className='hamburger-lines'>
+              <span className='line line1'></span>
+              <span className='line line2'></span>
+              <span className='line line3'></span>
             </div>
-            <div class='logo'>
+            <div className='logo'>
               <h1>
                 DG-Sc
                 <img
@@ -31,47 +48,37 @@ function Header() {
                 recard
               </h1>
             </div>
-            <div class='menu-items'>
+            <div className='menu-items'>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faHouse} />
-                <Link to="/">
-                <button>
-                  Home
+                <Link to='/'>
+                  <button onClick={() => setChecked(false)}>Home</button>
+                </Link>
+              </li>
+              <li>
+                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                <button onClick={() => setChecked(false)}>Profile</button>
+              </li>
+              {Auth.loggedIn() ? (
+                <li>
+                  <FontAwesomeIcon
+                    className='dropdown-icon'
+                    icon={faArrowRightFromBracket}
+                  />
+                  <button onClick={() => setChecked(false)}>
+                    <a href='/' onClick={logout}>
+                      Logout
+                    </a>
                   </button>
+                </li>
+              ) : (
+                <li>
+                  <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
+                  <Link to='/login'>
+                    <button onClick={() => setChecked(false)}>Login</button>
                   </Link>
-              </li>
-              <li>
-                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <button>
-                  Profile
-                </button>
-              </li>
-              <li>
-                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <button as={NavLink} to={'/'}>
-                  Login
-                </button>
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  className='dropdown-icon'
-                  icon={faArrowRightFromBracket}
-                />
-                <button>
-                  <a className='logoutBtn' href="/" onClick={logout}>
-                  Logout
-                  </a>
-                </button>
-              </li>
-               ) : (
-              <li>
-                <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <Link to="/login">
-                <button>
-                  Login
-                  </button>
-                  </Link>
-              </li>
+                </li>
+              )}
             </div>
           </div>
         </div>
