@@ -70,11 +70,22 @@ mutation addHole($courseId: ID!, $holeNumber: Int!, $par: Int!) {
 `
 
   export const ADD_ROUND = gql `
-    mutation addRound ($username: String!) {
-      addRound(username: $username) {
+    mutation addRound ($courseName: String!) {
+      addRound(courseName: $courseName) {
         _id
         courseName
         createAt
+        scores {
+          holeNumber
+          stroke
+        }
+      }
+    }`
+
+    export const ADD_SCORE = gql `
+    mutation addScore ($roundId: ID!, $holeNumber: Int!, $stroke: Int!) {
+      addScore(roundId: $roundId, holeNumber: $holeNumber, stroke: $stroke) {
+        totalScore
         scores {
           holeNumber
           stroke

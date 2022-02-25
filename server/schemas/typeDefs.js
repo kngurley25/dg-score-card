@@ -43,12 +43,14 @@ const typeDefs = gql`
     }
 
     type Query {
+        me: User
         users: [User]
         user(username: String): User
         courses: [Course]
         course(courseId: String): Course
+        course(_id: ID!): Course
         rounds: [Round]
-        round(username: String): Round
+        round(roundId: ID!): Round
     }
 
     type Mutation {
@@ -58,8 +60,9 @@ const typeDefs = gql`
         addCourse(courseId: ID!): User
         addRound(roundId: ID!): User
         createCourse(courseName: String!, location: String!, holeCount: Int!): Course
+        addRound(courseName: String!): Round
+        createCourse(courseName: String!, location: String!): Course
         addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
-        createRound(courseName: String!, username: String!): Round
         addScore(roundId: ID!, holeNumber: Int!, stroke: Int!): Round
     }
 
