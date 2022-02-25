@@ -24,15 +24,7 @@ import AddHole from "./components/AddHole";
 
 import './App.css';
 
-import ScorePage from './Pages/Score';
 import NewRound from './Pages/NewRound';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
-import ViewCourses from './Pages/ViewCourses';
-import background from './assets/images/dg-basket.png'
-import CourseForm from './components/CreateCourse';
 import Profile from './Pages/Profile';
 
 

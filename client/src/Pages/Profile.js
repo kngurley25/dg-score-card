@@ -43,9 +43,6 @@ function Profile() {
           <h2 className='text-center'>or</h2>
           <h2 className='text-center'>stick with a favorite</h2>
           <ul className='list-group list-group-flush text-center'>
-            {user.courses.length === 0 ? (
-              <div>No courses added to favorites</div>
-            ) :(
             {user.courses.map((course, i) => (
               <button
                 className='favCourse-link list-group-item fs-5 my-2 fw-bold'
@@ -57,8 +54,7 @@ function Profile() {
                 {course.courseName}
                 <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
               </button>
-            ))})
-            }
+            ))}
             {/* <Link to={`/newround/${user.courses[0].courseId}`}>
               <button
                 className='favCourse-link list-group-item fs-2 my-2'
