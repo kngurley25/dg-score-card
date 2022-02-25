@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import HeaderClasses from './Header.css';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from '../../utils/auth';
 import {
@@ -15,11 +15,6 @@ function Header() {
     event.preventDefault();
     Auth.logout();
   };
-
-  // const checkbox = document.getElementById('checkbox');
-  // const checkbox = useRef('checkbox');
-
-  // console.log(checkbox);
 
   return (
     <main className={HeaderClasses.Header}>

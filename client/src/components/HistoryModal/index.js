@@ -1,8 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
 import ModalClasses from './HistoryModal.css';
 
 function HistoryModal({ show, handleClose, user }) {

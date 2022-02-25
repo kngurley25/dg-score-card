@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpRightFromSquare, faStar as starSolid  } from '@fortawesome/free-solid-svg-icons';
-import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import HistoryModal from "../components/HistoryModal";
+import FavCourses from "../components/FavCourses";
 
 function Profile() {
   const [show, setShow] = useState(false);
@@ -42,46 +40,7 @@ function Profile() {
         <div>
           <h2 className='text-center'>or</h2>
           <h2 className='text-center'>stick with a favorite</h2>
-          <ul className='list-group list-group-flush text-center'>
-            {user.courses.map((course, i) => (
-              <button
-                className='favCourse-link list-group-item fs-5 my-2 fw-bold'
-                as={Link}
-                to={'/'}
-                datatype={course._id}
-                key={i}
-              >
-                {course.courseName}
-                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-              </button>
-            ))}
-            {/* <Link to={`/newround/${user.courses[0].courseId}`}>
-              <button
-                className='favCourse-link list-group-item fs-2 my-2'
-                as={NavLink}
-                to={'/'}
-              >
-                {user.courses[0].courseName}
-                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-              </button>
-            </Link>
-            <button
-              className='favCourse-link list-group-item fs-2 my-2'
-              as={NavLink}
-              to={'/'}
-            >
-              Course Name
-              <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-            </button>
-            <button
-              className='favCourse-link list-group-item fs-2 my-2'
-              as={NavLink}
-              to={'/'}
-            >
-              Course Name
-              <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-            </button> */}
-          </ul>
+          <FavCourses courses={user.courses}/>
         </div>
         <div>
           <h3
@@ -90,8 +49,6 @@ function Profile() {
           >
             View my History
           </h3>
-          <FontAwesomeIcon icon={starSolid}/>
-          <FontAwesomeIcon icon={starReg}/>
         </div>
       </div>
     </section>
