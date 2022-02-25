@@ -36,12 +36,12 @@ const Signup = () => {
   };
 
   return (
-    <section className="d-flex justify-content-center">
-        <div className="form">
+    <section className='d-flex justify-content-center'>
+      <div className='form'>
         <div>
-          <h2 className="heading d-flex justify-content-center">Sign Up</h2>
-            <div className="d-flex justify-content-center">
-            <form className="col-12 col-md-3" onSubmit={handleFormSubmit}>
+          <h2 className='heading d-flex justify-content-center'>Sign Up</h2>
+          <div className='d-flex justify-content-center'>
+            <form className='col-12 col-md-3' onSubmit={handleFormSubmit}>
               <input
                 className='form-input'
                 placeholder='Your username'
@@ -69,25 +69,33 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <div className="d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary d-flex justify-content-center">
-                Submit
-              </button>
-            </div>
-            <Link to="/">
-            <div className="d-flex justify-content-center">
-          <button
-          type="button"
-          className="btn btn-primary d-flex justify-content-center">
-            Go Back
-        </button>
-        </div>
-      </Link>
+                {error && (
+                  <div class='alert alert-danger text-center' role='alert'>
+                    Signup Failed!
+                  </div>
+                )}
+              <div className='d-flex justify-content-center'>
+                <button
+                  type='submit'
+                  className='btn btn-primary d-flex justify-content-center'
+                >
+                  Submit
+                </button>
+              </div>
+              <Link to='/'>
+                <div className='d-flex justify-content-center'>
+                  <button
+                    type='button'
+                    className='btn btn-primary d-flex justify-content-center'
+                  >
+                    Go Back
+                  </button>
+                </div>
+              </Link>
             </form>
-            {error && <div>Sign up failed</div>}
-            </div>
-            </div>
-            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
