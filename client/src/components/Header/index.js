@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+
 import HeaderClasses from './Header.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +11,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
+
   const menu = useRef();
+
   const [checked, setChecked] = useState(false);
   const logout = (event) => {
     event.preventDefault();
@@ -38,7 +41,9 @@ function Header() {
     <main className={HeaderClasses.Header}>
       <nav>
         <div className='navbar'>
+
           <div ref={menu} className='container nav-container' id='menu'>
+
             <input
               checked={checked}
               className='checkbox'
@@ -70,7 +75,7 @@ function Header() {
               </li>
               <li>
                 <FontAwesomeIcon className='dropdown-icon' icon={faUser} />
-                <Link to={'/profile'}>
+                <Link to='/profile'>
                   <button onClick={() => setChecked(false)}>Profile</button>
                 </Link>
               </li>

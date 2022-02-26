@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -97,8 +97,7 @@ const Login = (props) => {
                 <div className='d-flex justify-content-center'>
                   <button
                     type='button'
-                    className='btn btn-primary d-flex justify-content-center'
-                  >
+                    className='btn btn-primary d-flex justify-content-center'>
                     Go Back
                   </button>
                 </div>
