@@ -1,11 +1,11 @@
 .disc-icon {
-    height: 20px;
- }
+  height: 20px;
+}
 
 .dropdown-icon {
   color: #fff;
   width: 30px;
-} 
+}
 
 .container {
   max-width: 1050px;
@@ -28,7 +28,6 @@
 .navbar .menu-items {
   display: flex;
   background-color: #0e2431;
-  /* width: 200px !important; */
 }
 
 .navbar .nav-container li {
@@ -112,42 +111,69 @@
 }
 
 .navbar .menu-items {
-  padding-top: 120px;
-  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  padding-top: 100px;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
   height: 45vh;
-  width: 60%;
+  width: 200px;
   transform: translate(-150%);
   display: flex;
   flex-direction: column;
-  margin-left: -40px;
+  margin-left: -72px;
   margin-top: -25px;
   padding-left: 50px;
   transition: transform 0.3s ease-in-out;
-  /* text-align: center; */
-  border-radius: 0 15px 15px 0 ;
+  border-radius: 0 15px 15px 0;
+  z-index: 1;
 }
 
 .navbar .menu-items li {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
-.nav-container input[type="checkbox"]:checked ~ .menu-items {
+.nav-container input[type='checkbox']:checked ~ .menu-items {
   transform: translateX(0);
 }
 
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line1 {
   transform: rotate(45deg);
   background: #fff;
 }
 
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line2 {
   transform: scaleY(0);
   background: #fff;
 }
 
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line3 {
   transform: rotate(-45deg);
   background: #fff;
+}
+
+.logoutBtn {
+  text-decoration: none;
+  color: #fff !important;
+  font-weight: 300;
+  font-size: 1.5rem;
+  padding-left: 0rem;
+  border-style: none;
+  background-color: transparent;
+}
+@media (max-width: 992px) {
+  .navbar .menu-items {
+    margin-left: -28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .menu-items {
+    margin-left: -36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .menu-items {
+    margin-left: -40px;
+  }
 }
