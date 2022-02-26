@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_COURSE } from "../../utils/mutations";
-import Auth from "../../utils/auth";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
 const CourseForm = () => {

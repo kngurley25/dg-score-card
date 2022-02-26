@@ -40,13 +40,10 @@ const courseSchema = new Schema(
     }
 );
 
-
-
 courseSchema.virtual('parTotal').get(function() {
     const parArr = this.holes.map(hole => {return hole.par});
     return parArr.reduce((previousValue, currentValue) => previousValue + currentValue)
 });
-
 
 const Course = model('Course', courseSchema);
 

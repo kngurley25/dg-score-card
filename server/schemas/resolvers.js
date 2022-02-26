@@ -132,7 +132,6 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-
     addScore: async (parent, { roundId, holeNumber, stroke }, context) => {
       if (context.user) {
         const updatedRound = await Round.findOneAndUpdate(
