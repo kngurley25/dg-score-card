@@ -7,14 +7,14 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('friends')
-          .populate('courses')
-          .populate('rounds');
+          .select("-__v -password")
+          .populate("friends")
+          .populate("courses")
+          .populate("rounds");
 
         return userData;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     // get all users
     users: async () => {
@@ -130,7 +130,7 @@ const resolvers = {
 
         return updatedCourse;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     addScore: async (parent, { roundId, holeNumber, stroke }, context) => {

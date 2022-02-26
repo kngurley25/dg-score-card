@@ -7,11 +7,12 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import ViewCourses from './pages/ViewCourses';
 
 import Home from "./Pages/Home";
 import "./App.css";
 
+import Profile from "./Pages/Profile";
+import NewRound from "./Pages/NewRound";
 import ScorePage from "./Pages/Score";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -23,10 +24,6 @@ import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
 
 import './App.css';
-
-import NewRound from './Pages/NewRound';
-import Profile from './Pages/Profile';
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -64,18 +61,13 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home />} />
 
-
-
               <Route exact path="/profile" element={<Profile />} />
-
 
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
 
-
               <Route exact path="/newround/:courseId" element={<NewRound />} />
               <Route exact path="/score/:roundId" element={<ScorePage />} />
-
 
               <Route exact path="/viewcourses" element={<ViewCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />

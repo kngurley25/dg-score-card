@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_COURSE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { validateEmail } from '../../utils/helpers';
 
 const CourseForm = () => {
@@ -59,8 +59,8 @@ const CourseForm = () => {
       const { data } = await createCourse({
         variables: { ...formState },
       });
-      navigate('/addhole', { state: { ...formState } });
-      // console.log(data);
+      navigate("/addhole", { state: { ...formState } });
+      console.log("createCourse", data);
     } catch (e) {
       console.error(e);
     }
