@@ -27,7 +27,6 @@ function ScorePage() {
  
 
   const toggleModal = (project, i) => {
-    // setCurrentProject({ ...project, index: i });
     setShow(!show);
   };
 
@@ -106,6 +105,7 @@ function ScorePage() {
             pattern='[0-9]*'
             id='strokeTotal'
             min={1}
+            step='1'
             className='text-center w-50 fs-1 mt-3'
             value={stroke}
             onChange={(e) => setStroke(e.target.value)}

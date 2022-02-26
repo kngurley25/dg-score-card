@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpRightFromSquare, faStar } from '@fortawesome/free-solid-svg-icons';
+import HistoryModal from '../components/HistoryModal';
 
 function Profile() {
+  const [show, setShow] = useState(false);
   const { loading, data } = useQuery(QUERY_ME, {
   });
   const user = data?.me || {};
@@ -20,8 +22,13 @@ function Profile() {
       </h4>
     );
   }
+  
+  const toggleModal = () => {
+    setShow(!show);
+  };
   return (
     <section className='d-flex justify-content-center'>
+     <HistoryModal show={show} handleClose={toggleModal} user={user} />
       <div className=' flex-column'>
         <h1 className='text-center'>Welcome {user.username}!</h1>
         <button className='button-next my-4' as={NavLink} to={'/'}>Find a New Course</button>
@@ -29,24 +36,28 @@ function Profile() {
           <h2 className='text-center'>or</h2>
           <h2 className='text-center'>stick with a favorite</h2>
           <ul className='list-group list-group-flush text-center'>
-              <Link to={`/newround/${user.courses[0]._id}`}>
-            <button className='favCourse-link list-group-item fs-2 my-2' as={NavLink} to={'/'}>
-            {user.courses[0].courseName}
-              <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-            </button>
-            </Link>
-            <button className='favCourse-link list-group-item fs-2 my-2' as={NavLink} to={'/'}>
-              Course Name
-              <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-            </button>
-            <button className='favCourse-link list-group-item fs-2 my-2' as={NavLink} to={'/'}>
-              Course Name
-              <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-            </button>
+            {user.courses.map((course, i) => (
+              <button
+                className='favCourse-link list-group-item fs-5 my-2 fw-bold'
+                as={Link}
+                to={'/'}
+                datatype={course._id}
+                key={i}
+              >
+                <FontAwesomeIcon icon={faStar} className='' />
+                {course.courseName}
+                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
+              </button>
+            ))}
           </ul>
         </div>
         <div>
-          <h3 className='history-btn text-center my-5'>View my History</h3>
+          <h3
+            className='history-btn text-center my-5'
+            onClick={() => toggleModal()}
+          >
+            View my History
+          </h3>
         </div>
       </div>
     </section>
