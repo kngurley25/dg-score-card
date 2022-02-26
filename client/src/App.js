@@ -23,11 +23,6 @@ import background from "./assets/images/dg-basket.png";
 import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
 
-import './App.css';
-
-import NewRound from './Pages/NewRound';
-import Profile from './Pages/Profile';
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -42,9 +37,21 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });
 
 function App() {
