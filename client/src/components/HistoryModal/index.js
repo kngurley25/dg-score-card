@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 import ModalClasses from './HistoryModal.css';
 
 function HistoryModal({ show, handleClose, user }) {
-
   console.log(user);
 
   return (
@@ -33,9 +32,9 @@ function HistoryModal({ show, handleClose, user }) {
               {user.rounds.map((round, i) => (
                 <tr key={i}>
                   <th scope='row'>{round.createAt.split('at')[0]}</th>
-                  <td>{user.round.courseName}</td>
-                  <td>72</td>
-                  <td>{user.round.totalScore}</td>
+                  <td>{round.courseName}</td>
+                  <td>totalPar</td>
+                  <td>totalScore</td>
                 </tr>
               ))}
             </tbody>
