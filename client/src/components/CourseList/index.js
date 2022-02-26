@@ -6,6 +6,9 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from 'mdb-react-ui-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as starReg } from '@fortawesome/free-regular-svg-icons';
+import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
 
 const CourseList = ({ courses, title }) => {
   if (!courses.length) {
@@ -43,15 +46,22 @@ const CourseList = ({ courses, title }) => {
       </div>
 
       <MDBCard style={{ width: '18rem' }}>
-        <MDBCardHeader>{title}</MDBCardHeader>
+        <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
         <MDBListGroup flush>
           {courses &&
             courses.map((course) => (
               <MDBListGroupItem
                 key={course._id}
-                className='list d-flex justify-content-center'
+                className='courseList list d-flex align-items-center justify-content-between'
               >
-                {course.courseName}, {course.location}
+                <input type='checkbox' className='favBtn' />
+                <FontAwesomeIcon icon={starReg} className='emptyStar' />
+                <FontAwesomeIcon icon={starSolid} className='solidStar' />
+                <div>
+                  <button className='courseBtn fw-bold'>
+                    {course.courseName}, {course.location}
+                  </button>
+                </div>
               </MDBListGroupItem>
             ))}
         </MDBListGroup>
