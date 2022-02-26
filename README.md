@@ -1,24 +1,27 @@
 # dg-score-card
 
 ## Description
+An application in which a user can track their score while playing a round of disc golf. User can save each round to profile and favorite disc golf courses. 
 
 ## Usage
 To use this application, click on deployed application link below:  
 [Disc Golf Scorecard](insert deployed heroku link)
 
 ## Installation
+To install this application, click 'install' on top right of browser address bar.
 
 ## Technologies
-- MongoDB
+- MongoDB with Mongoose
 - Node.js
 - Express.js
 - React
 - Apollo GraphQL
+- Apollo Client
 
 ## Images
 *Preview of application*
 
-![Application User Interface](insert image link)
+![Application User Interface](./client/public/images/preview.png)
 
 ## Questions
 Reach out on GitHub or contact by email address.  
