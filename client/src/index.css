@@ -223,6 +223,13 @@ code {
   transform: translate(0, 4px);
 }
 
+/* styles for profile page */
+.favCourse-link {
+  text-decoration: underline !important;
+}
+
+}
+
 /* .button-next {
   display: inline-block;
   text-decoration: none;
@@ -307,6 +314,14 @@ code {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.loginMsg { 
+  margin-top: 50%;
+  text-align: center;
+  background-color: white;
+  width: 75%;
+} 
+
 /* styles for profile page */
 .form-input {
   width: 100%;

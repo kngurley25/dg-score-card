@@ -23,6 +23,11 @@ import background from "./assets/images/dg-basket.png";
 import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
 
+import './App.css';
+
+import NewRound from './Pages/NewRound';
+import Profile from './Pages/Profile';
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
