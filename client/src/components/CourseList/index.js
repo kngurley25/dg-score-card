@@ -5,12 +5,11 @@ import {
   MDBCardHeader,
   MDBListGroup,
   MDBListGroupItem,
-} from 'mdb-react-ui-kit';
+} from "mdb-react-ui-kit";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as starReg } from '@fortawesome/free-regular-svg-icons';
-import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
+import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
 
 const CourseList = ({ courses, title }) => {
   if (!courses.length) {
@@ -47,8 +46,8 @@ const CourseList = ({ courses, title }) => {
         </Link>
       </div>
 
-      <MDBCard style={{ width: '18rem' }}>
-        <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
+      <MDBCard style={{ width: "18rem" }}>
+        <MDBCardHeader className="text-center">{title}</MDBCardHeader>
         <MDBListGroup flush>
           {courses &&
             courses.map((course) => (
@@ -60,13 +59,11 @@ const CourseList = ({ courses, title }) => {
                 <Link to={`/newround/${course._id}`}>
                   {course.courseName}, {course.location}
                 </Link>
-                className='courseList list d-flex align-items-center justify-content-between'
-              >
-                <input type='checkbox' className='favBtn' />
-                <FontAwesomeIcon icon={starReg} className='emptyStar' />
-                <FontAwesomeIcon icon={starSolid} className='solidStar' />
+                <input type="checkbox" className="favBtn" />
+                <FontAwesomeIcon icon={starReg} className="emptyStar" />
+                <FontAwesomeIcon icon={starSolid} className="solidStar" />
                 <div>
-                  <button className='courseBtn fw-bold'>
+                  <button className="courseBtn fw-bold">
                     {course.courseName}, {course.location}
                   </button>
                 </div>
