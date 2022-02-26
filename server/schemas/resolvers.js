@@ -5,17 +5,17 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-        if (context.user) {
-         const userData = await User.findOne({ _id: context.user._id })
-           .select("-__v -password")
-           .populate("friends")
-           .populate("courses")
-           .populate("rounds");
-   
-         return userData;
-        }
-        throw new AuthenticationError('Not logged in');
-       },
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("friends")
+          .populate("courses")
+          .populate("rounds");
+
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
     // get all users
     users: async () => {
       return User.find()
@@ -83,7 +83,6 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     addCourse: async (parent, { courseId }, context) => {
-
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -96,48 +95,24 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
-    addRound: async (parent, { roundId }, context) => {
+    addRound: async (parent, args, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { rounds: roundId } },
-          { new: true }
-        ).populate("rounds");
+        const round = await Round.create({
+          ...args,
+          username: context.user.username,
+        });
 
-        return updatedUser;
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { rounds: round._id } },
+          { new: true }
+        );
+
+        return round;
       }
 
       throw new AuthenticationError("You need to be logged in!");
     },
-
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { courses: courseId } },
-            { new: true }
-          ).populate("courses");
-  
-          return updatedUser;
-        }
-  
-        throw new AuthenticationError("You need to be logged in!");
-      },
-    addRound: async (parent, args, context) => {
-        if (context.user) {
-            const round = await Round.create({ ...args, username: context.user.username });
-            
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { rounds: round._id } },
-            { new: true }
-          );
-  
-          return round;
-        }
-  
-        throw new AuthenticationError("You need to be logged in!");
-      },
-
     createCourse: async (parent, args, context) => {
       if (context.user) {
         const course = await Course.create(args);
@@ -154,14 +129,6 @@ const resolvers = {
         );
 
         return updatedCourse;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-    createRound: async (parent, args, context) => {
-      if (context.user) {
-        const round = await Round.create(args);
-        return round;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
