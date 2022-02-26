@@ -42,7 +42,6 @@ const typeDefs = gql`
     users: [User]
     user(username: String): User
     courses: [Course]
-    course_by_name: Course
     course(_id: ID!): Course
     rounds: [Round]
     round(roundId: ID!): Round
