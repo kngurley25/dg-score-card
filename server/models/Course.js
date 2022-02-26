@@ -29,6 +29,7 @@ const courseSchema = new Schema(
         holeCount: {
             type: Number,
             required: true,
+            default: 18
         },
         holes: [holeSchema]
     },
