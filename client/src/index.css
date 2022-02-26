@@ -68,9 +68,14 @@ code {
   text-align: center;
 }
 
-.footer,
-.push {
+.footer {
   height: 50px;
+  margin-top: 50px;
+}
+
+.course-list {
+  max-height: 900px;
+  overflow: scroll;
 }
 
 .hole-form {

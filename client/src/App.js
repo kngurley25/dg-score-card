@@ -63,9 +63,10 @@ function App() {
           <main
             style={{
               backgroundImage: `url(${background})`,
-              backgroundPosition: "center",
+              backgroundPosition: "bottom right",
               backgroundRepeat: "no-repeat",
-              height: "600px",
+              backgroundSize: "contain",
+              height: "200px",
             }}
           >
             <Routes>
