@@ -8,7 +8,8 @@ const holeSchema = new Schema(
         },
         par: {
             type: Number,
-            required: true
+            required: true,
+            default: 3
         },
     },
 );

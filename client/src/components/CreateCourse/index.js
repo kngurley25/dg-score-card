@@ -36,8 +36,7 @@ const CourseForm = () => {
     // use try/catch instead of promises to handle errors
     try {
       // execute createCourse mutation and pass in variable data from form
-      const { data } = await createCourse({
-        // variables: { ...formState },
+      createCourse({
         variables: {
           courseName: formState.courseName,
           location: formState.location,
@@ -45,7 +44,6 @@ const CourseForm = () => {
         }
       });
       navigate("/addhole", { state: { ...formState } });
-      console.log("createCourse", data);
     } catch (e) {
       console.error(e);
     }
