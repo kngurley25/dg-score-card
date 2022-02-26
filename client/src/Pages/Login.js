@@ -67,7 +67,7 @@ const Login = (props) => {
                 autoComplete='on'
               />
                 {error && (
-                  <div class='alert alert-danger text-center' role='alert'>
+                  <div className='alert alert-danger text-center' role='alert'>
                     Email or Password Incorrect!
                   </div>
                 )}
