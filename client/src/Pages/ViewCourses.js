@@ -14,7 +14,7 @@ const ViewCourses = () => {
       {loading ? (
         <div>Loading. . .</div>
       ) : (
-        <div className="d-flex justify-content-center">
+        <div className="course-list d-flex justify-content-center">
           <CourseList
             courses={courses}
             className="heading"

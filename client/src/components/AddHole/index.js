@@ -52,7 +52,7 @@ const AddHole = () => {
         const par = document.getElementById("par").value;
         setPar(par);
       } else {
-        navigate("/");
+        navigate(`/newround/${matchingCourse?._id}`);
       }
     } catch (e) {
       console.error(e);
