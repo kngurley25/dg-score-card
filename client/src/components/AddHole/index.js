@@ -25,6 +25,7 @@ const AddHole = () => {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === location?.state?.courseName
   );
+  console.log("querycourse", matchingCourse);
 
   //set holeNumber to 1
   const [holeNumber, setHoleNumber] = useState(1);
@@ -44,6 +45,7 @@ const AddHole = () => {
           par: parseInt(par),
         },
       });
+      console.log("matchingcourseId", matchingCourse?._id);
       //if holeNumber
       if (holeNumber <= 17) {
         setHoleNumber(holeNumber + 1);
