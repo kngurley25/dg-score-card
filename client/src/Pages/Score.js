@@ -27,7 +27,6 @@ function ScorePage() {
  
 
   const toggleModal = (project, i) => {
-    // setCurrentProject({ ...project, index: i });
     setShow(!show);
   };
 
