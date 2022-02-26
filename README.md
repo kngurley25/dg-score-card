@@ -5,7 +5,7 @@ An application in which a user can track their score while playing a round of di
 
 ## Usage
 To use this application, click on deployed application link below:  
-[Disc Golf Scorecard](insert deployed heroku link)
+[Disc Golf Scorecard](https://calm-peak-91863.herokuapp.com/)
 
 ## Installation
 To install this application, click 'install' on top right of browser address bar.
