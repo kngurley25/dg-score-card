@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
 import HeaderClasses from './Header.css';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from '../../utils/auth';
 import {
@@ -10,22 +11,39 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
+
+  const menu = useRef();
+
   const [checked, setChecked] = useState(false);
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
 
-  // const checkbox = document.getElementById('checkbox');
-  // const checkbox = useRef('checkbox');
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (checked && menu.current && !menu.current.contains(e.target)) {
+        setChecked(false);
+      }
+    };
 
-  // console.log(checkbox);
+    document.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside);
+    };
+  }, [checked]);
 
   return (
     <main className={HeaderClasses.Header}>
       <nav>
         <div className='navbar'>
-          <div className='container nav-container' id='menu'>
+
+          <div ref={menu} className='container nav-container' id='menu'>
+
             <input
               checked={checked}
               className='checkbox'
