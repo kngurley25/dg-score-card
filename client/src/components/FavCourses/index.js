@@ -5,7 +5,6 @@ import {
   faUpRightFromSquare,
   faStar as starSolid,
 } from '@fortawesome/free-solid-svg-icons';
-// import { faStar as starReg } from '@fortawesome/free-regular-svg-icons';
 
 function FavCourses({ courses }) {
   return (

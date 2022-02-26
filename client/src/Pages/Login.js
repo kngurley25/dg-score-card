@@ -5,7 +5,7 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -34,8 +34,8 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     });
   };
 
@@ -66,19 +66,33 @@ const Login = (props) => {
                 onChange={handleChange}
                 autoComplete='on'
               />
-                {error && (
-                  <div className='alert alert-danger text-center' role='alert'>
+              {error ? (
+                <div>
+                  <div
+                    className='alert alert-danger text-center  animate__animated animate__shakeX'
+                    role='alert'
+                  >
                     Email or Password Incorrect!
                   </div>
-                )}
-              <div className='d-flex justify-content-center'>
-                <button
-                  type='submit'
-                  className='btn btn-primary d-flex justify-content-center'
-                >
-                  Submit
-                </button>
-              </div>
+                  <div className='d-flex justify-content-center'>
+                    <button
+                      type='submit'
+                      className='btn btn-primary d-flex justify-content-center'
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className='d-flex justify-content-center'>
+                  <button
+                    type='submit'
+                    className='btn btn-primary d-flex justify-content-center'
+                  >
+                    Submit
+                  </button>
+                </div>
+              )}
               <Link to='/'>
                 <div className='d-flex justify-content-center'>
                   <button

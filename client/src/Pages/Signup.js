@@ -72,19 +72,33 @@ const Signup = () => {
                 onChange={handleChange}
                 autoComplete='on'
               />
-              {error && (
-                <div className='alert alert-danger text-center' role='alert'>
-                  Signup Failed!
+              {error ? (
+                <div>
+                  <div
+                    className='alert alert-danger text-center  animate__animated animate__shakeX'
+                    role='alert'
+                  >
+                    Signup Failed!
+                  </div>
+                  <div className='d-flex justify-content-center'>
+                    <button
+                      type='submit'
+                      className='btn btn-primary d-flex justify-content-center'
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className='d-flex justify-content-center'>
+                  <button
+                    type='submit'
+                    className='btn btn-primary d-flex justify-content-center'
+                  >
+                    Submit
+                  </button>
                 </div>
               )}
-              <div className='d-flex justify-content-center'>
-                <button
-                  type='submit'
-                  className='btn btn-primary d-flex justify-content-center'
-                >
-                  Submit
-                </button>
-              </div>
               <Link to='/'>
                 <div className='d-flex justify-content-center'>
                   <button
