@@ -1,74 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { useParams } from "react-router";
-import { QUERY_COURSE } from "../../utils/queries";
+import { useNavigate } from "react-router";
 import { ADD_HOLE } from "../../utils/mutations";
-import Auth from "../../utils/auth";
 import { useLocation } from "react-router-dom";
+import { QUERY_ALL_COURSES } from "../../utils/queries";
+
+//holeCount is total number of holes for the course
+//holeNumber is a single hole in holeCount
+//par is the par for the holeNumber
 
 const AddHole = () => {
-  // //use state from CreateCourse to get courseName and holeCount
+  const navigate = useNavigate();
+
+  //information from the createCourse form is stored in [location]
   const location = useLocation();
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
+  useEffect(() => {}, [location]);
 
-  const { id: courseId } = useParams();
+  //need to get holeCount, courseName out of location
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-  };
-  // submit form
-  const handleFormSubmit = async (event) => {
+  //getcourseId from query
+  const { loading, data } = useQuery(QUERY_ALL_COURSES);
+  const courses = data?.courses || [];
+
+  const matchingCourse = courses?.find(
+    (course) => course?.courseName === location?.state?.courseName
+  );
+
+  //set holeNumber to 1
+  const [holeNumber, setHoleNumber] = useState(1);
+  const [par, setPar] = useState(3);
+
+  //mutation for addHole
+  const [addHole, { error }] = useMutation(ADD_HOLE);
+
+  const handleAddHole = (event) => {
     event.preventDefault();
+    try {
+      //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
+      addHole({
+        variables: {
+          courseId: matchingCourse?._id,
+          holeNumber: holeNumber,
+          par: parseInt(par),
+        },
+      });
+      //if holeNumber
+      if (holeNumber <= 17) {
+        setHoleNumber(holeNumber + 1);
+        const par = document.getElementById("par").value;
+        setPar(par);
+      } else {
+        navigate("/");
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <section>
       <h2 className="heading d-flex justify-content-center">
         {location && location.state && location.state.courseName}
-        <div className="sub-heading d-flex justify-content-center">
-          Hole Count: {location && location.state && location.state.holeCount}
-        </div>
       </h2>
+      <div>
+        <h2 className="sub-heading d-flex justify-content-center">
+          Hole Count: {location && location.state && location.state.holeCount}
+        </h2>
+      </div>
       <form>
-        <h3 className="sub-heading d-flex justify-content-center">
+        <h3 className="information d-flex justify-content-center">
           Enter Pars:
         </h3>
-        <div className="form-group row m-4 p-4">
+        <div className="form-group row">
           <label
             htmlFor="par1"
             className="hole-form col col-form-label m-4 p-4"
           >
-            Hole #1
+            Hole #{holeNumber}
           </label>
           <div className="col">
             <input
               type="par"
-              className="form-control hole-form m-4 p-4"
-              id="par1"
+              className="hole-form col col-form-label m-4 p-4"
+              id="par"
               placeholder="Par"
-              onChange={handleChange}
+              onChange={() => {}}
             />
           </div>
         </div>
         <div className="d-flex justify-content-center">
           <button
             className="btn btn-primary d-flex justify-content-center m-4"
-            type="submit"
-            onSubmit={() => {}}
+            onClick={handleAddHole}
           >
             Next Hole!
-          </button>
-        </div>
-
-        <div className="d-flex justify-content-center">
-          <button
-            className="btn btn-primary d-flex justify-content-center m-4"
-            type="submit"
-            onSubmit={handleFormSubmit}
-          >
-            Add Course!
           </button>
         </div>
       </form>

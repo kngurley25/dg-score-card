@@ -75,6 +75,7 @@ code {
 
 .hole-form {
   border-radius: 12px;
+  text-align: center;
   border: solid;
   margin-right: 20px;
   background-color: white;

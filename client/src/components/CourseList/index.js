@@ -9,7 +9,11 @@ import {
 
 const CourseList = ({ courses, title }) => {
   if (!courses.length) {
-    return <h3 className="d-flex justify-content-center">No Courses Yet</h3>;
+    return (
+      <h3 className="sub-heading d-flex justify-content-center">
+        No Courses Yet
+      </h3>
+    );
   }
 
   return (
