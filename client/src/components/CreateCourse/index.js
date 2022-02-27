@@ -1,127 +1,142 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardHeader,
+  MDBListGroup,
+  MDBListGroupItem,
+} from "mdb-react-ui-kit";
+import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
-import { CREATE_COURSE } from "../../utils/mutations";
-import { useNavigate, Link } from "react-router-dom";
 
-const CourseForm = () => {
-  const [formState, setFormState] = useState({
-    courseName: "",
-    location: "",
-    holeCount: "",
-    isSubmitted: false,
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
+import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
+import { ADD_COURSE } from "../../utils/mutations";
+import { QUERY_ME_COURSES } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+
+const CourseList = ({ courses, title, user }) => {
+  const [addCourse, { error }] = useMutation(ADD_COURSE, {
+    refetchQueries: [QUERY_ME_COURSES],
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const { loading, data } = useQuery(QUERY_ME_COURSES);
+  const myCourses = data?.me || {};
 
-  const navigate = useNavigate();
-
-  const [createCourse, { error }] = useMutation(CREATE_COURSE);
-  // update state based on form input changes
-
-  const handleChange = (e) => {
-    if (!e.target.value.length) {
-      setErrorMessage(`All entry fields required.`);
-    } else {
-      setErrorMessage("");
+  const courseArr = [];
+  if (!loading) {
+    for (let i = 0; i < myCourses.courses.length; i++) {
+      courseArr.push(myCourses.courses[i]._id);
     }
-    if (!errorMessage) {
-      setFormState({ ...formState, [e.target.name]: e.target.value });
-    }
-  };
+  }
 
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setFormState({ ...formState, isSubmitted: true });
-
-    // use try/catch instead of promises to handle errors
+  const handleAddCourse = (id) => (e) => {
+    e.preventDefault();
     try {
-      // execute createCourse mutation and pass in variable data from form
-      createCourse({
-        variables: {
-          courseName: formState.courseName,
-          location: formState.location,
-          holeCount: parseInt(formState.holeCount),
-        },
+      addCourse({
+        variables: { courseId: id },
       });
-      navigate("/addhole", { state: { ...formState } });
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!courses.length) {
+    return (
+      <div className="d-flex flex-column align-items-center">
+        <h3 className="bg-white mt-5">No Courses Yet</h3>
+        <h3 className="text-center bg-white">
+          Login or signup to create a course and start playing!
+        </h3>
+        <div>
+          <Link to={"/login"} className="mx-4">
+            <button className="button justify-content-center">Login</button>
+          </Link>
+          <Link to={"/signup"} className="mx-4">
+            <button className="button justify-content-center">Signup</button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      <form className="course-form col-12 col-md-6">
-        {error && (
-          <div className="error d-flex justify-content-center">
-            Something went wrong...
-          </div>
-        )}
-        <div className="card-heading">
-          <h1 className="alt-heading d-flex justify-content-center">
-            New Course:
-          </h1>
-
-          <textarea
-            placeholder="Course Name"
-            value={formState.courseName}
-            name="courseName"
-            type="text"
-            className="form-input col-10 offset-1"
-            onBlur={handleChange}
-            onChange={handleChange}
-          ></textarea>
-
-          <textarea
-            placeholder="Course Location"
-            value={formState.location}
-            className="form-input col-6 offset-1"
-            name="location"
-            type="text"
-            onBlur={handleChange}
-            onChange={handleChange}
-          ></textarea>
-
-          <textarea
-            placeholder="Hole Count"
-            value={formState.holeCount}
-            name="holeCount"
-            type="number"
-            pattern="[0-9]*"
-            className="form-input col-4"
-            onBlur={handleChange}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        {errorMessage && (
-          <div
-            className="alert alert-danger animate__animated animate__shakeX"
-            role="alert"
-          >
-            {errorMessage}
-          </div>
-        )}
-        <div className="d-flex justify-content-center">
-          <button
-            className="button d-flex justify-content-center"
-            onClick={handleFormSubmit}
-          >
-            Continue
-          </button>
-        </div>
-        <Link to="/viewcourses" style={{ textDecoration: "none" }}>
+    <section>
+      <div>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="button d-flex justify-content-center"
-            >
+            <button type="button" className="button justify-content-center">
               Go Back
             </button>
           </div>
         </Link>
-      </form>
-    </div>
+      </div>
+      <MDBCard style={{ width: "18rem" }} className="course-list">
+        <MDBCardHeader className="text-center">{title}</MDBCardHeader>
+        {Auth.loggedIn() ? (
+          <MDBListGroup flush>
+            {courses &&
+              courses.map((course) => (
+                <MDBListGroupItem
+                  key={course._id}
+                  className="list d-flex justify-content-between"
+                >
+                  {" "}
+                  <input type="checkbox" className="favBtn" />
+                  <FontAwesomeIcon icon={starReg} className="emptyStar star" />
+                  <FontAwesomeIcon
+                    icon={starSolid}
+                    className="solidStar star"
+                  />
+                  <Link
+                    to={`/newround/${course._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    {course.courseName}, {course.location}
+                  </Link>
+                  {courseArr.includes(course._id) ? (
+                    <FontAwesomeIcon icon={starSolid} />
+                  ) : (
+                    // eslint-disable-next-line no-restricted-globals
+                    <div onClick={handleAddCourse(course._id)}>
+                      <FontAwesomeIcon icon={starReg} />
+                    </div>
+                  )}
+                </MDBListGroupItem>
+              ))}
+          </MDBListGroup>
+        ) : (
+          <MDBListGroup flush>
+            <Link to="/">
+              <h6>Sign up or log in to keep your score!</h6>
+            </Link>
+            {courses &&
+              courses.map((course) => (
+                <MDBListGroupItem
+                  key={course._id}
+                  className="list d-flex justify-content-center"
+                >
+                  {" "}
+                  <input type="checkbox" className="favBtn" />
+                  <FontAwesomeIcon icon={starReg} className="emptyStar" />
+                  <FontAwesomeIcon icon={starSolid} className="solidStar" />
+                  <div>
+                    <button className="courseBtn fw-bold">
+                      {course.courseName}, {course.location}
+                    </button>
+                  </div>
+                </MDBListGroupItem>
+              ))}
+          </MDBListGroup>
+        )}
+      </MDBCard>
+      {error && <div>An Error has occurred...</div>}
+    </section>
   );
 };
 
-export default CourseForm;
+export default CourseList;
