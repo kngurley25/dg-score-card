@@ -55,7 +55,7 @@ const CourseList = ({ courses, title }) => {
                 {" "}
                 <Link
                   to={`/newround/${course._id}`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ color: 'inherit', textDecoration: 'inherit' }}
                   className="courseBtn fw-bold"
                 >
                   {course.courseName}, {course.location}

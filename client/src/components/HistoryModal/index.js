@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 import ModalClasses from './HistoryModal.css';
 
 function HistoryModal({ show, handleClose, user }) {
-  console.log(user);
 
   return (
     <div className={ModalClasses.HistoryModal}>

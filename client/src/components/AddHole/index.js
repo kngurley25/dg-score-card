@@ -19,7 +19,7 @@ const AddHole = () => {
   //need to get holeCount, courseName out of location
 
   //getcourseId from query
-  const { loading, data } = useQuery(QUERY_ALL_COURSES);
+  const { data } = useQuery(QUERY_ALL_COURSES);
   const courses = data?.courses || [];
   
   const matchingCourse = courses?.find(
@@ -31,7 +31,7 @@ const AddHole = () => {
   const [par, setPar] = useState(3);
 
   //mutation for addHole
-  const [addHole, { error }] = useMutation(ADD_HOLE);
+  const [addHole] = useMutation(ADD_HOLE);
 
   const handleAddHole = (event) => {
     event.preventDefault();

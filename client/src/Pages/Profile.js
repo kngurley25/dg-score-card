@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import HistoryModal from '../components/HistoryModal';
 import FavCourses from '../components/FavCourses';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -71,6 +71,7 @@ function Profile() {
           <h3
             className='history-btn text-center my-5'
             onClick={() => toggleModal()}
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
             View my History
           </h3>
