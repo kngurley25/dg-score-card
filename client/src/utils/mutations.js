@@ -38,6 +38,19 @@ export const ADD_FRIEND = gql`
   }
 `;
 
+export const ADD_COURSE = gql`
+  mutation addCourse($id: ID!) {
+    addCourse(courseId: $id) {
+      _id
+      username
+      courses {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const CREATE_COURSE = gql`
   mutation createCourse(
     $courseName: String!
