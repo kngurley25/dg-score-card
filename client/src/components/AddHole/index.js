@@ -35,6 +35,7 @@ const AddHole = () => {
 
   const handleAddHole = (event) => {
     event.preventDefault();
+    
     try {
       //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
       addHole({
@@ -44,11 +45,10 @@ const AddHole = () => {
           par: parseInt(par),
         },
       });
-
       //if holeNumber
-      if (holeNumber <= matchingCourse?.holeCount) {
+      if (holeNumber <= (matchingCourse?.holeCount - 1)) {
         setHoleNumber(holeNumber + 1);
-        const par = document.getElementById("par").value;
+        const par = document.getElementById("par").value ? document.getElementById("par").value : 3;
         setPar(par);
       } else {
         navigate(`/newround/${matchingCourse?._id}`);
