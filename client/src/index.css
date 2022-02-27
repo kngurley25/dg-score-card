@@ -61,6 +61,8 @@ code {
   background-color: var(--dark);
   opacity: 90%;
   font-weight: bold;
+  opacity: 90%;
+  font-weight: bold;
 }
 
 .sub-heading {

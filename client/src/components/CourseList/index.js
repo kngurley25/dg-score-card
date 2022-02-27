@@ -45,7 +45,7 @@ const CourseList = ({ courses, title, user }) => {
     return <div>Loading...</div>;
   }
 
-  if (courses.length) {
+  if (!courses.length) {
     return (
       <div className="d-flex flex-column align-items-center">
         <h3 className="bg-white mt-5">No Courses Yet</h3>
