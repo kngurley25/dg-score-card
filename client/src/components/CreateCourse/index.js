@@ -58,7 +58,9 @@ const CourseForm = () => {
           </div>
         )}
         <div className="card-heading">
-          <h1 className="heading d-flex justify-content-center">New Course:</h1>
+          <h1 className="alt-heading d-flex justify-content-center">
+            New Course:
+          </h1>
 
           <textarea
             placeholder="Course Name"
