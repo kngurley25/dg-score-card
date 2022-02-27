@@ -1,28 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import ModalClasses from './HistoryModal.css';
+import { dateFormat } from '../../utils/helpers';
 
-function HistoryModal({ show, handleClose, user, allCourses }) {
-  // console.log(user);
-  // console.log(allCourses);
-
-  const FindParTotal = (cntCourseName) => {
-    for (let i = 0; i < allCourses.length; i++) {
-      const course = allCourses[i];
-      if (cntCourseName === course.courseName) {
-        const holesArr = course.holes;
-        let total = 0;
-        for (let j = 0; j < holesArr.length; j++) {
-          total += holesArr[j].par;
-        }
-        return total;
-      }
-    }
-  };
-
+function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
   return (
-    <div className={ModalClasses.HistoryModal}>
+    <div>
       <Modal
         show={show}
         onHide={handleClose}
@@ -44,14 +27,18 @@ function HistoryModal({ show, handleClose, user, allCourses }) {
               </tr>
             </thead>
             <tbody>
-              {user.rounds.map((round, i) => (
-                <tr key={i}>
-                  <th scope='row'>{round.createAt.split('at')[0]}</th>
-                  <td>{round.courseName}</td>
-                  <td id='parTotal'>{FindParTotal(round.courseName)}</td>
-                  <td>{round.totalScore}</td>
-                </tr>
-              ))}
+              {user.rounds
+                .slice(0)
+                .reverse()
+                .slice(3)
+                .map((round, i) => (
+                  <tr key={i}>
+                    <td>{dateFormat(round.createAt)}</td>
+                    <td>{round.courseName}</td>
+                    <td>{FindParTotal(round.courseName)}</td>
+                    <td>{round.totalScore}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Modal.Body>

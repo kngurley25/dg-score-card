@@ -5,21 +5,24 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function CoursesPlayed({ courses }) {
   return (
-    <ul className='list-group list-group-flush text-center'>
-      {courses.map((course, i) => (
-        <div key={i}>
-          <button
-            className='favCourse-link list-group-item fs-5 my-2 fw-bold'
-            as={Link}
-            to={'/'}
-            datatype={i}
-            key={i}
-          >
-            {courses}
-            <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
-          </button>
-        </div>
-      ))}
+    <ul className='d-flex align-items-center list-group list-group-flush text-center mt-3'>
+      {courses
+        .slice(0)
+        .reverse()
+        .slice(0, 5)
+        .map((course, i) => (
+          <div key={i}>
+            <button
+              className='favCourse-link list-group-item fs-5 my-2 fw-bold'
+              as={Link}
+              to={'/'}
+              key={i}
+            >
+              {course}
+              <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
+            </button>
+          </div>
+        ))}
     </ul>
   );
 }
