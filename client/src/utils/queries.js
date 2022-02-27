@@ -31,6 +31,7 @@ export const QUERY_ALL_COURSES = gql`
     }
   }
 `;
+
 //to get a single course by ID
 export const QUERY_COURSE = gql`
   query course($_id: ID!) {

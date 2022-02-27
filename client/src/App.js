@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import "./App.css";
-
 import Profile from "./Pages/Profile";
 import NewRound from "./Pages/NewRound";
 import ScorePage from "./Pages/Score";
@@ -71,15 +70,11 @@ function App() {
           >
             <Routes>
               <Route exact path="/" element={<Home />} />
-
               <Route exact path="/profile" element={<Profile />} />
-
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
-
               <Route exact path="/newround/:courseId" element={<NewRound />} />
               <Route exact path="/score/:roundId" element={<ScorePage />} />
-
               <Route exact path="/viewcourses" element={<ViewCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />

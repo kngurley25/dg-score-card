@@ -4,7 +4,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_ROUND } from '../utils/mutations';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
 const NewRound = () => {
     const navigate = useNavigate();
     const { courseId: courseParam } = useParams();
