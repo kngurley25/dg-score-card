@@ -31,7 +31,6 @@ export const QUERY_ALL_COURSES = gql`
     }
   }
 `;
-
 //to get a single course by ID
 export const QUERY_COURSE = gql`
   query course($_id: ID!) {
@@ -99,14 +98,17 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      coursesPlayed
       courses {
         _id
         courseName
         location
+        parTotal
       }
       rounds {
         courseName
         createAt
+        totalScore
         scores {
           holeNumber
           stroke
@@ -115,6 +117,18 @@ export const QUERY_ME = gql`
       friends {
         _id
         username
+      }
+    }
+  }
+`;
+
+export const QUERY_ME_COURSES = gql`
+  {
+    me {
+      courses {
+        _id
+        courseName
+        location
       }
     }
   }

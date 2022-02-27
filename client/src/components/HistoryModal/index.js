@@ -1,13 +1,11 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import ModalClasses from './HistoryModal.css';
+import { dateFormat } from '../../utils/helpers';
 
-function HistoryModal({ show, handleClose, user }) {
-  console.log(user);
-
+function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
   return (
-    <div className={ModalClasses.HistoryModal}>
+    <div>
       <Modal
         show={show}
         onHide={handleClose}
@@ -29,14 +27,18 @@ function HistoryModal({ show, handleClose, user }) {
               </tr>
             </thead>
             <tbody>
-              {user.rounds.map((round, i) => (
-                <tr key={i}>
-                  <th scope='row'>{round.createAt.split('at')[0]}</th>
-                  <td>{round.courseName}</td>
-                  <td>totalPar</td>
-                  <td>totalScore</td>
-                </tr>
-              ))}
+              {user.rounds
+                .slice(0)
+                .reverse()
+                .slice(3)
+                .map((round, i) => (
+                  <tr key={i}>
+                    <td>{dateFormat(round.createAt)}</td>
+                    <td>{round.courseName}</td>
+                    <td>{FindParTotal(round.courseName)}</td>
+                    <td>{round.totalScore}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Modal.Body>

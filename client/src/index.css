@@ -439,11 +439,12 @@ code {
 }
 
 .courseBtn {
+  width: 100%;
   background: none !important;
   border: none;
   padding: 0 !important;
 }
-
+/* styles for view courses page */
 .courseList input[type="checkbox"]:checked ~ .emptyStar {
   display: none;
 }

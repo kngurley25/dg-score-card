@@ -101,3 +101,14 @@ export const ADD_SCORE = gql`
     }
   }
 `;
+
+export const ADD_COURSE = gql`
+  mutation addCourse($courseId: ID!) {
+    addCourse(courseId: $courseId) {
+      courses {
+        _id
+      }
+    }
+  }
+`;
+

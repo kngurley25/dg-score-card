@@ -20,7 +20,7 @@ function ScorePage() {
 
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
-  const [stroke, setStroke] = useState(1);
+  const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
 
   const toggleModal = (project, i) => {
