@@ -48,25 +48,17 @@ const CourseList = ({ courses, title }) => {
         <MDBListGroup flush>
           {courses &&
             courses.map((course) => (
-              <MDBListGroupItem
-                key={course._id}
-                className="list d-flex justify-content-center"
-              >
+              <MDBListGroupItem key={course._id} className="">
                 {" "}
+                <input type="checkbox" className="favBtn" />
+                <FontAwesomeIcon icon={starReg} className="emptyStar star" />
+                <FontAwesomeIcon icon={starSolid} className="solidStar star" />
                 <Link
                   to={`/newround/${course._id}`}
                   style={{ textDecoration: "none" }}
                 >
                   {course.courseName}, {course.location}
                 </Link>
-                <input type="checkbox" className="favBtn" />
-                <FontAwesomeIcon icon={starReg} className="emptyStar" />
-                <FontAwesomeIcon icon={starSolid} className="solidStar" />
-                <div>
-                  <button className="courseBtn fw-bold">
-                    {course.courseName}, {course.location}
-                  </button>
-                </div>
               </MDBListGroupItem>
             ))}
         </MDBListGroup>
