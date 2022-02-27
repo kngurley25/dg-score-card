@@ -1,28 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import ModalClasses from './HistoryModal.css';
-import { useQuery } from '@apollo/client';
-import { QUERY_COURSE, QUERY_ALL_COURSES } from '../../utils/queries';
 
 function HistoryModal({ show, handleClose, user, allCourses }) {
-  console.log(allCourses);
+  // console.log(user);
+  // console.log(allCourses);
 
-  const FindCourseId = (cntCourseName) => {
-    // console.log(allCourses);
-    // console.log(cntCourseName);
+  const FindParTotal = (cntCourseName) => {
     for (let i = 0; i < allCourses.length; i++) {
-      const element = allCourses[i];
-      // console.log(element.courseName);
-      if (cntCourseName === element.courseName) {
-        console.log(element._id);
-        // const { loading, data: courseData } = useQuery(QUERY_COURSE, {
-        //   variables: { _id: element._id },
-        // });
-
-        // const course = courseData?.course || [];
-
-        // console.log(course);
+      const course = allCourses[i];
+      if (cntCourseName === course.courseName) {
+        const holesArr = course.holes;
+        let total = 0;
+        for (let j = 0; j < holesArr.length; j++) {
+          total += holesArr[j].par;
+        }
+        return total;
       }
     }
   };
@@ -54,8 +48,8 @@ function HistoryModal({ show, handleClose, user, allCourses }) {
                 <tr key={i}>
                   <th scope='row'>{round.createAt.split('at')[0]}</th>
                   <td>{round.courseName}</td>
-                  <td>{FindCourseId(round.courseName)}</td>
-                  <td>totalScore</td>
+                  <td id='parTotal'>{FindParTotal(round.courseName)}</td>
+                  <td>{round.totalScore}</td>
                 </tr>
               ))}
             </tbody>

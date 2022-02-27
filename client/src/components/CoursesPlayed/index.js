@@ -1,26 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUpRightFromSquare,
-  faStar as starSolid,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-function FavCourses({ courses }) {
+function CoursesPlayed({ courses }) {
   return (
     <ul className='list-group list-group-flush text-center'>
       {courses.map((course, i) => (
-        <div>
-          <FontAwesomeIcon icon={starSolid} />
+        <div key={i}>
           <button
             className='favCourse-link list-group-item fs-5 my-2 fw-bold'
             as={Link}
             to={'/'}
-            datatype={course._id}
+            datatype={i}
             key={i}
           >
-            {course.courseName}
-          <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
+            {courses}
+            <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
           </button>
         </div>
       ))}
@@ -28,4 +24,4 @@ function FavCourses({ courses }) {
   );
 }
 
-export default FavCourses;
+export default CoursesPlayed;

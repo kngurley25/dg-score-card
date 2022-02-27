@@ -98,14 +98,17 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      coursesPlayed
       courses {
         _id
         courseName
         location
+        parTotal
       }
       rounds {
         courseName
         createAt
+        totalScore
         scores {
           holeNumber
           stroke
