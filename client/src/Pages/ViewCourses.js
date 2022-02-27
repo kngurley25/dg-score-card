@@ -1,21 +1,26 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_COURSES } from "../utils/queries";
+import { QUERY_ALL_COURSES, QUERY_ME } from "../utils/queries";
 import CourseList from "../components/CourseList";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 
 const ViewCourses = () => {
-  const { loading, data } = useQuery(QUERY_ALL_COURSES);
-  const courses = data?.courses || [];
+  const courseQuery = useQuery(QUERY_ALL_COURSES);
+  const courses = courseQuery.data?.courses || [];
+  const userQuery = useQuery(QUERY_ME);
+  const user = userQuery.data?.me || {}
+  // const length = user.courses.length;
 
   return (
     <main>
-      {loading ? (
+      {courseQuery.loading || userQuery.loading ? (
         <div>Loading. . .</div>
       ) : (
         <div className="course-list d-flex justify-content-center">
           <CourseList
+            // length={length}
+            user={user}
             courses={courses}
             className="heading"
             title="Courses:"

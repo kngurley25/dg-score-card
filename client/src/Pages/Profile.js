@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import HistoryModal from '../components/HistoryModal';
 import FavCourses from '../components/FavCourses';
@@ -54,21 +54,7 @@ function Profile() {
           ) : (
             <FavCourses courses={user.courses} />
           )}
-          <ul className='list-group list-group-flush text-center'>
-            {user.courses.map((course, i) => (
-              <button
-                className='favCourse-link list-group-item fs-5 my-2 fw-bold'
-                as={Link}
-                to={'/'}
-                datatype={course._id}
-                key={i}
-              >
-                <FontAwesomeIcon icon={faStar} className='' />
-                {course.courseName}
-                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-              </button>
-            ))}
-          </ul>
+         
         </div>
         <div>
           <h3

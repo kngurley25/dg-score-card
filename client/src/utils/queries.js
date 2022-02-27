@@ -119,3 +119,15 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_ME_COURSES = gql`
+  {
+    me {
+      courses {
+        _id
+        courseName
+        location
+      }
+    }
+  }
+`;

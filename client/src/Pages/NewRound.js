@@ -47,7 +47,7 @@ const NewRound = () => {
           <h5>Play a round at {course.courseName} ?</h5>
           
           <button onClick={handleStartRound}className='button-next my-4'>Start Round</button>
-          {error && <div>Sign up failed</div>}
+          {error && <div>You need to be logged in!</div>}
         </div>
       </main>
     );

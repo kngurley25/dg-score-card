@@ -10,18 +10,18 @@ function FavCourses({ courses }) {
   return (
     <ul className='list-group list-group-flush text-center'>
       {courses.map((course, i) => (
-        <div>
-          <FontAwesomeIcon icon={starSolid} />
+        <div key={course._id}>
+          <Link to={`/newround/${course._id}`}>
           <button
             className='favCourse-link list-group-item fs-5 my-2 fw-bold'
-            as={Link}
-            to={'/'}
             datatype={course._id}
-            key={i}
+            
           >
-            {course.courseName}
+          <FontAwesomeIcon icon={starSolid} />
+            {' ' + course.courseName}
           <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
           </button>
+          </Link>
         </div>
       ))}
     </ul>
