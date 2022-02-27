@@ -38,7 +38,7 @@ code {
   padding: 12px 12px;
   border-radius: 12px;
   text-align: center;
-  font-size: 36px;
+  font-size: x-large;
   color: var(--primary);
   border: solid;
   background-color: var(--tertiary);
@@ -50,7 +50,7 @@ code {
   padding: 6px 6px;
   text-align: center;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: large;
   color: var(--primary);
   background-color: var(--tertiary);
   border-color: var(--secondary);
@@ -66,15 +66,6 @@ code {
   height: 70px;
   color: var(--dark);
   border: var (--primary);
-}
-
-.list {
-  padding: 1px 1px 1px 1px;
-  margin: 2px 2px;
-  border-radius: 12px;
-  font-size: 16px;
-  text-decoration: none;
-  text-align: left;
 }
 
 .text-error {
@@ -95,14 +86,26 @@ code {
   height: 50%;
   position: relative;
   text-align: center;
+  width: 40%;
+}
+
+.par-input {
+  background-color: red;
 }
 
 .course-list {
   max-height: 360px;
   overflow: scroll;
   color: var(--dark);
-  font-size: 18px;
+  font-size: medium;
   opacity: 90%;
+  text-decoration: none;
+  padding: 10px 10px 10px 10px;
+  color: var(--dark);
+}
+
+.star {
+  padding-right: 12px;
 }
 
 .hole-form {
