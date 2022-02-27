@@ -88,6 +88,7 @@ function Profile() {
               <CoursesPlayed courses={user.coursesPlayed} />
             </div>
           )}
+         
         </div>
         <div>
           {user.rounds.length === 0 ? (
