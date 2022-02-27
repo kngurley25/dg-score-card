@@ -8,6 +8,7 @@ function HistoryTable({ user, FindParTotal }) {
     <div className='d-flex flex-column align-items-center'>
       <h3 className='subheading mt-5 text-center'>Round History</h3>
       <input
+        className='w-75'
         placeholder='Search for round'
         onChange={(event) => setQuery(event.target.value)}
       />
