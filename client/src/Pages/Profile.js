@@ -2,24 +2,21 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
-
 import HistoryModal from '../components/HistoryModal';
 import FavCourses from '../components/FavCourses';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpRightFromSquare, faStar } from '@fortawesome/free-solid-svg-icons';
+import Auth from '../utils/auth';
 
 function Profile() {
   const [show, setShow] = useState(false);
-  const { loading, data } = useQuery(QUERY_ME, {});
-
+  const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me || {};
-
-  // console.log(user);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-  if (!user?.username) {
+  if (Auth.loggedIn() === false) {
     return (
       <div className='d-flex flex-column align-items-center'>
         <h4 className='loginMsg fw-bold'>

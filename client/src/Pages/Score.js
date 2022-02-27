@@ -6,7 +6,6 @@ import { ADD_SCORE } from "../utils/mutations";
 import { QUERY_ALL_COURSES, QUERY_ROUND } from "../utils/queries";
 import ScoreModal from "../components/ScoreModal";
 import { useParams, useNavigate } from "react-router-dom";
-import CourseForm from "../components/CreateCourse";
 
 function ScorePage() {
   const navigate = useNavigate();
@@ -23,7 +22,6 @@ function ScorePage() {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
-  console.log(matchingCourse);
 
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
