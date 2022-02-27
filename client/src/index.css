@@ -19,6 +19,7 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  background-color: var(--tertiary);
 }
 
 .footer {
@@ -26,6 +27,7 @@ main {
   font-size: medium;
   color: var(--dark);
   font-weight: bold;
+  background-color: var(--tertiary);
 }
 
 code {
@@ -38,11 +40,29 @@ code {
   padding: 12px 12px;
   border-radius: 12px;
   text-align: center;
-  font-size: 36px;
-  color: var(--primary);
+  text-decoration: none;
+  font-size: x-large;
+  color: var(--dark);
   border: solid;
-  background-color: var(--tertiary);
+  background-color: var(--secondary);
   opacity: 90%;
+  font-weight: bold;
+}
+
+.alt-heading {
+  margin: 10px 10px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: x-large;
+  color: var(--tertiary);
+  border: solid;
+  background-color: var(--dark);
+  opacity: 90%;
+  font-weight: bold;
+  opacity: 90%;
+  font-weight: bold;
 }
 
 .sub-heading {
@@ -50,9 +70,9 @@ code {
   padding: 6px 6px;
   text-align: center;
   border-radius: 12px;
-  font-size: 16px;
-  color: var(--primary);
-  background-color: var(--tertiary);
+  font-size: large;
+  color: var(--dark);
+  background-color: var(--secondary);
   border-color: var(--secondary);
   border: solid;
   opacity: 90%;
@@ -68,22 +88,12 @@ code {
   border: var (--primary);
 }
 
-.list {
-  padding: 1px 1px 1px 1px;
-  margin: 2px 2px;
-  border-radius: 12px;
-  font-size: 16px;
-  text-decoration: none;
-  text-align: left;
-}
-
 .text-error {
   color: var(--error);
 }
 
 .form {
   padding: 5%;
-  border-bottom: solid;
 }
 
 .course-form {
@@ -95,19 +105,33 @@ code {
   height: 50%;
   position: relative;
   text-align: center;
+  text-decoration: none;
+  width: 40%;
+}
+
+.par-input {
+  background-color: red;
 }
 
 .course-list {
-  max-height: 360px;
+  max-height: 460px;
   overflow: scroll;
   color: var(--dark);
-  font-size: 18px;
+  font-size: 14px;
   opacity: 90%;
+  text-decoration: none;
+  padding: 10px 10px 10px 10px;
+  color: var(--dark);
+}
+
+.star {
+  padding-right: 12px;
 }
 
 .hole-form {
   border-radius: 12px;
   text-align: center;
+  text-decoration: none;
   border: solid;
   margin-right: 20px;
 }
@@ -136,7 +160,7 @@ code {
 .button-secondary {
   background-color: var(--dark);
   margin: 15px 15px;
-  color: var(--secondary);
+  color: var(--tertiary);
   text-decoration: none;
   border-radius: 14px;
   font-size: 20px;
@@ -388,6 +412,7 @@ code {
   border-radius: 8px;
   text-align: center;
   resize: none;
+  opacity: 95%;
 }
 
 .form-input:focus {

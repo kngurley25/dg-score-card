@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { QUERY_COURSE } from "../utils/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_ROUND } from "../utils/mutations";

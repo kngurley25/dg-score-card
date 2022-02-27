@@ -8,8 +8,6 @@ function ScoreModal({ show, handleClose, round }) {
   const { data: allCorseData } = useQuery(QUERY_ALL_COURSES);
   const allCourses = allCorseData?.courses || [];
 
-  console.log(round);
-
   const FindPar = (cntCourseName, i) => {
     const holeNum = i
     for (let i = 0; i < allCourses.length; i++) {
