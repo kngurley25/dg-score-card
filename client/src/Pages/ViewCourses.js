@@ -14,7 +14,7 @@ const ViewCourses = () => {
       {loading ? (
         <div>Loading. . .</div>
       ) : (
-        <div className="course-list d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <CourseList
             courses={courses}
             className="heading"
@@ -24,10 +24,10 @@ const ViewCourses = () => {
       )}
       {Auth.loggedIn() && (
         <div className="d-flex justify-content-center mb-1">
-          <Link to="/courseform">
+          <Link to="/courseform" style={{ textDecoration: "none" }}>
             <button
               type="button"
-              className="btn btn-primary d-flex justify-content-center m-4"
+              className="button d-flex justify-content-center m-4"
             >
               Create a Course
             </button>

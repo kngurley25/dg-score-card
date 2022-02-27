@@ -56,18 +56,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
+      <div className="flex-column justify-flex-start min-100-vh">
         <Router>
           <Header></Header>
-          <main
-            style={{
-              backgroundImage: `url(${background})`,
-              backgroundPosition: "bottom right",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              height: "200px",
-            }}
-          >
+          <main>
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/profile" element={<Profile />} />

@@ -72,18 +72,17 @@ function ScorePage() {
     <main>
       <ScoreModal show={show} handleClose={toggleModal} />
       <div className="d-flex flex-column align-items-center">
-        <div className="text-center">
-          <h1>Hole {holeNumber}</h1>
-          <h2>{round.courseName}</h2>
-          <h3>Total Score: {totalScore}</h3>
+        <div className="card-heading text-center">
+          <h1 className="heading">Hole #{holeNumber}</h1>
+          <h2 className="sub-heading">{round.courseName}</h2>
+          <h3 className="sub-heading">Total Score: {totalScore}</h3>
         </div>
         <button
-          className="btn btn-secondary btn-lg my-3"
+          className="button-secondary btn-lg my-3"
           onClick={() => toggleModal()}
         >
           View Score Card
         </button>
-        <p className="fs-3">Enter Total Strokes:</p>
         <button
           id="addBtn"
           className="button-stroke text-center w-50"
