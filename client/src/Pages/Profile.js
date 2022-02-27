@@ -78,7 +78,7 @@ function Profile() {
           </h2>
           {user.courses.length === 0 ? (
             <div className='text-center bg-white'>
-              No courses added to favorites
+              No courses played yet
             </div>
           ) : (
             <CoursesPlayed courses={user.coursesPlayed} />
