@@ -1,3 +1,7 @@
+.navbar {
+  background-color: var(--tertiary);
+}
+
 .disc-icon {
   height: 20px;
 }
@@ -142,21 +146,21 @@
   font-weight: 500;
 }
 
-.nav-container input[type='checkbox']:checked ~ .menu-items {
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
   transform: translateX(0);
 }
 
-.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line1 {
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
   transform: rotate(45deg);
   background: #fff;
 }
 
-.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line2 {
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
   transform: scaleY(0);
   background: #fff;
 }
 
-.nav-container input[type='checkbox']:checked ~ .hamburger-lines .line3 {
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
   transform: rotate(-45deg);
   background: #fff;
 }
