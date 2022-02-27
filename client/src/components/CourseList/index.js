@@ -19,10 +19,10 @@ const CourseList = ({ courses, title }) => {
         </h3>
         <div>
           <Link to={"/login"} className="mx-4">
-            <button className="btn btn-primary">Login</button>
+            <button className="button justify-content-center">Login</button>
           </Link>
           <Link to={"/signup"} className="mx-4">
-            <button className="btn btn-primary">Signup</button>
+            <button className="button justify-content-center">Signup</button>
           </Link>
         </div>
       </div>
@@ -32,25 +32,35 @@ const CourseList = ({ courses, title }) => {
   return (
     <section>
       <div>
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-primary d-flex justify-content-center"
-            >
+            <button type="button" className="button justify-content-center">
               Go Back
             </button>
           </div>
         </Link>
       </div>
-      <MDBCard style={{ width: '18rem' }}>
-        <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
+      <MDBCard style={{ width: "18rem" }} className="course-list">
+        <MDBCardHeader className="text-center">{title}</MDBCardHeader>
         <MDBListGroup flush>
           {courses &&
             courses.map((course) => (
-              <MDBListGroupItem key={course._id} className='courseList list'>
-                <div className='d-flex justify-content-around'>
-                  <button className='courseBtn fw-bold'>
+              <MDBListGroupItem
+                key={course._id}
+                className="list d-flex justify-content-center"
+              >
+                {" "}
+                <Link
+                  to={`/newround/${course._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  {course.courseName}, {course.location}
+                </Link>
+                <input type="checkbox" className="favBtn" />
+                <FontAwesomeIcon icon={starReg} className="emptyStar" />
+                <FontAwesomeIcon icon={starSolid} className="solidStar" />
+                <div>
+                  <button className="courseBtn fw-bold">
                     {course.courseName}, {course.location}
                   </button>
                   <FontAwesomeIcon icon={faArrowRight} />
