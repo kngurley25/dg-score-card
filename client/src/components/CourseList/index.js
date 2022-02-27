@@ -7,7 +7,8 @@ import {
   MDBListGroupItem,
 } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
 
 const CourseList = ({ courses, title }) => {
   if (!courses.length) {
