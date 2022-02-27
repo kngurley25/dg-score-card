@@ -63,17 +63,17 @@ const AddHole = () => {
   return (
     <section>
       <div className="card-heading">
-        <h2 className="heading d-flex justify-content-center">
+        <h2 className="alt-heading d-flex justify-content-center">
           {location && location.state && location.state.courseName}
         </h2>
         <div>
           <h2 className="sub-heading d-flex justify-content-center">
-            Hole Count: {location && location.state && location.state.holeCount}
+            Holes: {location && location.state && location.state.holeCount}
           </h2>
-          <h2 className="d-flex justify-content-center">
+          <h2 className="">
             <label
               htmlFor="par1"
-              className="sub-heading col col-form-label m-4 p-4"
+              className="sub-heading d-flex justify-content-center"
             >
               Hole #{holeNumber}
             </label>
@@ -81,27 +81,26 @@ const AddHole = () => {
         </div>
       </div>
       <form>
-        <div className="form-group row">
-          <h3 className="sub-heading d-flex justify-content-center">
-            Enter Pars:
-          </h3>
+        <h3 className="sub-heading d-flex justify-content-center">
+          Enter Pars:
+        </h3>
 
-          <div className="col">
-            <input
-              type="par"
-              className="hole-form col col-form-label m-4 p-4"
-              id="par"
-              placeholder="Par"
-              onChange={() => {}}
-            />
-          </div>
+        <div className="col d-flex justify-content-center">
+          <input
+            type="par"
+            className="hole-form col col-form-label m-4 p-4"
+            id="par"
+            placeholder="Par"
+            onChange={() => {}}
+          />
         </div>
+
         <div className="d-flex justify-content-center">
           <button
             className="button d-flex justify-content-center m-4"
             onClick={handleAddHole}
           >
-            Next Hole
+            Next Hole!
           </button>
         </div>
       </form>

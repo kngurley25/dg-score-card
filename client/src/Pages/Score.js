@@ -79,7 +79,7 @@ function ScorePage() {
       <ScoreModal show={show} handleClose={toggleModal} />
       <div className="d-flex flex-column align-items-center">
         <div className="card-heading text-center">
-          <h1 className="heading">Hole #{holeNumber}</h1>
+          <h1 className="alt-heading">Hole #{holeNumber}</h1>
           <h2 className="sub-heading">{round.courseName}</h2>
           <h3 className="sub-heading">Total Score: {totalScore}</h3>
         </div>
