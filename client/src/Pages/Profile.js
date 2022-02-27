@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import HistoryModal from '../components/HistoryModal';
-import FavCourses from '../components/FavCourses';
+import CoursesPlayed from '../components/CoursesPlayed';
+import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpRightFromSquare, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
 function Profile() {
   const [show, setShow] = useState(false);
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME, {});
+  const { data: allCorseData } = useQuery(QUERY_ALL_COURSES);
   const user = data?.me || {};
+  const allCourses = allCorseData?.courses || [];
 
   if (loading) {
     return <div>Loading...</div>;
@@ -29,52 +32,78 @@ function Profile() {
       </div>
     );
   }
-  
+
   const toggleModal = () => {
     setShow(!show);
   };
+
+  const FindParTotal = (cntCourseName) => {
+    for (let i = 0; i < allCourses.length; i++) {
+      const course = allCourses[i];
+      if (cntCourseName === course.courseName) {
+        const holesArr = course.holes;
+        let total = 0;
+        for (let j = 0; j < holesArr.length; j++) {
+          total += holesArr[j].par;
+        }
+        return total;
+      }
+    }
+  };
   return (
     <section className='d-flex justify-content-center'>
-     <HistoryModal show={show} handleClose={toggleModal} user={user} />
+      <HistoryModal
+        show={show}
+        handleClose={toggleModal}
+        user={user}
+        allCourses={allCourses}
+        FindParTotal={FindParTotal}
+      />
       <div className=' flex-column'>
-        <h1 className='text-center'>Welcome {user.username}!</h1>
-        <Link to={'/viewcourses'}>
-          <button className='button-next my-4' as={NavLink} to={'/'}>
-            Find a New Course
-          </button>
-        </Link>
-        <div>
-          <h2 className='text-center'>or</h2>
-          <h2 className='text-center'>stick with a favorite</h2>
-          {user.courses.length === 0 ? (
-            <div>No courses added to favorites</div>
-          ) : (
-            <FavCourses courses={user.courses} />
-          )}
-          <ul className='list-group list-group-flush text-center'>
-            {user.courses.map((course, i) => (
-              <button
-                className='favCourse-link list-group-item fs-5 my-2 fw-bold'
-                as={Link}
-                to={'/'}
-                datatype={course._id}
-                key={i}
-              >
-                <FontAwesomeIcon icon={faStar} className='' />
-                {course.courseName}
-                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
-              </button>
-            ))}
-          </ul>
+        <div className='d-flex flex-column align-items-center'>
+          <h1 className='text-center bg-white heading'>
+            Welcome {user.username}!
+          </h1>
+          <Link to={'/viewcourses'}>
+            <button className='button-next my-4' as={NavLink} to={'/'}>
+              Find a New Course
+            </button>
+          </Link>
         </div>
         <div>
-          <h3
-            className='history-btn text-center my-5'
-            onClick={() => toggleModal()}
-            style={{ color: 'inherit', textDecoration: 'inherit' }}
-          >
-            View my History
-          </h3>
+          {user.courses.length === 0 ? (
+            <div className='text-center bg-white'>
+              <h2>
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
+                <FontAwesomeIcon icon={faArrowUp} />
+              </h2>
+            </div>
+          ) : (
+            <div>
+              <h2 className='text-center bg-white'>or</h2>
+              <h2 className='text-center bg-white'>
+                <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
+                <FontAwesomeIcon icon={faArrowDown} />
+              </h2>
+              <CoursesPlayed courses={user.coursesPlayed} />
+            </div>
+          )}
+         
+        </div>
+        <div>
+          {user.rounds.length === 0 ? (
+            <div></div>
+          ) : (
+            <div>
+              <HistoryTable user={user} FindParTotal={FindParTotal} />
+              <h3
+                className='history-btn text-center my-5 bg-white'
+                onClick={() => toggleModal()}
+              >
+                View more history
+              </h3>
+            </div>
+          )}
         </div>
       </div>
     </section>

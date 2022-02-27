@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   MDBCard,
@@ -6,12 +6,47 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
+import Auth from '../../utils/auth';
+import { useMutation } from "@apollo/client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
 import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
+import { ADD_COURSE } from "../../utils/mutations";
+import { QUERY_ME_COURSES } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+        
+const CourseList = ({ courses, title, user }) => {
+  const [addCourse, { error }] = useMutation(ADD_COURSE, {
+    refetchQueries: [
+      QUERY_ME_COURSES
+    ],
+  });
+  const { loading, data } = useQuery(QUERY_ME_COURSES);
+  const myCourses = data?.me || {};
+ 
+  const courseArr = [];
+  if (!loading) {
+  for (let i=0;i<myCourses.courses.length;i++) {
+    courseArr.push(myCourses.courses[i]._id)
+  }
+}
 
-const CourseList = ({ courses, title }) => {
+  const handleAddCourse = (id) =>(e) => {
+    e.preventDefault();
+    try {
+      addCourse({
+        variables: { courseId: id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   if (!courses.length) {
     return (
       <div className="d-flex flex-column align-items-center">
@@ -30,7 +65,7 @@ const CourseList = ({ courses, title }) => {
       </div>
     );
   }
-
+  
   return (
     <section>
       <div>
@@ -42,16 +77,16 @@ const CourseList = ({ courses, title }) => {
           </div>
         </Link>
       </div>
-
       <MDBCard style={{ width: "18rem" }} className="course-list">
         <MDBCardHeader className="text-center">{title}</MDBCardHeader>
+        {Auth.loggedIn() ? (
         <MDBListGroup flush>
           {courses &&
             courses.map((course) => (
               <MDBListGroupItem
                 key={course._id}
-                className="list d-flex justify-content-center"
-              >
+                className="list d-flex justify-content-between"
+              >  
                 {" "}
                 <Link
                   to={`/newround/${course._id}`}
@@ -60,14 +95,45 @@ const CourseList = ({ courses, title }) => {
                 >
                   {course.courseName}, {course.location}
                 </Link>
+                
+                
+                { courseArr.includes(course._id) ? (
+                  <FontAwesomeIcon icon={starSolid}  />
+                ) : (
+                  // eslint-disable-next-line no-restricted-globals
+                  <div onClick={handleAddCourse(course._id)} >
+                    <FontAwesomeIcon icon={starReg} />
+                  </div>
+                )}
+                
+              </MDBListGroupItem>
+            ))}
+        </MDBListGroup>
+         ) : (
+          <MDBListGroup flush>
+            <Link to="/">
+            <h6>Sign up or log in to keep your score!</h6>
+            </Link>
+          {courses &&
+            courses.map((course) => (
+              <MDBListGroupItem
+                key={course._id}
+                className="list d-flex justify-content-center"
+              >  
+                {" "}
+                
                 <input type="checkbox" className="favBtn" />
                 <FontAwesomeIcon icon={starReg} className="emptyStar" />
                 <FontAwesomeIcon icon={starSolid} className="solidStar" />
               </MDBListGroupItem>
             ))}
         </MDBListGroup>
+
+         )}
       </MDBCard>
+      {error && <div>An Error has occurred...</div>}
     </section>
+    
   );
 };
 
