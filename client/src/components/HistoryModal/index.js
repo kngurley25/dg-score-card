@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
+import ModalClasses from './HistoryModal.css';
 import { dateFormat } from '../../utils/helpers';
 
 function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
@@ -45,5 +46,6 @@ function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
       </Modal>
     </div>
   );
-}
+};
+
 export default HistoryModal;

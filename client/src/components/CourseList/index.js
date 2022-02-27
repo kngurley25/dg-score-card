@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   MDBCard,
@@ -78,17 +78,18 @@ const CourseList = ({ courses, title, user }) => {
       <MDBCard style={{ width: "18rem" }} className="course-list">
         <MDBCardHeader className="text-center">{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
-          <MDBListGroup flush>
-            {courses &&
-              courses.map((course) => (
-                <MDBListGroupItem
-                  key={course._id}
-                  className="list d-flex justify-content-between"
-                >
-                  {" "}
-                  <Link
-                    to={`/newround/${course._id}`}
-                    style={{ textDecoration: "none" }}
+        <MDBListGroup flush>
+          {courses &&
+            courses.map((course) => (
+              <MDBListGroupItem
+                key={course._id}
+                className="list d-flex justify-content-between"
+              >  
+                {" "}
+                <Link
+                  to={`/newround/${course._id}`}
+                  style={{ color: 'inherit', textDecoration: 'inherit' }}
+                  className="courseBtn fw-bold"
                   >
                     {course.courseName}, {course.location}
                   </Link>
@@ -108,25 +109,21 @@ const CourseList = ({ courses, title, user }) => {
             <Link to="/">
               <h6>Sign up or log in to keep your score!</h6>
             </Link>
-            {courses &&
-              courses.map((course) => (
-                <MDBListGroupItem
-                  key={course._id}
-                  className="list d-flex justify-content-center"
-                >
-                  {" "}
-                  <input type="checkbox" className="favBtn" />
-                  <FontAwesomeIcon icon={starReg} className="emptyStar" />
-                  <FontAwesomeIcon icon={starSolid} className="solidStar" />
-                  <div>
-                    <button className="courseBtn fw-bold">
-                      {course.courseName}, {course.location}
-                    </button>
-                  </div>
-                </MDBListGroupItem>
-              ))}
-          </MDBListGroup>
-        )}
+          {courses &&
+            courses.map((course) => (
+              <MDBListGroupItem
+                key={course._id}
+                className="list d-flex justify-content-center"
+              >  
+                {" "}
+                
+                <input type="checkbox" className="favBtn" />
+                <FontAwesomeIcon icon={starReg} className="emptyStar" />
+                <FontAwesomeIcon icon={starSolid} className="solidStar" />
+              </MDBListGroupItem>
+            ))}
+        </MDBListGroup>
+         )}
       </MDBCard>
       {error && <div>An Error has occurred...</div>}
     </section>
