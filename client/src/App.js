@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import "./App.css";
-
 import Profile from "./Pages/Profile";
 import NewRound from "./Pages/NewRound";
 import ScorePage from "./Pages/Score";
@@ -22,8 +21,6 @@ import ViewCourses from "./Pages/ViewCourses";
 import background from "./assets/images/dg-basket.png";
 import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
-
-import './App.css';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,9 +36,21 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });
 
 function App() {
@@ -53,22 +62,19 @@ function App() {
           <main
             style={{
               backgroundImage: `url(${background})`,
-              backgroundPosition: "center",
+              backgroundPosition: "bottom right",
               backgroundRepeat: "no-repeat",
-              height: "600px",
+              backgroundSize: "contain",
+              height: "200px",
             }}
           >
             <Routes>
               <Route exact path="/" element={<Home />} />
-
               <Route exact path="/profile" element={<Profile />} />
-
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
-
               <Route exact path="/newround/:courseId" element={<NewRound />} />
               <Route exact path="/score/:roundId" element={<ScorePage />} />
-
               <Route exact path="/viewcourses" element={<ViewCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />

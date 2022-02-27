@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,8 +9,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .heading {
@@ -67,9 +67,14 @@ code {
   text-align: center;
 }
 
-.footer,
-.push {
+.footer {
   height: 50px;
+  margin-top: 50px;
+}
+
+.course-list {
+  max-height: 900px;
+  overflow: scroll;
 }
 
 .hole-form {
@@ -312,12 +317,12 @@ code {
   cursor: pointer;
 }
 
-.loginMsg { 
+.loginMsg {
   margin-top: 50%;
   text-align: center;
   background-color: white;
   width: 75%;
-} 
+}
 
 /* styles for profile page */
 .form-input {

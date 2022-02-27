@@ -66,6 +66,21 @@ function Profile() {
           ) : (
             <CoursesPlayed courses={user.coursesPlayed} />
           )}
+          <ul className='list-group list-group-flush text-center'>
+            {user.courses.map((course, i) => (
+              <button
+                className='favCourse-link list-group-item fs-5 my-2 fw-bold'
+                as={Link}
+                to={'/'}
+                datatype={course._id}
+                key={i}
+              >
+                <FontAwesomeIcon icon={faStar} className='' />
+                {course.courseName}
+                <FontAwesomeIcon icon={faUpRightFromSquare} className='ps-2' />
+              </button>
+            ))}
+          </ul>
         </div>
         <div>
           <h3

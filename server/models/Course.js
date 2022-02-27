@@ -8,7 +8,8 @@ const holeSchema = new Schema(
         },
         par: {
             type: Number,
-            required: true
+            required: true,
+            default: 3
         },
     },
 );
@@ -29,6 +30,7 @@ const courseSchema = new Schema(
         holeCount: {
             type: Number,
             required: true,
+            default: 18
         },
         holes: [holeSchema]
     },
@@ -40,13 +42,10 @@ const courseSchema = new Schema(
     }
 );
 
-
-
 courseSchema.virtual('parTotal').get(function() {
     const parArr = this.holes.map(hole => {return hole.par});
     return parArr.reduce((previousValue, currentValue) => previousValue + currentValue)
 });
-
 
 const Course = model('Course', courseSchema);
 
