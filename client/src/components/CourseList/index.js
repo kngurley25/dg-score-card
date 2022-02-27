@@ -56,10 +56,10 @@ const CourseList = ({ courses, title, user }) => {
         </h3>
         <div>
           <Link to={"/login"} className="mx-4">
-            <button className="btn btn-primary">Login</button>
+            <button className="button justify-content-center">Login</button>
           </Link>
           <Link to={"/signup"} className="mx-4">
-            <button className="btn btn-primary">Signup</button>
+            <button className="button justify-content-center">Signup</button>
           </Link>
         </div>
       </div>
@@ -69,19 +69,15 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-primary d-flex justify-content-center"
-            >
+            <button type="button" className="button justify-content-center">
               Go Back
             </button>
           </div>
         </Link>
       </div>
-
-      <MDBCard style={{ width: "18rem" }}>
+      <MDBCard style={{ width: "18rem" }} className="course-list">
         <MDBCardHeader className="text-center">{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
         <MDBListGroup flush>
@@ -92,7 +88,10 @@ const CourseList = ({ courses, title, user }) => {
                 className="list d-flex justify-content-between"
               >  
                 {" "}
-                <Link to={`/newround/${course._id}`}>
+                <Link
+                  to={`/newround/${course._id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   {course.courseName}, {course.location}
                 </Link>
                 
@@ -129,6 +128,7 @@ const CourseList = ({ courses, title, user }) => {
                   <button className="courseBtn fw-bold">
                     {course.courseName}, {course.location}
                   </button>
+                  
                 </div>
               </MDBListGroupItem>
             ))}

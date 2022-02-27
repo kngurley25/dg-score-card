@@ -40,8 +40,8 @@ const CourseForm = () => {
         variables: {
           courseName: formState.courseName,
           location: formState.location,
-          holeCount: parseInt(formState.holeCount)
-        }
+          holeCount: parseInt(formState.holeCount),
+        },
       });
       navigate("/addhole", { state: { ...formState } });
     } catch (e) {
@@ -53,42 +53,44 @@ const CourseForm = () => {
     <div className="d-flex flex-column align-items-center">
       <form className="course-form col-12 col-md-6">
         {error && (
-          <div className="d-flex justify-content-center">
+          <div className="error d-flex justify-content-center">
             Something went wrong...
           </div>
         )}
-        <h1 className="heading d-flex justify-content-center">New Course:</h1>
+        <div className="card-heading">
+          <h1 className="heading d-flex justify-content-center">New Course:</h1>
 
-        <textarea
-          placeholder="Course Name"
-          value={formState.courseName}
-          name="courseName"
-          type="text"
-          className="form-input col-10 offset-1"
-          onBlur={handleChange}
-          onChange={handleChange}
-        ></textarea>
+          <textarea
+            placeholder="Course Name"
+            value={formState.courseName}
+            name="courseName"
+            type="text"
+            className="form-input col-10 offset-1"
+            onBlur={handleChange}
+            onChange={handleChange}
+          ></textarea>
 
-        <textarea
-          placeholder="Course Location"
-          value={formState.location}
-          className="form-input col-6 offset-1"
-          name="location"
-          type="text"
-          onBlur={handleChange}
-          onChange={handleChange}
-        ></textarea>
+          <textarea
+            placeholder="Course Location"
+            value={formState.location}
+            className="form-input col-6 offset-1"
+            name="location"
+            type="text"
+            onBlur={handleChange}
+            onChange={handleChange}
+          ></textarea>
 
-        <textarea
-          placeholder="Hole Count"
-          value={formState.holeCount}
-          name="holeCount"
-          type="number"
-          pattern="[0-9]*"
-          className="form-input col-4"
-          onBlur={handleChange}
-          onChange={handleChange}
-        ></textarea>
+          <textarea
+            placeholder="Hole Count"
+            value={formState.holeCount}
+            name="holeCount"
+            type="number"
+            pattern="[0-9]*"
+            className="form-input col-4"
+            onBlur={handleChange}
+            onChange={handleChange}
+          ></textarea>
+        </div>
         {errorMessage && (
           <div
             className="alert alert-danger animate__animated animate__shakeX"
@@ -99,17 +101,17 @@ const CourseForm = () => {
         )}
         <div className="d-flex justify-content-center">
           <button
-            className="btn btn-primary d-flex justify-content-center"
+            className="button d-flex justify-content-center"
             onClick={handleFormSubmit}
           >
             Continue
           </button>
         </div>
-        <Link to="/viewcourses">
+        <Link to="/viewcourses" style={{ textDecoration: "none" }}>
           <div className="d-flex justify-content-center">
             <button
               type="button"
-              className="btn btn-primary d-flex justify-content-center"
+              className="button d-flex justify-content-center"
             >
               Go Back
             </button>

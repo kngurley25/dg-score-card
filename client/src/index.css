@@ -1,11 +1,31 @@
-body {
+:root {
+  --primary: #4d7701;
+  --secondary: #9e8d8f;
+  --tertiary: #f4f0f4;
+  --dark: #1b2c00;
+  --error: #f46500;
+}
+
+main {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
+  min-height: 100vh;
+  background-color: var(----ter);
+  background-image: url("./assets/images/dg-basket.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.footer {
+  margin-top: auto;
+  font-size: medium;
+  color: var(--dark);
+  font-weight: bold;
 }
 
 code {
@@ -14,42 +34,51 @@ code {
 }
 
 .heading {
-  padding: 2px 2px 2px 2px;
-  margin-top: 40px;
+  margin: 10px 10px;
+  padding: 12px 12px;
   border-radius: 12px;
+  text-align: center;
   font-size: 36px;
-  background-color: white;
+  color: var(--primary);
+  border: solid;
+  background-color: var(--tertiary);
+  opacity: 90%;
 }
 
 .sub-heading {
-  padding: 2px 2px 2px 2px;
-  margin-top: 40px;
-  border-radius: 12px;
-  font-size: 24px;
-  background-color: white;
-}
-
-.information {
-  padding: 2px 2px 2px 2px;
-  margin-top: 40px;
-  border-radius: 12px;
-  font-size: 18px;
+  margin: 10px 10px;
+  padding: 6px 6px;
   text-align: center;
-  background-color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  color: var(--primary);
+  background-color: var(--tertiary);
+  border-color: var(--secondary);
+  border: solid;
+  opacity: 90%;
 }
 
 .form-input {
   padding: 5px 10px;
+  font-size: 14px;
+  text-align: center;
   margin: 10px 10px;
-  height: 50px;
+  height: 70px;
+  color: var(--dark);
+  border: var (--primary);
 }
 
 .list {
-  background-color: white;
   padding: 1px 1px 1px 1px;
   margin: 2px 2px;
   border-radius: 12px;
-  font-size: 18px;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: left;
+}
+
+.text-error {
+  color: var(--error);
 }
 
 .form {
@@ -68,14 +97,12 @@ code {
   text-align: center;
 }
 
-.footer {
-  height: 50px;
-  margin-top: 50px;
-}
-
 .course-list {
-  max-height: 900px;
+  max-height: 360px;
   overflow: scroll;
+  color: var(--dark);
+  font-size: 18px;
+  opacity: 90%;
 }
 
 .hole-form {
@@ -83,11 +110,38 @@ code {
   text-align: center;
   border: solid;
   margin-right: 20px;
-  background-color: white;
 }
 
-.btn {
-  margin-bottom: 10px;
+.card-heading {
+  margin: 12px 12px 12px 12px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 12px;
+  border: solid;
+  border-color: var(--primary);
+  background-color: var(--secondary);
+  opacity: 90%;
+}
+
+.button {
+  background-color: var(--primary);
+  margin: 15px 15px;
+  color: var(--tertiary);
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
+.button-secondary {
+  background-color: var(--dark);
+  margin: 15px 15px;
+  color: var(--secondary);
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
 }
 
 /* styles for button on score page */
@@ -351,7 +405,7 @@ code {
 }
 
 .favBtn {
-  position:absolute;
+  position: absolute;
   display: block;
   height: 20px;
   width: 20px;
@@ -362,19 +416,19 @@ code {
 }
 
 .courseBtn {
+  width: 100%;
   background: none !important;
   border: none;
   padding: 0 !important;
 }
-
-.courseList input[type='checkbox']:checked ~ .emptyStar {
+/* styles for view courses page */
+.courseList input[type="checkbox"]:checked ~ .emptyStar {
   display: none;
 }
 
-.courseList input[type='checkbox']:checked ~ .solidStar {
+.courseList input[type="checkbox"]:checked ~ .solidStar {
   display: inline-block;
-   animation: heartBeat;
+  animation: heartBeat;
   animation-duration: 1s;
-  
 }
 /* styles for view courses page */
