@@ -19,6 +19,7 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  background-color: var(--tertiary);
 }
 
 .footer {
@@ -26,6 +27,7 @@ main {
   font-size: medium;
   color: var(--dark);
   font-weight: bold;
+  background-color: var(--tertiary);
 }
 
 code {
@@ -38,11 +40,27 @@ code {
   padding: 12px 12px;
   border-radius: 12px;
   text-align: center;
+  text-decoration: none;
   font-size: x-large;
-  color: var(--primary);
+  color: var(--dark);
   border: solid;
-  background-color: var(--tertiary);
+  background-color: var(--secondary);
   opacity: 90%;
+  font-weight: bold;
+}
+
+.alt-heading {
+  margin: 10px 10px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: x-large;
+  color: var(--tertiary);
+  border: solid;
+  background-color: var(--dark);
+  opacity: 90%;
+  font-weight: bold;
 }
 
 .sub-heading {
@@ -51,8 +69,8 @@ code {
   text-align: center;
   border-radius: 12px;
   font-size: large;
-  color: var(--primary);
-  background-color: var(--tertiary);
+  color: var(--dark);
+  background-color: var(--secondary);
   border-color: var(--secondary);
   border: solid;
   opacity: 90%;
@@ -74,7 +92,6 @@ code {
 
 .form {
   padding: 5%;
-  border-bottom: solid;
 }
 
 .course-form {
@@ -86,6 +103,7 @@ code {
   height: 50%;
   position: relative;
   text-align: center;
+  text-decoration: none;
   width: 40%;
 }
 
@@ -94,10 +112,10 @@ code {
 }
 
 .course-list {
-  max-height: 360px;
+  max-height: 460px;
   overflow: scroll;
   color: var(--dark);
-  font-size: medium;
+  font-size: 14px;
   opacity: 90%;
   text-decoration: none;
   padding: 10px 10px 10px 10px;
@@ -111,6 +129,7 @@ code {
 .hole-form {
   border-radius: 12px;
   text-align: center;
+  text-decoration: none;
   border: solid;
   margin-right: 20px;
 }
@@ -391,6 +410,7 @@ code {
   border-radius: 8px;
   text-align: center;
   resize: none;
+  opacity: 95%;
 }
 
 .form-input:focus {

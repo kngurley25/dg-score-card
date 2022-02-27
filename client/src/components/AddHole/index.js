@@ -63,7 +63,7 @@ const AddHole = () => {
   return (
     <section>
       <div className="card-heading">
-        <h2 className="heading d-flex justify-content-center">
+        <h2 className="alt-heading d-flex justify-content-center">
           {location && location.state && location.state.courseName}
         </h2>
         <div>
