@@ -61,7 +61,7 @@ function Profile() {
       />
       <div className=' flex-column'>
         <div className='d-flex flex-column align-items-center'>
-          <h1 className='text-center bg-white heading'>
+          <h1 className='text-center bg-white heading animate__animated animate__backInDown'>
             Welcome {user.username}!
           </h1>
           <Link to={'/viewcourses'}>
@@ -72,7 +72,7 @@ function Profile() {
         </div>
         <div>
           {user.courses.length === 0 ? (
-            <div className='text-center bg-white'>
+            <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
                 <FontAwesomeIcon icon={faArrowUp} />
@@ -81,7 +81,7 @@ function Profile() {
           ) : (
             <div>
               <h2 className='text-center bg-white'>or</h2>
-              <h2 className='text-center bg-white'>
+              <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
