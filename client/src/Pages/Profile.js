@@ -7,7 +7,7 @@ import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 function Profile() {
   const [show, setShow] = useState(false);
@@ -71,27 +71,38 @@ function Profile() {
           </Link>
         </div>
         <div>
-          <h2 className='text-center bg-white'>or</h2>
-          <h2 className='text-center bg-white'>
-            <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
-            <FontAwesomeIcon icon={faArrowDown} />
-          </h2>
           {user.courses.length === 0 ? (
             <div className='text-center bg-white'>
-              No courses played yet
+              <h2>
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
+                <FontAwesomeIcon icon={faArrowUp} />
+              </h2>
             </div>
           ) : (
-            <CoursesPlayed courses={user.coursesPlayed} />
+            <div>
+              <h2 className='text-center bg-white'>or</h2>
+              <h2 className='text-center bg-white'>
+                <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
+                <FontAwesomeIcon icon={faArrowDown} />
+              </h2>
+              <CoursesPlayed courses={user.coursesPlayed} />
+            </div>
           )}
         </div>
         <div>
-          <HistoryTable user={user} FindParTotal={FindParTotal} />
-          <h3
-            className='history-btn text-center my-5 bg-white'
-            onClick={() => toggleModal()}
-          >
-            View more history
-          </h3>
+          {user.rounds.length === 0 ? (
+            <div></div>
+          ) : (
+            <div>
+              <HistoryTable user={user} FindParTotal={FindParTotal} />
+              <h3
+                className='history-btn text-center my-5 bg-white'
+                onClick={() => toggleModal()}
+              >
+                View more history
+              </h3>
+            </div>
+          )}
         </div>
       </div>
     </section>
