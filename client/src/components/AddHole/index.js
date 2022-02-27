@@ -21,7 +21,7 @@ const AddHole = () => {
   //getcourseId from query
   const { loading, data } = useQuery(QUERY_ALL_COURSES);
   const courses = data?.courses || [];
-
+  
   const matchingCourse = courses?.find(
     (course) => course?.courseName === location?.state?.courseName
   );

@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_SCORE } from "../utils/mutations";
-import { QUERY_ROUND } from "../utils/queries";
+import { QUERY_ALL_COURSES, QUERY_ROUND } from "../utils/queries";
 import ScoreModal from "../components/ScoreModal";
 import { useParams, useNavigate } from "react-router-dom";
+import CourseForm from "../components/CreateCourse";
 
 function ScorePage() {
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ function ScorePage() {
     variables: { roundId: roundParam },
   });
   const round = data?.round || {};
-  // const totalScore = round.totalScore;
+
+  const { data: courseData } = useQuery(QUERY_ALL_COURSES);
+  const courses = courseData?.courses || [];
+  const matchingCourse = courses?.find(
+    (course) => course?.courseName === round.courseName
+  );
+  console.log(matchingCourse);
 
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
@@ -43,6 +50,7 @@ function ScorePage() {
     return setStroke(newScore);
   };
   let total;
+
   const handleAddScore = (event) => {
     event.preventDefault();
     total = totalScore + stroke;
@@ -53,7 +61,7 @@ function ScorePage() {
       });
 
       setStroke(1);
-      if (holeNumber === 18) {
+      if (holeNumber === matchingCourse.holeCount) {
         navigate(`/profile`);
       } else {
         setHoleNumber(holeNumber + 1);
