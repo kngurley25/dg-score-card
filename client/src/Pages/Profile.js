@@ -71,7 +71,7 @@ function Profile() {
           </Link>
         </div>
         <div>
-          {user.courses.length === 0 ? (
+          {user.coursesPlayed.length === 0 ? (
             <div className='text-center bg-white'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}

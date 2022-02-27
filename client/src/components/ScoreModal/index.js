@@ -1,8 +1,32 @@
 import React from 'react';
+import { QUERY_ALL_COURSES } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 
-function ScoreModal({ show, handleClose }) {
+function ScoreModal({ show, handleClose, round }) {
+  const { data: allCorseData } = useQuery(QUERY_ALL_COURSES);
+  const allCourses = allCorseData?.courses || [];
+
+  console.log(round);
+
+  const FindPar = (cntCourseName, i) => {
+    const holeNum = i
+    for (let i = 0; i < allCourses.length; i++) {
+      const course = allCourses[i];
+      if (cntCourseName === course.courseName) {
+        const holePar = course.holes[holeNum].par;
+        return holePar
+      }
+    }
+  };
+  
+  let total = 0
+  const findScoreTotal = (cntStrokes) => {
+    total += cntStrokes
+    return total
+  }
+
   return (
     <Modal
       show={show}
@@ -17,32 +41,22 @@ function ScoreModal({ show, handleClose }) {
       <Modal.Body>
         <Table striped bordered hover size='sm'>
           <thead>
-            <tr>
+            <tr className='text-center'>
               <th scope='col'>Hole #</th>
               <th scope='col'>Par</th>
               <th scope='col'>Strokes</th>
               <th scope='col'>Total</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope='row'>1</th>
-              <td>3</td>
-              <td>4</td>
-              <td>+1</td>
-            </tr>
-            <tr>
-              <th scope='row'>2</th>
-              <td>4</td>
-              <td>3</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <th scope='row'>3</th>
-              <td>3</td>
-              <td>2</td>
-              <td>-1</td>
-            </tr>
+          <tbody className='text-center'>
+            {round.scores.map((score, i) => (
+              <tr key={i}>
+                <th scope='row'>{score.holeNumber}</th>
+                <td>{FindPar(round.courseName, i)}</td>
+                <td>{score.stroke}</td>
+                <td>{findScoreTotal(score.stroke)}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Modal.Body>

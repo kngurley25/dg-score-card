@@ -421,7 +421,11 @@ code {
   border: none;
   padding: 0 !important;
 }
+<<<<<<< Updated upstream
 /* styles for view courses page */
+=======
+
+>>>>>>> Stashed changes
 .courseList input[type="checkbox"]:checked ~ .emptyStar {
   display: none;
 }

@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function CoursesPlayed({ courses }) {
+
+  let removeRepeatCourses = [...new Set(courses)];
   return (
     <ul className='d-flex align-items-center list-group list-group-flush text-center mt-3'>
-      {courses
+      {removeRepeatCourses
         .slice(0)
         .reverse()
         .slice(0, 5)

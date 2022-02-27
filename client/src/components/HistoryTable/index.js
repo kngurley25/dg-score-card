@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import { dateFormat } from '../../utils/helpers';
 
 function HistoryTable({ user, FindParTotal }) {
-    const [query, setQuery] = useState('');
-
+  const [query, setQuery] = useState('');
   return (
     <div className='d-flex flex-column align-items-center'>
       <h3 className='subheading mt-5 text-center'>Round History</h3>

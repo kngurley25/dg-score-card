@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { useMutation, useQuery } from "@apollo/client";
-import { ADD_SCORE } from "../utils/mutations";
-import { QUERY_ROUND } from "../utils/queries";
-import ScoreModal from "../components/ScoreModal";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_SCORE } from '../utils/mutations';
+import { QUERY_ROUND } from '../utils/queries';
+import ScoreModal from '../components/ScoreModal';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function ScorePage() {
   const navigate = useNavigate();
@@ -16,25 +16,31 @@ function ScorePage() {
     variables: { roundId: roundParam },
   });
   const round = data?.round || {};
-  // const totalScore = round.totalScore;
 
+  useEffect(() => {
+    setTimeout(() => {
+      setHoleNumber(round.scores.length + 1 || 1);
+      setTotalScore(round.totalScore);
+    }, 30);
+  }, [round]);
+  
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
-  const [stroke, setStroke] = useState(1);
+  const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
-
+  
   const toggleModal = (project, i) => {
     setShow(!show);
   };
 
   const addStroke = () => {
-    let score = document.getElementById("strokeTotal").value;
+    let score = document.getElementById('strokeTotal').value;
     let newScore = ++score;
     return setStroke(newScore);
   };
 
   const removeStroke = () => {
-    let score = document.getElementById("strokeTotal").value;
+    let score = document.getElementById('strokeTotal').value;
     if (score <= 1) {
       score = 1;
       return;
@@ -52,12 +58,13 @@ function ScorePage() {
         variables: { roundId: roundParam, holeNumber, stroke },
       });
 
-      setStroke(1);
+      setStroke(3);
       if (holeNumber === 18) {
         navigate(`/profile`);
       } else {
         setHoleNumber(holeNumber + 1);
         setTotalScore(total);
+        window.location.reload(false);
       }
     } catch (e) {
       console.error(e);
@@ -70,51 +77,51 @@ function ScorePage() {
 
   return (
     <main>
-      <ScoreModal show={show} handleClose={toggleModal} />
-      <div className="d-flex flex-column align-items-center">
-        <div className="card-heading text-center">
-          <h1 className="heading">Hole #{holeNumber}</h1>
-          <h2 className="sub-heading">{round.courseName}</h2>
-          <h3 className="sub-heading">Total Score: {totalScore}</h3>
+      <ScoreModal show={show} handleClose={toggleModal} round={round} />
+      <div className='d-flex flex-column align-items-center'>
+        <div className='card-heading text-center'>
+          <h1 className='heading'>Hole #{holeNumber}</h1>
+          <h2 className='sub-heading'>{round.courseName}</h2>
+          <h3 className='sub-heading'>Total Score: {totalScore}</h3>
         </div>
         <button
-          className="button-secondary btn-lg my-3"
+          className='button-secondary btn-lg my-3'
           onClick={() => toggleModal()}
         >
           View Score Card
         </button>
         <button
-          id="addBtn"
-          className="button-stroke text-center w-50"
+          id='addBtn'
+          className='button-stroke text-center w-50'
           onClick={addStroke}
         >
-          <FontAwesomeIcon icon={faArrowUp} className="fs-1" />
+          <FontAwesomeIcon icon={faArrowUp} className='fs-1' />
         </button>
-        <div className="d-flex justify-content-center my-1">
+        <div className='d-flex justify-content-center my-1'>
           <input
-            type="number"
-            pattern="[0-9]*"
-            id="strokeTotal"
+            type='number'
+            pattern='[0-9]*'
+            id='strokeTotal'
             min={1}
-            step="1"
-            className="text-center w-50 fs-1 mt-3"
+            step='1'
+            className='text-center w-50 fs-1 mt-3'
             value={stroke}
             onChange={(e) => setStroke(e.target.value)}
           />
         </div>
         <button
-          id="subtractBtn"
-          className="button-stroke w-50"
+          id='subtractBtn'
+          className='button-stroke w-50'
           onClick={removeStroke}
         >
-          <FontAwesomeIcon icon={faArrowDown} className="fs-1" />
+          <FontAwesomeIcon icon={faArrowDown} className='fs-1' />
         </button>
         <div>
-          <button onClick={handleAddScore} className="button-next my-5">
+          <button onClick={handleAddScore} className='button-next my-5'>
             <p>Next Hole</p>
           </button>
         </div>
-        {error && <div>Something went wront...</div>}
+        {error && <div>Something went wrong...</div>}
       </div>
     </main>
   );
