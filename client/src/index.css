@@ -311,6 +311,16 @@ code {
   text-decoration: underline !important;
 }
 
+.toggle {
+  font-size: 1.5rem;
+  padding: 0 !important;
+  background-color: white;
+}
+
+.form-switch .form-check-input {
+  margin-left: 0 !important;
+}
+
 /* styles for profile page */
 .favCourse-link {
   text-decoration: underline !important;

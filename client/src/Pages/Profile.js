@@ -4,19 +4,26 @@ import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
+import FavCourses from '../components/FavCourses';
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowDown,
+  faArrowUp,
+  faToggleOn,
+  faToggleOff,
+} from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
 function Profile() {
   const [show, setShow] = useState(false);
+  const [showRecent, setShowRecent] = useState(false);
   const { loading, data } = useQuery(QUERY_ME, {});
   const { data: allCorseData } = useQuery(QUERY_ALL_COURSES);
   const user = data?.me || {};
   const allCourses = allCorseData?.courses || [];
 
-  const findScore = (strokes , par) => {
+  const findScore = (strokes, par) => {
     let score = strokes - par;
     if (score > 0) {
       return `+${score}`;
@@ -25,6 +32,7 @@ function Profile() {
     }
     return score;
   };
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,6 +54,10 @@ function Profile() {
   const toggleModal = () => {
     setShow(!show);
   };
+
+  const toggleList = () => {
+    setShowRecent(!showRecent)
+  }
 
   const FindParTotal = (cntCourseName) => {
     for (let i = 0; i < allCourses.length; i++) {
@@ -82,7 +94,7 @@ function Profile() {
           </Link>
         </div>
         <div>
-          {user.coursesPlayed.length === 0 ? (
+          {user.coursesPlayed.length === 0 && user.courses.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
@@ -96,7 +108,33 @@ function Profile() {
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
-              <CoursesPlayed courses={user.coursesPlayed} />
+              {showRecent === false ? (
+                <FavCourses courses={user.courses} />
+              ) : (
+                <CoursesPlayed
+                  courses={user.coursesPlayed}
+                  allCourses={allCourses}
+                />
+              )}
+              <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
+                <input
+                  className='form-check-input custom-control-input'
+                  type='checkbox'
+                  role='switch'
+                  id='toggleSwitch'
+                  onClick={() => toggleList()}
+                />
+                <label
+                  className='form-check-label custom-control-label'
+                  htmlFor='toggleSwitch'
+                >
+                  {showRecent === true ? (
+                    <h5>Show favoite courses</h5>
+                  ) : (
+                    <h5>Show recently played courses</h5>
+                  )}
+                </label>
+              </div>
             </div>
           )}
         </div>
