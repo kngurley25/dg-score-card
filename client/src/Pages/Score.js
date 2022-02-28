@@ -132,6 +132,7 @@ function ScorePage() {
             Total Score:{' '}
             {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}
           </h3>
+
         </div>
         <button
           className='button-secondary btn-lg my-3'
