@@ -33,7 +33,7 @@ const NewRound = () => {
   }
   if (!course?.courseName) {
     return (
-      <h4 className="heading">
+      <h4 className='heading'>
         You need to be logged in to see this page. Use the navigation links
         above to sign up or log in!
       </h4>
@@ -41,24 +41,24 @@ const NewRound = () => {
   }
 
   return (
-    <main>
-      <div className="heading d-flex flex-column align-items-center">
+    <section className='m-5'>
+      <div className='heading d-flex flex-column align-items-center'>
         <h5>Play a round at {course.courseName} ?</h5>
 
-        <button onClick={handleStartRound} className="button">
+        <button onClick={handleStartRound} className='button-go'>
           Start Round
         </button>
         {error && <div>Go back and login or signup</div>}
 
-        <Link to="/viewcourses" style={{ textDecoration: "none" }}>
-          <div className="d-flex justify-content-center">
-            <button type="button" className="button justify-content-center">
+        <Link to='/viewcourses' style={{ textDecoration: "none" }}>
+          <div className='d-flex justify-content-center'>
+            <button type='button' className='button-go justify-content-center'>
               Go Back
             </button>
           </div>
         </Link>
       </div>
-    </main>
+    </section>
   );
 };
 
