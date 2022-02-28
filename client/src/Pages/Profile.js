@@ -31,7 +31,6 @@ function Profile() {
     return score;
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -42,7 +41,7 @@ function Profile() {
           You need to be logged in to see this page. Use the navigation links
           above to sign up or log in!
         </h4>
-        <Link to={"/login"} className='my-2'>
+        <Link to={'/login'} className='my-2'>
           <button className='button'>Login</button>
         </Link>
       </div>
@@ -54,8 +53,8 @@ function Profile() {
   };
 
   const toggleList = () => {
-    setShowRecent(!showRecent)
-  }
+    setShowRecent(!showRecent);
+  };
 
   const FindParTotal = (cntCourseName) => {
     for (let i = 0; i < allCourses.length; i++) {
@@ -84,16 +83,15 @@ function Profile() {
         <div className='card-heading d-flex flex-column align-items-center'>
           <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
 
-          <Link to={"/viewcourses"}>
+          <Link to={'/viewcourses'}>
             <button className='button-next my-4' as={NavLink} to={'/'}>
               Find a New Course
             </button>
           </Link>
           {user.courses.length === 0 && user.courses.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
-
               <h2>
-                <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
                 <FontAwesomeIcon icon={faArrowUp} />
               </h2>
             </div>
@@ -103,8 +101,8 @@ function Profile() {
                 <FontAwesomeIcon icon={faArrowDown} /> replay a course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
-            
-                <div className='list-go'>
+
+              <div className='list-go'>
                 {showRecent === false ? (
                   <FavCourses courses={user.courses} />
                 ) : (
@@ -126,7 +124,9 @@ function Profile() {
                     htmlFor='toggleSwitch'
                   >
                     {showRecent === true ? (
+
                       <h5>Show favorite courses</h5>
+
                     ) : (
                       <h5>Show recently played courses</h5>
                     )}
@@ -135,7 +135,9 @@ function Profile() {
               </div>
             </div>
           )}
-           <div>
+
+          <div>
+
             {user.rounds.length === 0 ? (
               <div></div>
             ) : (

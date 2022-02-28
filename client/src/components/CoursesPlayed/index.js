@@ -29,7 +29,7 @@ function CoursesPlayed({ courses, allCourses }) {
               <button
                 className='list-group-item fs-5 my-2 fw-bold animate__animated animate__fadeIn animate__delay-1s'
                 datatype={FindCourseId(course)}
-                style={{ color: "inherit", textDecoration: "none" }}
+                style={{ color: 'inherit', textDecoration: 'none' }}
               >
                 {course}
                 <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
