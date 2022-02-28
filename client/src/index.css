@@ -108,6 +108,11 @@ code {
   padding: 5%;
 }
 
+.table {
+  max-height: 400px;
+  overflow: scroll;
+}
+
 .course-form {
   margin: 10px 10px;
   border-radius: 8px;
@@ -169,6 +174,30 @@ code {
   padding: 10px 10px 10px 10px;
 }
 
+.button-go {
+  background-color: var(--error);
+  margin: 15px 15px;
+  color: var(--tertiary);
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  opacity: 80%;
+}
+
+.launch-history {
+  background-color: var(--error);
+  margin: 15px 15px;
+  color: var(--tertiary);
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  opacity: 80%;
+}
+
 .button-secondary {
   background-color: var(--dark);
   margin: 15px 15px;
@@ -178,6 +207,20 @@ code {
   font-size: 20px;
   text-align: center;
   padding: 10px 10px 10px 10px;
+}
+
+.button:hover {
+  opacity: 90%;
+  background-color: var(--error);
+}
+
+.button-secondary {
+  opacity: 90%;
+  background-color: var(--error);
+}
+
+.list-go {
+  color: var(--error);
 }
 
 /* styles for button on score page */
