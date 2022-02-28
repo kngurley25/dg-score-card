@@ -16,6 +16,16 @@ function Profile() {
   const user = data?.me || {};
   const allCourses = allCorseData?.courses || [];
 
+  const findScore = (strokes , par) => {
+    let score = strokes - par;
+    if (score > 0) {
+      return `+${score}`;
+    } else if (score < 0) {
+      return `${score}`;
+    }
+    return score;
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -58,6 +68,7 @@ function Profile() {
         user={user}
         allCourses={allCourses}
         FindParTotal={FindParTotal}
+        findScore={findScore}
       />
       <div className=' flex-column'>
         <div className='d-flex flex-column align-items-center'>
@@ -94,7 +105,11 @@ function Profile() {
             <div></div>
           ) : (
             <div>
-              <HistoryTable user={user} FindParTotal={FindParTotal} />
+              <HistoryTable
+                user={user}
+                FindParTotal={FindParTotal}
+                findScore={findScore}
+              />
               <h3
                 className='history-btn text-center my-5'
                 onClick={() => toggleModal()}

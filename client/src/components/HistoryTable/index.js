@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { dateFormat } from '../../utils/helpers';
 
-function HistoryTable({ user, FindParTotal }) {
+function HistoryTable({ user, FindParTotal, findScore }) {
   const [query, setQuery] = useState('');
   return (
     <div className='d-flex flex-column align-items-center'>
-      <h3 className='subheading mt-5 p-2 text-center bg-white'>Round History</h3>
+      <h3 className='subheading mt-5 p-2 text-center bg-white'>
+        Round History
+      </h3>
       <input
         className='w-75'
         placeholder='Search for round'
@@ -39,7 +41,9 @@ function HistoryTable({ user, FindParTotal }) {
                 <td>{dateFormat(round.createAt)}</td>
                 <td>{round.courseName}</td>
                 <td>{FindParTotal(round.courseName)}</td>
-                <td>{round.totalScore}</td>
+                <td>
+                  {findScore(round.totalScore, FindParTotal(round.courseName))}
+                </td>
               </tr>
             ))}
         </tbody>

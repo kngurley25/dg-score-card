@@ -11,14 +11,13 @@ function ScorePage() {
   const navigate = useNavigate();
   const { roundId: roundParam } = useParams();
   const [addScore, { error }] = useMutation(ADD_SCORE, {
-    refetchQueries: [QUERY_ROUND]
+    refetchQueries: [QUERY_ROUND],
   });
 
   const { loading, data } = useQuery(QUERY_ROUND, {
     variables: { roundId: roundParam },
   });
   const round = data?.round || {};
-
 
   const { data: courseData } = useQuery(QUERY_ALL_COURSES);
   const courses = courseData?.courses || [];
@@ -31,9 +30,7 @@ function ScorePage() {
       setHoleNumber(round.scores.length + 1 || 1);
       setTotalScore(round.totalScore);
     }, 30);
-}
-  
-
+  }
 
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
@@ -98,7 +95,7 @@ function ScorePage() {
       if (cntCourseName === course.courseName) {
         const holesArr = course.holes;
         let total = 0;
-        for (let j = 0; j < holeNum; j++) {
+        for (let j = 0; j < holeNum - 1; j++) {
           total += holesArr[j].par;
         }
         return total;
@@ -107,23 +104,13 @@ function ScorePage() {
   };
 
   const findScore = (par) => {
-    let score = par - totalScore;
-    // console.log(score);
-    switch (score) {
-      case score === 0:
-        score = 0
-        break;
-      case score > 0:
-        score = `+${score}`
-        break;
-      case score < 0:
-        score = `-${score}`
-        break;
-      default:
-        break;
-      }
-    // console.log(score);
-    return score
+    let score = totalScore - par;
+    if (score > 0) {
+      return `+${score}`;
+    } else if (score < 0) {
+      return `${score}`;
+    }
+    return score;
   };
 
   if (loading) {
@@ -143,7 +130,7 @@ function ScorePage() {
           <h2 className='sub-heading'>{round.courseName}</h2>
           <h3 className='sub-heading'>
             Total Score:{' '}
-            {(findScore(FindParTotal(round.courseName, holeNumber)), totalScore)}
+            {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}
           </h3>
         </div>
         <button

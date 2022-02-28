@@ -3,10 +3,10 @@ import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 
 function ScoreModal({ show, handleClose, round, FindPar }) {
-  
   let total = 0
-  const findScoreTotal = (cntStrokes) => {
-    total += cntStrokes
+  const findScoreTotal = (cntStrokes, i) => {
+    const par = FindPar(round.courseName, i);
+    total += cntStrokes - par
     return total
   }
 
@@ -37,7 +37,7 @@ function ScoreModal({ show, handleClose, round, FindPar }) {
                 <th scope='row'>{score.holeNumber}</th>
                 <td>{FindPar(round.courseName, i)}</td>
                 <td>{score.stroke}</td>
-                <td>{findScoreTotal(score.stroke)}</td>
+                <td>{findScoreTotal(score.stroke, i)}</td>
               </tr>
             ))}
           </tbody>
