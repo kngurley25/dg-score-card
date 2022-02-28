@@ -67,9 +67,6 @@ const CourseList = ({ courses, title, user }) => {
     return (
       <div className="d-flex flex-column align-items-center">
         <h3 className="bg-white mt-5">No Courses Yet</h3>
-        <h3 className="text-center bg-white">
-          Login or signup to create a course and start playing!
-        </h3>
         <div>
           <Link to={"/login"} className="mx-4">
             <button className="button justify-content-center">Login</button>

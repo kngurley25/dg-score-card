@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 
 import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
+import FavCourses from "../components/FavCourses";
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -85,7 +86,8 @@ function Profile() {
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
-              <CoursesPlayed courses={user.coursesPlayed} />
+              {/* <CoursesPlayed courses={user.coursesPlayed} /> */}
+              <FavCourses courses={user.courses}/>
             </div>
           )}
          
