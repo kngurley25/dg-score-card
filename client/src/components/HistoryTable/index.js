@@ -1,8 +1,35 @@
 import React, {useState} from 'react';
 import { dateFormat } from '../../utils/helpers';
+import { useMutation, useQuery } from "@apollo/client";
+import { DELETE_ROUND } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
 function HistoryTable({ user, FindParTotal }) {
     const [query, setQuery] = useState('');
+
+    const { loading, data } = useQuery(QUERY_ME);
+  const updatedUser = data?.me || {};
+    const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
+      refetchQueries: [
+        QUERY_ME
+      ],
+    });
+
+    const handleDeleteRound = (id) =>(e) => {
+      e.preventDefault();
+      try {
+        console.log(id);
+        deleteRound({
+          variables: { roundId: id },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
 
   return (
     <div className='d-flex flex-column align-items-center'>
@@ -22,7 +49,7 @@ function HistoryTable({ user, FindParTotal }) {
           </tr>
         </thead>
         <tbody>
-          {user.rounds
+          {updatedUser.rounds
             .filter((rounds) => {
               if (query === '') {
                 return rounds;
@@ -31,6 +58,7 @@ function HistoryTable({ user, FindParTotal }) {
               ) {
                 return rounds;
               }
+              return rounds;
             })
             .slice(0)
             .reverse()
@@ -41,10 +69,16 @@ function HistoryTable({ user, FindParTotal }) {
                 <td>{round.courseName}</td>
                 <td>{FindParTotal(round.courseName)}</td>
                 <td>{round.totalScore}</td>
+                <td>
+                  <div style={{ color: "red", cursor: "pointer" }} onClick={handleDeleteRound(round._id)}>
+                    ⮿
+                  </div>
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
+      {err && <div>An Error has occurred...</div>}
     </div>
   );
 }
