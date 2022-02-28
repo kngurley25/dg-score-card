@@ -3,6 +3,8 @@ import { dateFormat } from '../../utils/helpers';
 import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_ROUND } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash} from '@fortawesome/free-solid-svg-icons';
 
 function HistoryTable({ user, FindParTotal, findScore }) {
     const [query, setQuery] = useState('');
@@ -42,7 +44,7 @@ function HistoryTable({ user, FindParTotal, findScore }) {
         placeholder='Search for round'
         onChange={(event) => setQuery(event.target.value)}
       />
-      <table className='table'>
+      <table className='table text-center'>
         <thead>
           <tr>
             <th scope='col'>Date</th>
@@ -78,7 +80,7 @@ function HistoryTable({ user, FindParTotal, findScore }) {
                 
                 <td>
                   <div style={{ color: "red", cursor: "pointer" }} onClick={handleDeleteRound(round._id)}>
-                    ⮿
+                    <FontAwesomeIcon icon={faTrash}/>
                   </div>
                 </td>
               </tr>

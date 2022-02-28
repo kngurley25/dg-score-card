@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faArrowRight,
+  faArrowRight, faXmark
 } from '@fortawesome/free-solid-svg-icons';
 import { QUERY_ME_COURSES} from "../../utils/queries";
 import { REMOVE_COURSE } from '../../utils/mutations';
@@ -52,7 +52,7 @@ function FavCourses({ courses }) {
                 style={{ color: "red", cursor: "pointer" }}
                 onClick={handleRemoveCourse(course._id)}
               >
-                ⮿
+                <FontAwesomeIcon icon={faXmark}/>
               </div>
             </button>
           </Link>

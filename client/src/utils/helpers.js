@@ -11,7 +11,7 @@ export function validateEmail(email) {
 export function dateFormat(date) {
   let month = date.split(' ')[0];
   const day = date.split(' ')[1].split('t')[0];
-  const year = date.split(' ')[2];
+  const year = date.split(' ')[2].split('0')[1];
 
   switch (month) {
     case 'Jan':
