@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
+
 function Profile() {
   const [show, setShow] = useState(false);
   const [showRecent, setShowRecent] = useState(false);
@@ -44,8 +45,8 @@ function Profile() {
           You need to be logged in to see this page. Use the navigation links
           above to sign up or log in!
         </h4>
-        <Link to={'/login'} className='my-2'>
-          <button className='btn btn-primary'>Login</button>
+        <Link to={"/login"} className='my-2'>
+          <button className='button'>Login</button>
         </Link>
       </div>
     );
@@ -82,32 +83,32 @@ function Profile() {
         FindParTotal={FindParTotal}
         findScore={findScore}
       />
-      <div className=' flex-column'>
-        <div className='d-flex flex-column align-items-center'>
-          <h1 className='text-center bg-white heading animate__animated animate__backInDown'>
-            Welcome {user.username}!
-          </h1>
-          <Link to={'/viewcourses'}>
-            <button className='button-next my-4' as={NavLink} to={'/'}>
+
+      <div className='flex-column'>
+        <div className='card-heading d-flex flex-column align-items-center'>
+          <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
+
+          <Link to={"/viewcourses"}>
+            <button className='button-go' as={NavLink} to={"/"}>
               Find a New Course
             </button>
           </Link>
-        </div>
-        <div>
-          {user.coursesPlayed.length === 0 && user.courses.length === 0 ? (
+
+          {user.courses.length === 0 && user.courses.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
-                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
                 <FontAwesomeIcon icon={faArrowUp} />
               </h2>
             </div>
           ) : (
-            <div>
-              <h2 className='text-center bg-white'>or</h2>
+            <div className='alt-sub-heading'>
+              <h2 className='text-center'>
               <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
+              <div className='list-go'>
               {showRecent === false ? (
                 <FavCourses courses={user.courses} />
               ) : (
@@ -149,7 +150,9 @@ function Profile() {
                 findScore={findScore}
               />
               <h3
-                className='history-btn text-center my-5'
+                className='launch-history'
+                style={{ textDecoration: "none" }}
+
                 onClick={() => toggleModal()}
               >
                 View more history

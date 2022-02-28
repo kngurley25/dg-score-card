@@ -1,7 +1,7 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Table from 'react-bootstrap/Table';
-import { dateFormat } from '../../utils/helpers';
+import React from "react";
+import Modal from "react-bootstrap/Modal";
+import Table from "react-bootstrap/Table";
+import { dateFormat } from "../../utils/helpers";
 
 function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
   return (
@@ -9,21 +9,21 @@ function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
       <Modal
         show={show}
         onHide={handleClose}
-        size='lg'
-        aria-labelledby='contained-modal-title-vcenter'
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Round History</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table striped bordered hover size='sm'>
+          <Table striped bordered hover size="sm">
             <thead>
               <tr>
-                <th scope='col'>Date</th>
-                <th scope='col'>Course Name</th>
-                <th scope='col'>Par</th>
-                <th scope='col'>Score</th>
+                <th scope="col">Date</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Par</th>
+                <th scope="col">Score</th>
               </tr>
             </thead>
             <tbody>
@@ -50,6 +50,6 @@ function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
       </Modal>
     </div>
   );
-};
+}
 
 export default HistoryModal;

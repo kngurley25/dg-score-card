@@ -53,11 +53,12 @@ const CourseList = ({ courses, title, user }) => {
           Login or signup to create a course and start playing!
         </h3>
         <div>
-          <Link to={'/login'} className='mx-4'>
-            <button className='button justify-content-center'>Login</button>
+
+          <Link to={"/login"} className='mx-4'>
+            <button className='button-go justify-content-center'>Login</button>
           </Link>
-          <Link to={'/signup'} className='mx-4'>
-            <button className='button justify-content-center'>Signup</button>
+          <Link to={"/signup"} className='mx-4'>
+            <button className='button-go justify-content-center'>Signup</button>
           </Link>
         </div>
       </div>
@@ -67,15 +68,17 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+
+        <Link to='/' style={{ textDecoration: "none" }}>
           <div className='d-flex justify-content-center'>
-            <button type='button' className='button justify-content-center'>
+            <button type='button' className='button-go justify-content-center'>
               Go Back
             </button>
           </div>
         </Link>
       </div>
-      <MDBCard style={{ width: '18rem' }} className='course-list'>
+
+      <MDBCard style={{ width: "18rem" }} className='course-list'>
         <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
           <MDBListGroup flush>
@@ -85,10 +88,11 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-between'
                 >
-                  {' '}
+
+                  {" "}
                   <Link
                     to={`/newround/${course._id}`}
-                    style={{ color: 'inherit', textDecoration: 'inherit' }}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
                     className='courseBtn fw-bold'
                   >
                     {course.courseName}, {course.location}
@@ -115,13 +119,11 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-center'
                 >
-                  {' '}
+
+                  {" "}
                   <input type='checkbox' className='favBtn' />
                   <FontAwesomeIcon icon={starReg} className='emptyStar' />
-                  <FontAwesomeIcon
-                    icon={starSolid}
-                    className='solidStar'
-                  />
+                  <FontAwesomeIcon icon={starSolid} className='solidStar' />
                 </MDBListGroupItem>
               ))}
           </MDBListGroup>
