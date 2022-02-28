@@ -19,8 +19,6 @@ function CoursesPlayed({ courses, allCourses }) {
       <h2 className='fw-bold bg-white text-decoration-underline'>
         Recently Played Courses
       </h2>
-      {removeRepeatCourses
-
         .slice(0)
         .reverse()
         .slice(0, 5)
@@ -36,7 +34,6 @@ function CoursesPlayed({ courses, allCourses }) {
                 <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
               </button>
             </Link>
-
           </div>
         ))}
     </ul>

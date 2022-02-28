@@ -15,7 +15,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
-
 function Profile() {
   const [show, setShow] = useState(false);
   const [showRecent, setShowRecent] = useState(false);
@@ -83,19 +82,18 @@ function Profile() {
         FindParTotal={FindParTotal}
         findScore={findScore}
       />
-
       <div className='flex-column'>
         <div className='card-heading d-flex flex-column align-items-center'>
           <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
 
           <Link to={"/viewcourses"}>
-            <button className='button-go' as={NavLink} to={"/"}>
+            <button className='button-next my-4' as={NavLink} to={'/'}>
               Find a New Course
             </button>
           </Link>
-
           {user.courses.length === 0 && user.courses.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
+
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
                 <FontAwesomeIcon icon={faArrowUp} />
@@ -143,7 +141,7 @@ function Profile() {
           {user.rounds.length === 0 ? (
             <div></div>
           ) : (
-            <div>
+            <div className='card-heading'>
               <HistoryTable
                 user={user}
                 FindParTotal={FindParTotal}
@@ -152,7 +150,6 @@ function Profile() {
               <h3
                 className='launch-history'
                 style={{ textDecoration: "none" }}
-
                 onClick={() => toggleModal()}
               >
                 View more history

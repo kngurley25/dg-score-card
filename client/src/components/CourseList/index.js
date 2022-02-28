@@ -77,7 +77,6 @@ const CourseList = ({ courses, title, user }) => {
           </div>
         </Link>
       </div>
-
       <MDBCard style={{ width: "18rem" }} className='course-list'>
         <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
@@ -88,7 +87,6 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-between'
                 >
-
                   {" "}
                   <Link
                     to={`/newround/${course._id}`}
@@ -119,7 +117,6 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-center'
                 >
-
                   {" "}
                   <input type='checkbox' className='favBtn' />
                   <FontAwesomeIcon icon={starReg} className='emptyStar' />

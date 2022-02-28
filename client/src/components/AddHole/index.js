@@ -74,6 +74,8 @@ const AddHole = () => {
             <label
               htmlFor='par1'
               className='alt-sub-heading d-flex justify-content-center'
+              htmlFor="par1"
+              className="alt-sub-heading d-flex justify-content-center"
             >
               Hole <p className='list-go'>#{holeNumber}</p>
             </label>
