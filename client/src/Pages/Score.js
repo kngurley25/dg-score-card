@@ -126,9 +126,9 @@ function ScorePage() {
       />
       <div className='d-flex flex-column align-items-center'>
         <div className='card-heading text-center'>
-          <h1 className='heading'>Hole #{holeNumber}</h1>
-          <h2 className='sub-heading'>{round.courseName}</h2>
-          <h3 className='sub-heading'>
+          <h1 className='alt-heading'>Hole #{holeNumber}</h1>
+          <h2 className='alt-sub-heading'>{round.courseName}</h2>
+          <h3 className='alt-sub-heading'>
             Total Score:{' '}
             {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}
           </h3>
