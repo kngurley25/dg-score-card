@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_ROUND } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
+function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
   const { loading, data } = useQuery(QUERY_ME);
   const updatedUser = data?.me || {};
     const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
@@ -64,7 +64,13 @@ function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
                     <td>{dateFormat(round.createAt)}</td>
                     <td>{round.courseName}</td>
                     <td>{FindParTotal(round.courseName)}</td>
-                    <td>{round.totalScore}</td>
+                    <td>
+                      {findScore(
+                        round.totalScore,
+                        FindParTotal(round.courseName)
+                      )}
+                    </td>
+
                     <td>
                       <div
                         style={{ color: "red", cursor: "pointer" }}
@@ -83,4 +89,5 @@ function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
     </div>
   );
 }
+
 export default HistoryModal;

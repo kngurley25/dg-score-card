@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { dateFormat } from '../../utils/helpers';
 import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_ROUND } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-function HistoryTable({ user, FindParTotal }) {
+function HistoryTable({ user, FindParTotal, findScore }) {
     const [query, setQuery] = useState('');
 
     const { loading, data } = useQuery(QUERY_ME);
@@ -33,9 +33,12 @@ function HistoryTable({ user, FindParTotal }) {
 
   return (
     <div className='d-flex flex-column align-items-center'>
-      <h3 className='subheading mt-5 text-center'>Round History</h3>
+      <h3 className='alt-sub-heading text-center'>
+        Round History
+      </h3>
+
       <input
-        className='w-75'
+        className='w-75 rounded text-center'
         placeholder='Search for round'
         onChange={(event) => setQuery(event.target.value)}
       />
@@ -52,7 +55,7 @@ function HistoryTable({ user, FindParTotal }) {
         <tbody>
           {updatedUser.rounds
             .filter((rounds) => {
-              if (query === '') {
+              if (query === "") {
                 return rounds;
               } else if (
                 rounds.courseName.toLowerCase().includes(query.toLowerCase())
@@ -69,7 +72,10 @@ function HistoryTable({ user, FindParTotal }) {
                 <td>{dateFormat(round.createAt)}</td>
                 <td>{round.courseName}</td>
                 <td>{FindParTotal(round.courseName)}</td>
-                <td>{round.totalScore}</td>
+                <td>
+                  {findScore(round.totalScore, FindParTotal(round.courseName))}
+                </td>
+                
                 <td>
                   <div style={{ color: "red", cursor: "pointer" }} onClick={handleDeleteRound(round._id)}>
                     ⮿
