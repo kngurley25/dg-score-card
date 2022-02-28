@@ -10,8 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
   faArrowUp,
-  faToggleOn,
-  faToggleOff,
 } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
@@ -33,7 +31,6 @@ function Profile() {
     return score;
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,7 +41,7 @@ function Profile() {
           You need to be logged in to see this page. Use the navigation links
           above to sign up or log in!
         </h4>
-        <Link to={"/login"} className='my-2'>
+        <Link to={'/login'} className='my-2'>
           <button className='button'>Login</button>
         </Link>
       </div>
@@ -56,8 +53,8 @@ function Profile() {
   };
 
   const toggleList = () => {
-    setShowRecent(!showRecent)
-  }
+    setShowRecent(!showRecent);
+  };
 
   const FindParTotal = (cntCourseName) => {
     for (let i = 0; i < allCourses.length; i++) {
@@ -86,76 +83,75 @@ function Profile() {
         <div className='card-heading d-flex flex-column align-items-center'>
           <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
 
-          <Link to={"/viewcourses"}>
+          <Link to={'/viewcourses'}>
             <button className='button-next my-4' as={NavLink} to={'/'}>
               Find a New Course
             </button>
           </Link>
           {user.courses.length === 0 && user.courses.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
-
               <h2>
-                <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
                 <FontAwesomeIcon icon={faArrowUp} />
               </h2>
             </div>
           ) : (
             <div className='alt-sub-heading'>
-              <h2 className='text-center'>
               <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
               <div className='list-go'>
-              {showRecent === false ? (
-                <FavCourses courses={user.courses} />
-              ) : (
-                <CoursesPlayed
-                  courses={user.coursesPlayed}
-                  allCourses={allCourses}
-                />
-              )}
-              <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
-                <input
-                  className='form-check-input custom-control-input'
-                  type='checkbox'
-                  role='switch'
-                  id='toggleSwitch'
-                  onClick={() => toggleList()}
-                />
-                <label
-                  className='form-check-label custom-control-label'
-                  htmlFor='toggleSwitch'
-                >
-                  {showRecent === true ? (
-                    <h5>Show favoite courses</h5>
-                  ) : (
-                    <h5>Show recently played courses</h5>
-                  )}
-                </label>
+                {showRecent === false ? (
+                  <FavCourses courses={user.courses} />
+                ) : (
+                  <CoursesPlayed
+                    courses={user.coursesPlayed}
+                    allCourses={allCourses}
+                  />
+                )}
+                <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
+                  <input
+                    className='form-check-input custom-control-input'
+                    type='checkbox'
+                    role='switch'
+                    id='toggleSwitch'
+                    onClick={() => toggleList()}
+                  />
+                  <label
+                    className='form-check-label custom-control-label'
+                    htmlFor='toggleSwitch'
+                  >
+                    {showRecent === true ? (
+                      <h5>Show favoite courses</h5>
+                    ) : (
+                      <h5>Show recently played courses</h5>
+                    )}
+                  </label>
+                </div>
               </div>
             </div>
           )}
-        </div>
-        <div>
-          {user.rounds.length === 0 ? (
-            <div></div>
-          ) : (
-            <div className='card-heading'>
-              <HistoryTable
-                user={user}
-                FindParTotal={FindParTotal}
-                findScore={findScore}
-              />
-              <h3
-                className='launch-history'
-                style={{ textDecoration: "none" }}
-                onClick={() => toggleModal()}
-              >
-                View more history
-              </h3>
-            </div>
-          )}
+          <div>
+            {user.rounds.length === 0 ? (
+              <div></div>
+            ) : (
+              <div className='card-heading'>
+                <HistoryTable
+                  user={user}
+                  FindParTotal={FindParTotal}
+                  findScore={findScore}
+                />
+                <h3
+                  className='launch-history'
+                  style={{ textDecoration: 'none' }}
+                  onClick={() => toggleModal()}
+                >
+                  View more history
+                </h3>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
