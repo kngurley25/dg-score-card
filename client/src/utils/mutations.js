@@ -90,6 +90,17 @@ export const ADD_ROUND = gql`
   }
 `;
 
+export const DELETE_ROUND = gql`
+  mutation deleteRound($roundId: ID!) {
+    deleteRound(roundId: $roundId) {
+      _id
+      username
+      courseName
+      createAt
+    }
+  }
+`;
+
 export const ADD_SCORE = gql`
   mutation addScore($roundId: ID!, $holeNumber: Int!, $stroke: Int!) {
     addScore(roundId: $roundId, holeNumber: $holeNumber, stroke: $stroke) {
@@ -112,3 +123,13 @@ export const ADD_COURSE = gql`
   }
 `;
 
+
+export const REMOVE_COURSE = gql`
+  mutation removeCourse($courseId: ID!) {
+    removeCourse(courseId: $courseId) {
+      courses {
+        _id
+      }
+    }
+  }
+`;

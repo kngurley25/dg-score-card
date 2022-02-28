@@ -9,16 +9,21 @@ import {
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as starReg } from '@fortawesome/free-regular-svg-icons';
-import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
-import { ADD_COURSE } from '../../utils/mutations';
-import { QUERY_ME_COURSES } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
+import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
+import { ADD_COURSE, REMOVE_COURSE } from "../../utils/mutations";
+import { QUERY_ME_COURSES } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+        
 const CourseList = ({ courses, title, user }) => {
   const [addCourse, { error }] = useMutation(ADD_COURSE, {
     refetchQueries: [QUERY_ME_COURSES],
+  });
+  const [removeCourse, { err }] = useMutation(REMOVE_COURSE, {
+    refetchQueries: [
+      QUERY_ME_COURSES
+    ],
   });
   const { loading, data } = useQuery(QUERY_ME_COURSES);
   const myCourses = data?.me || {};
@@ -41,17 +46,25 @@ const CourseList = ({ courses, title, user }) => {
     }
   };
 
+  const handleRemoveCourse = (id) =>(e) => {
+    e.preventDefault();
+    try {
+      removeCourse({
+        variables: { courseId: id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   if (!courses.length) {
     return (
-      <div className='d-flex flex-column align-items-center'>
-        <h3 className='bg-white mt-5'>No Courses Yet</h3>
-        <h3 className='text-center bg-white'>
-          Login or signup to create a course and start playing!
-        </h3>
+      <div className="d-flex flex-column align-items-center">
+        <h3 className="bg-white mt-5">No Courses Yet</h3>
         <div>
 
           <Link to={"/login"} className='mx-4'>
@@ -93,20 +106,25 @@ const CourseList = ({ courses, title, user }) => {
                     style={{ color: "inherit", textDecoration: "inherit" }}
                     className='courseBtn fw-bold'
                   >
-                    {course.courseName}, {course.location}
-                  </Link>
-                  {courseArr.includes(course._id) ? (
-                    <FontAwesomeIcon icon={starSolid} />
-                  ) : (
-                    // eslint-disable-next-line no-restricted-globals
-                    <div onClick={handleAddCourse(course._id)}>
-                      <FontAwesomeIcon icon={starReg} />
-                    </div>
-                  )}
-                </MDBListGroupItem>
-              ))}
-          </MDBListGroup>
-        ) : (
+                  {course.courseName}, {course.location}
+                </Link>
+                
+                
+                { courseArr.includes(course._id) ? (
+                  <div onClick={handleRemoveCourse(course._id)} >
+                  <FontAwesomeIcon icon={starSolid}  />
+                  </div>
+                ) : (
+                  // eslint-disable-next-line no-restricted-globals
+                  <div onClick={handleAddCourse(course._id)} >
+                    <FontAwesomeIcon icon={starReg} />
+                  </div>
+                )}
+                
+              </MDBListGroupItem>
+            ))}
+        </MDBListGroup>
+         ) : (
           <MDBListGroup flush>
             <Link to='/'>
               <h6>Sign up or log in to keep your score!</h6>
@@ -127,6 +145,7 @@ const CourseList = ({ courses, title, user }) => {
         )}
       </MDBCard>
       {error && <div>An Error has occurred...</div>}
+      {err && <div>An Error has occurred...</div>}
     </section>
   );
 };

@@ -106,6 +106,7 @@ export const QUERY_ME = gql`
         parTotal
       }
       rounds {
+        _id
         courseName
         createAt
         totalScore

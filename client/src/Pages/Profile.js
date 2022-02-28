@@ -4,7 +4,7 @@ import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
-import FavCourses from '../components/FavCourses';
+import FavCourses from "../components/FavCourses";
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -98,9 +98,10 @@ function Profile() {
           ) : (
             <div className='alt-sub-heading'>
               <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
-                <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{' '}
+                <FontAwesomeIcon icon={faArrowDown} /> replay a course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
+
               <div className='list-go'>
                 {showRecent === false ? (
                   <FavCourses courses={user.courses} />
@@ -123,7 +124,9 @@ function Profile() {
                     htmlFor='toggleSwitch'
                   >
                     {showRecent === true ? (
-                      <h5>Show favoite courses</h5>
+
+                      <h5>Show favorite courses</h5>
+
                     ) : (
                       <h5>Show recently played courses</h5>
                     )}
@@ -132,7 +135,9 @@ function Profile() {
               </div>
             </div>
           )}
+
           <div>
+
             {user.rounds.length === 0 ? (
               <div></div>
             ) : (
@@ -157,5 +162,4 @@ function Profile() {
     </section>
   );
 }
-
 export default Profile;

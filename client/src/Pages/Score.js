@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { useMutation, useQuery } from '@apollo/client';
-import { ADD_SCORE } from '../utils/mutations';
+import { ADD_SCORE, DELETE_ROUND } from '../utils/mutations';
 import { QUERY_ALL_COURSES, QUERY_ROUND } from '../utils/queries';
 import ScoreModal from '../components/ScoreModal';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -113,6 +113,22 @@ function ScorePage() {
     return score;
   };
 
+  const [deleteRound, { err }] = useMutation(DELETE_ROUND);
+
+  const handleDeleteRound = (event) => {
+    event.preventDefault();
+    try {
+      deleteRound({
+        variables: { roundId: roundParam },
+      });
+
+      navigate(`/profile`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -171,7 +187,12 @@ function ScorePage() {
             <p>Next Hole</p>
           </button>
         </div>
-        {error && <div>Something went wrong...</div>}
+        <button
+        onClick={handleDeleteRound}>
+          Delete Round
+        </button>
+        {error && <div>Something went wront...</div>}
+        {err && <div>Something went wront...</div>}
       </div>
     </main>
   );

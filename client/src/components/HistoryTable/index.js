@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
 import { dateFormat } from '../../utils/helpers';
+import { useMutation, useQuery } from "@apollo/client";
+import { DELETE_ROUND } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
 function HistoryTable({ user, FindParTotal, findScore }) {
-  const [query, setQuery] = useState('');
+    const [query, setQuery] = useState('');
+
+    const { loading, data } = useQuery(QUERY_ME);
+  const updatedUser = data?.me || {};
+    const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
+      refetchQueries: [
+        QUERY_ME
+      ],
+    });
+
+    const handleDeleteRound = (id) =>(e) => {
+      e.preventDefault();
+      try {
+        console.log(id);
+        deleteRound({
+          variables: { roundId: id },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
   return (
     <div className='d-flex flex-column align-items-center'>
       <h3 className='alt-sub-heading text-center'>
@@ -21,10 +49,11 @@ function HistoryTable({ user, FindParTotal, findScore }) {
             <th scope='col'>Course Name</th>
             <th scope='col'>Par</th>
             <th scope='col'>Score</th>
+            <th scope='col'>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {user.rounds
+          {updatedUser.rounds
             .filter((rounds) => {
               if (query === "") {
                 return rounds;
@@ -33,6 +62,7 @@ function HistoryTable({ user, FindParTotal, findScore }) {
               ) {
                 return rounds;
               }
+              return rounds;
             })
             .slice(0)
             .reverse()
@@ -45,10 +75,17 @@ function HistoryTable({ user, FindParTotal, findScore }) {
                 <td>
                   {findScore(round.totalScore, FindParTotal(round.courseName))}
                 </td>
+                
+                <td>
+                  <div style={{ color: "red", cursor: "pointer" }} onClick={handleDeleteRound(round._id)}>
+                    ⮿
+                  </div>
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
+      {err && <div>An Error has occurred...</div>}
     </div>
   );
 }

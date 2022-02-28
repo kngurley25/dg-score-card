@@ -36,7 +36,7 @@ function CoursesPlayed({ courses, allCourses }) {
               </button>
             </Link>
           </div>
-        ))}
+           ))}
     </ul>
   );
 }

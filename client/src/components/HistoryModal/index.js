@@ -1,9 +1,36 @@
-import React from "react";
-import Modal from "react-bootstrap/Modal";
-import Table from "react-bootstrap/Table";
-import { dateFormat } from "../../utils/helpers";
+import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
+import { dateFormat } from '../../utils/helpers';
+import { useMutation, useQuery } from "@apollo/client";
+import { DELETE_ROUND } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
-function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
+function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
+  const { loading, data } = useQuery(QUERY_ME);
+  const updatedUser = data?.me || {};
+    const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
+      refetchQueries: [
+        QUERY_ME
+      ],
+    });
+
+    const handleDeleteRound = (id) =>(e) => {
+      e.preventDefault();
+      try {
+        console.log(id);
+        deleteRound({
+          variables: { roundId: id },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
   return (
     <div>
       <Modal
@@ -24,10 +51,11 @@ function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
                 <th scope="col">Course Name</th>
                 <th scope="col">Par</th>
                 <th scope="col">Score</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
-              {user.rounds
+              {updatedUser.rounds
                 .slice(0)
                 .reverse()
                 .slice(3)
@@ -42,9 +70,19 @@ function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
                         FindParTotal(round.courseName)
                       )}
                     </td>
+
+                    <td>
+                      <div
+                        style={{ color: "red", cursor: "pointer" }}
+                        onClick={handleDeleteRound(round._id)}
+                      >
+                        ⮿
+                      </div>
+                    </td>
                   </tr>
                 ))}
             </tbody>
+            {err && <div>An Error has occurred...</div>}
           </Table>
         </Modal.Body>
       </Modal>

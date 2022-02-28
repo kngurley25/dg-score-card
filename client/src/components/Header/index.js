@@ -81,11 +81,9 @@ function Header() {
                     className="dropdown-icon"
                     icon={faArrowRightFromBracket}
                   />
-                  <button onClick={() => setChecked(false)}>
-                    <a href="/" onClick={logout}>
-                      Logout
-                    </a>
-                  </button>
+                  <a href="/" onClick={logout}>
+                    <button onClick={() => setChecked(false)}>Logout</button>
+                  </a>
                 </li>
               ) : (
                 <li>
