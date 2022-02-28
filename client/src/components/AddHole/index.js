@@ -67,17 +67,15 @@ const AddHole = () => {
           {location && location.state && location.state.courseName}
         </h2>
         <div>
-
-          <h2 className="alt-sub-heading d-flex justify-content-center">
-
+          <h2 className='alt-sub-heading d-flex justify-content-center'>
             Holes: {location && location.state && location.state.holeCount}
           </h2>
           <h2 className=''>
             <label
-
+              htmlFor='par1'
+              className='alt-sub-heading d-flex justify-content-center'
               htmlFor="par1"
               className="alt-sub-heading d-flex justify-content-center"
-
             >
               Hole <p className='list-go'>#{holeNumber}</p>
             </label>

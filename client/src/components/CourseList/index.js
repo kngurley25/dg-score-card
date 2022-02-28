@@ -68,9 +68,10 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+
+        <Link to='/' style={{ textDecoration: "none" }}>
           <div className='d-flex justify-content-center'>
-            <button type='button' className='button justify-content-center'>
+            <button type='button' className='button-go justify-content-center'>
               Go Back
             </button>
           </div>

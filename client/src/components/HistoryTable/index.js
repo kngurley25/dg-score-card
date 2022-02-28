@@ -8,6 +8,7 @@ function HistoryTable({ user, FindParTotal, findScore }) {
       <h3 className='alt-sub-heading text-center'>
         Round History
       </h3>
+
       <input
         className='w-75 rounded text-center'
         placeholder='Search for round'
