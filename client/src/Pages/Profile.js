@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-
 import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import Auth from '../utils/auth';
 
 function Profile() {
   const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ function Profile() {
   if (loading) {
     return <div>Loading...</div>;
   }
-  if (!user?.username) {
+  if (Auth.loggedIn() === false) {
     return (
       <div className='d-flex flex-column align-items-center'>
         <h4 className='loginMsg fw-bold'>
@@ -71,7 +71,7 @@ function Profile() {
           </Link>
         </div>
         <div>
-          {user.courses.length === 0 ? (
+          {user.coursesPlayed.length === 0 ? (
             <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
@@ -96,7 +96,7 @@ function Profile() {
             <div>
               <HistoryTable user={user} FindParTotal={FindParTotal} />
               <h3
-                className='history-btn text-center my-5 bg-white'
+                className='history-btn text-center my-5'
                 onClick={() => toggleModal()}
               >
                 View more history

@@ -45,5 +45,6 @@ function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
       </Modal>
     </div>
   );
-}
+};
+
 export default HistoryModal;

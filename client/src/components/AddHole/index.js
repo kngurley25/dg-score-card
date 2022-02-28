@@ -19,9 +19,9 @@ const AddHole = () => {
   //need to get holeCount, courseName out of location
 
   //getcourseId from query
-  const { loading, data } = useQuery(QUERY_ALL_COURSES);
+  const { data } = useQuery(QUERY_ALL_COURSES);
   const courses = data?.courses || [];
-
+  
   const matchingCourse = courses?.find(
     (course) => course?.courseName === location?.state?.courseName
   );
@@ -31,11 +31,11 @@ const AddHole = () => {
   const [par, setPar] = useState(3);
 
   //mutation for addHole
-  const [addHole, { error }] = useMutation(ADD_HOLE);
+  const [addHole] = useMutation(ADD_HOLE);
 
   const handleAddHole = (event) => {
     event.preventDefault();
-    
+
     try {
       //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
       addHole({
@@ -46,9 +46,11 @@ const AddHole = () => {
         },
       });
       //if holeNumber
-      if (holeNumber <= (matchingCourse?.holeCount - 1)) {
+      if (holeNumber <= matchingCourse?.holeCount - 1) {
         setHoleNumber(holeNumber + 1);
-        const par = document.getElementById("par").value ? document.getElementById("par").value : 3;
+        const par = document.getElementById("par").value
+          ? document.getElementById("par").value
+          : 3;
         setPar(par);
       } else {
         navigate(`/newround/${matchingCourse?._id}`);
@@ -60,38 +62,42 @@ const AddHole = () => {
 
   return (
     <section>
-      <h2 className="heading d-flex justify-content-center">
-        {location && location.state && location.state.courseName}
-      </h2>
-      <div>
-        <h2 className="sub-heading d-flex justify-content-center">
-          Hole Count: {location && location.state && location.state.holeCount}
+      <div className="card-heading">
+        <h2 className="alt-heading d-flex justify-content-center">
+          {location && location.state && location.state.courseName}
         </h2>
+        <div>
+          <h2 className="sub-heading d-flex justify-content-center">
+            Holes: {location && location.state && location.state.holeCount}
+          </h2>
+          <h2 className="">
+            <label
+              htmlFor="par1"
+              className="sub-heading d-flex justify-content-center"
+            >
+              Hole #{holeNumber}
+            </label>
+          </h2>
+        </div>
       </div>
       <form>
-        <h3 className="information d-flex justify-content-center">
+        <h3 className="sub-heading d-flex justify-content-center">
           Enter Pars:
         </h3>
-        <div className="form-group row">
-          <label
-            htmlFor="par1"
+
+        <div className="col d-flex justify-content-center">
+          <input
+            type="par"
             className="hole-form col col-form-label m-4 p-4"
-          >
-            Hole #{holeNumber}
-          </label>
-          <div className="col">
-            <input
-              type="par"
-              className="hole-form col col-form-label m-4 p-4"
-              id="par"
-              placeholder="Par"
-              onChange={() => {}}
-            />
-          </div>
+            id="par"
+            placeholder="Par"
+            onChange={() => {}}
+          />
         </div>
+
         <div className="d-flex justify-content-center">
           <button
-            className="btn btn-primary d-flex justify-content-center m-4"
+            className="button d-flex justify-content-center m-4"
             onClick={handleAddHole}
           >
             Next Hole!
