@@ -62,42 +62,42 @@ const AddHole = () => {
 
   return (
     <section>
-      <div className="card-heading">
-        <h2 className="alt-heading d-flex justify-content-center">
+      <div className='card-heading'>
+        <h2 className='alt-heading d-flex justify-content-center'>
           {location && location.state && location.state.courseName}
         </h2>
         <div>
-          <h2 className="alt-sub-heading d-flex justify-content-center">
+          <h2 className='alt-sub-heading d-flex justify-content-center'>
             Holes: {location && location.state && location.state.holeCount}
           </h2>
-          <h2 className="">
+          <h2 className=''>
             <label
-              htmlFor="par1"
-              className="alt-sub-heading d-flex justify-content-center"
+              htmlFor='par1'
+              className='alt-sub-heading d-flex justify-content-center'
             >
-              Hole #{holeNumber}
+              Hole <p className='list-go'>#{holeNumber}</p>
             </label>
           </h2>
         </div>
       </div>
       <form>
-        <h3 className="sub-heading d-flex justify-content-center">
+        <h3 className='sub-heading d-flex justify-content-center'>
           Enter Pars:
         </h3>
 
-        <div className="col d-flex justify-content-center">
+        <div className='col d-flex justify-content-center'>
           <input
-            type="par"
-            className="hole-form col col-form-label m-4 p-4"
-            id="par"
-            placeholder="Par"
+            type='par'
+            className='hole-form col col-form-label m-4 p-4'
+            id='par'
+            placeholder='Par'
             onChange={() => {}}
           />
         </div>
 
-        <div className="d-flex justify-content-center">
+        <div className='d-flex justify-content-center'>
           <button
-            className="button d-flex justify-content-center m-4"
+            className='button-go d-flex justify-content-center m-4'
             onClick={handleAddHole}
           >
             Next Hole!

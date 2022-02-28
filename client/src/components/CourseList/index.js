@@ -47,17 +47,17 @@ const CourseList = ({ courses, title, user }) => {
 
   if (!courses.length) {
     return (
-      <div className="d-flex flex-column align-items-center">
-        <h3 className="bg-white mt-5">No Courses Yet</h3>
-        <h3 className="text-center bg-white">
+      <div className='d-flex flex-column align-items-center'>
+        <h3 className='bg-white mt-5'>No Courses Yet</h3>
+        <h3 className='text-center bg-white'>
           Login or signup to create a course and start playing!
         </h3>
         <div>
-          <Link to={"/login"} className="mx-4">
-            <button className="button justify-content-center">Login</button>
+          <Link to={"/login"} className='mx-4'>
+            <button className='button-go justify-content-center'>Login</button>
           </Link>
-          <Link to={"/signup"} className="mx-4">
-            <button className="button justify-content-center">Signup</button>
+          <Link to={"/signup"} className='mx-4'>
+            <button className='button-go justify-content-center'>Signup</button>
           </Link>
         </div>
       </div>
@@ -67,29 +67,29 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="d-flex justify-content-center">
-            <button type="button" className="button justify-content-center">
+        <Link to='/' style={{ textDecoration: "none" }}>
+          <div className='d-flex justify-content-center'>
+            <button type='button' className='button-go justify-content-center'>
               Go Back
             </button>
           </div>
         </Link>
       </div>
-      <MDBCard style={{ width: "18rem" }} className="course-list">
-        <MDBCardHeader className="text-center">{title}</MDBCardHeader>
+      <MDBCard style={{ width: "18rem" }} className='course-list'>
+        <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
-        <MDBListGroup flush>
-          {courses &&
-            courses.map((course) => (
-              <MDBListGroupItem
-                key={course._id}
-                className="list d-flex justify-content-between"
-              >  
-                {" "}
-                <Link
-                  to={`/newround/${course._id}`}
-                  style={{ color: 'inherit', textDecoration: 'inherit' }}
-                  className="courseBtn fw-bold"
+          <MDBListGroup flush>
+            {courses &&
+              courses.map((course) => (
+                <MDBListGroupItem
+                  key={course._id}
+                  className='list d-flex justify-content-between'
+                >
+                  {" "}
+                  <Link
+                    to={`/newround/${course._id}`}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                    className='courseBtn fw-bold'
                   >
                     {course.courseName}, {course.location}
                   </Link>
@@ -106,24 +106,23 @@ const CourseList = ({ courses, title, user }) => {
           </MDBListGroup>
         ) : (
           <MDBListGroup flush>
-            <Link to="/">
+            <Link to='/'>
               <h6>Sign up or log in to keep your score!</h6>
             </Link>
-          {courses &&
-            courses.map((course) => (
-              <MDBListGroupItem
-                key={course._id}
-                className="list d-flex justify-content-center"
-              >  
-                {" "}
-                
-                <input type="checkbox" className="favBtn" />
-                <FontAwesomeIcon icon={starReg} className="emptyStar" />
-                <FontAwesomeIcon icon={starSolid} className="solidStar" />
-              </MDBListGroupItem>
-            ))}
-        </MDBListGroup>
-         )}
+            {courses &&
+              courses.map((course) => (
+                <MDBListGroupItem
+                  key={course._id}
+                  className='list d-flex justify-content-center'
+                >
+                  {" "}
+                  <input type='checkbox' className='favBtn' />
+                  <FontAwesomeIcon icon={starReg} className='emptyStar' />
+                  <FontAwesomeIcon icon={starSolid} className='solidStar' />
+                </MDBListGroupItem>
+              ))}
+          </MDBListGroup>
+        )}
       </MDBCard>
       {error && <div>An Error has occurred...</div>}
     </section>

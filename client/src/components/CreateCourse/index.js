@@ -50,70 +50,70 @@ const CourseForm = () => {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      <form className="course-form col-12 col-md-6">
+    <div className='d-flex flex-column align-items-center'>
+      <form className='course-form col-12 col-md-6'>
         {error && (
-          <div className="error d-flex justify-content-center">
+          <div className='error d-flex justify-content-center'>
             Something went wrong...
           </div>
         )}
-        <div className="card-heading">
-          <h1 className="alt-heading d-flex justify-content-center">
+        <div className='card-heading'>
+          <h1 className='alt-heading d-flex justify-content-center'>
             New Course:
           </h1>
 
           <textarea
-            placeholder="Course Name"
+            placeholder='Course Name'
             value={formState.courseName}
-            name="courseName"
-            type="text"
-            className="form-input col-10 offset-1"
+            name='courseName'
+            type='text'
+            className='form-input col-10 offset-1'
             onBlur={handleChange}
             onChange={handleChange}
           ></textarea>
 
           <textarea
-            placeholder="Course Location"
+            placeholder='Course Location'
             value={formState.location}
-            className="form-input col-6 offset-1"
-            name="location"
-            type="text"
+            className='form-input col-6 offset-1'
+            name='location'
+            type='text'
             onBlur={handleChange}
             onChange={handleChange}
           ></textarea>
 
           <textarea
-            placeholder="Hole Count"
+            placeholder='Hole Count'
             value={formState.holeCount}
-            name="holeCount"
-            type="number"
-            pattern="[0-9]*"
-            className="form-input col-4"
+            name='holeCount'
+            type='number'
+            pattern='[0-9]*'
+            className='form-input col-4'
             onBlur={handleChange}
             onChange={handleChange}
           ></textarea>
         </div>
         {errorMessage && (
           <div
-            className="alert alert-danger animate__animated animate__shakeX"
-            role="alert"
+            className='alert alert-danger animate__animated animate__shakeX'
+            role='alert'
           >
             {errorMessage}
           </div>
         )}
-        <div className="d-flex justify-content-center">
+        <div className='d-flex justify-content-center'>
           <button
-            className="button d-flex justify-content-center"
+            className='button-go d-flex justify-content-center'
             onClick={handleFormSubmit}
           >
             Continue
           </button>
         </div>
-        <Link to="/viewcourses" style={{ textDecoration: "none" }}>
-          <div className="d-flex justify-content-center">
+        <Link to='/viewcourses' style={{ textDecoration: "none" }}>
+          <div className='d-flex justify-content-center'>
             <button
-              type="button"
-              className="button d-flex justify-content-center"
+              type='button'
+              className='button-go d-flex justify-content-center'
             >
               Go Back
             </button>
