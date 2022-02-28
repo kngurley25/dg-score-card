@@ -51,7 +51,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addFriend(friendId: ID!): User
     addCourse(courseId: ID!): User
+    removeCourse(courseId: ID!): User
     addRound(courseName: String!): Round
+    deleteRound(roundId: ID!): Round
     createCourse(
       courseName: String!
       location: String!

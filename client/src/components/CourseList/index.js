@@ -12,12 +12,17 @@ import { useMutation } from "@apollo/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
 import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
-import { ADD_COURSE } from "../../utils/mutations";
+import { ADD_COURSE, REMOVE_COURSE } from "../../utils/mutations";
 import { QUERY_ME_COURSES } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
         
 const CourseList = ({ courses, title, user }) => {
   const [addCourse, { error }] = useMutation(ADD_COURSE, {
+    refetchQueries: [
+      QUERY_ME_COURSES
+    ],
+  });
+  const [removeCourse, { err }] = useMutation(REMOVE_COURSE, {
     refetchQueries: [
       QUERY_ME_COURSES
     ],
@@ -36,6 +41,17 @@ const CourseList = ({ courses, title, user }) => {
     e.preventDefault();
     try {
       addCourse({
+        variables: { courseId: id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleRemoveCourse = (id) =>(e) => {
+    e.preventDefault();
+    try {
+      removeCourse({
         variables: { courseId: id },
       });
     } catch (err) {
@@ -97,7 +113,9 @@ const CourseList = ({ courses, title, user }) => {
                 
                 
                 { courseArr.includes(course._id) ? (
+                  <div onClick={handleRemoveCourse(course._id)} >
                   <FontAwesomeIcon icon={starSolid}  />
+                  </div>
                 ) : (
                   // eslint-disable-next-line no-restricted-globals
                   <div onClick={handleAddCourse(course._id)} >
@@ -137,6 +155,7 @@ const CourseList = ({ courses, title, user }) => {
          )}
       </MDBCard>
       {error && <div>An Error has occurred...</div>}
+      {err && <div>An Error has occurred...</div>}
     </section>
     
   );

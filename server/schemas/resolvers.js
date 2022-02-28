@@ -95,6 +95,19 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    removeCourse: async (parent, { courseId }, context) => {
+        if (context.user) {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { courses: courseId } },
+                { new: true }
+              ).populate('courses'); 
+              return updatedUser;
+        }
+
+        throw new AuthenticationError('You need to be logged in!');
+    },
     addRound: async (parent, args, context) => {
       if (context.user) {
         const round = await Round.create({
@@ -113,6 +126,24 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    deleteRound: async (parent, { roundId }, context) => {
+        if (context.user) {
+            const deletedRound = await Round.findByIdAndDelete({
+                _id: roundId
+            });
+
+            await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { rounds: deletedRound._id } },
+                { new: true }
+              );
+              return deletedRound;
+        }
+        throw new AuthenticationError('You need to be logged in!');
+
+    },
+
     createCourse: async (parent, args, context) => {
       if (context.user) {
         const course = await Course.create(args);
