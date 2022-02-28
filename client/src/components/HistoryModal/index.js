@@ -5,6 +5,8 @@ import { dateFormat } from '../../utils/helpers';
 import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_ROUND } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
   const { loading, data } = useQuery(QUERY_ME);
@@ -54,7 +56,7 @@ function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
                 <th scope="col">Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-center'>
               {updatedUser.rounds
                 .slice(0)
                 .reverse()
@@ -76,7 +78,7 @@ function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
                         style={{ color: "red", cursor: "pointer" }}
                         onClick={handleDeleteRound(round._id)}
                       >
-                        ⮿
+                        <FontAwesomeIcon icon={faTrash}/>
                       </div>
                     </td>
                   </tr>
