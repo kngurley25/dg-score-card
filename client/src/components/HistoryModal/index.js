@@ -1,9 +1,10 @@
+
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Table from "react-bootstrap/Table";
 import { dateFormat } from "../../utils/helpers";
 
-function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
+function HistoryModal({ show, handleClose, user, FindParTotal, findScore }) {
   return (
     <div>
       <Modal
@@ -36,7 +37,12 @@ function HistoryModal({ show, handleClose, user, allCourses, FindParTotal }) {
                     <td>{dateFormat(round.createAt)}</td>
                     <td>{round.courseName}</td>
                     <td>{FindParTotal(round.courseName)}</td>
-                    <td>{round.totalScore}</td>
+                    <td>
+                      {findScore(
+                        round.totalScore,
+                        FindParTotal(round.courseName)
+                      )}
+                    </td>
                   </tr>
                 ))}
             </tbody>

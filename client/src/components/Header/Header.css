@@ -31,7 +31,7 @@
 
 .navbar .menu-items {
   display: flex;
-  background-color: #0e2431;
+  background-color: var(--dark);
 }
 
 .navbar .nav-container li {

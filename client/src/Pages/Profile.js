@@ -16,6 +16,16 @@ function Profile() {
   const user = data?.me || {};
   const allCourses = allCorseData?.courses || [];
 
+  const findScore = (strokes , par) => {
+    let score = strokes - par;
+    if (score > 0) {
+      return `+${score}`;
+    } else if (score < 0) {
+      return `${score}`;
+    }
+    return score;
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -58,18 +68,19 @@ function Profile() {
         user={user}
         allCourses={allCourses}
         FindParTotal={FindParTotal}
+        findScore={findScore}
       />
-      <div className='flex-column'>
+      <div className=' flex-column'>
         <div className='card-heading d-flex flex-column align-items-center'>
           <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
-
-          <Link to={"/viewcourses"}>
-            <button className='button-go' as={NavLink} to={"/"}>
+          <Link to={'/viewcourses'}>
+            <button className='button-next my-4' as={NavLink} to={'/'}>
               Find a New Course
             </button>
           </Link>
-
-          {user.courses.length === 0 ? (
+        </div>
+        <div>
+          {user.coursesPlayed.length === 0 ? (
             <div className='text-center bg-white'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
@@ -77,8 +88,9 @@ function Profile() {
               </h2>
             </div>
           ) : (
+            <div>
             <div className='alt-sub-heading'>
-              <h2 className='text-center'>
+              <h2 className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a recent course{" "}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
@@ -93,7 +105,11 @@ function Profile() {
             <div></div>
           ) : (
             <div className='card-heading'>
-              <HistoryTable user={user} FindParTotal={FindParTotal} />
+              <HistoryTable
+                user={user}
+                FindParTotal={FindParTotal}
+                findScore={findScore}
+              />
               <h3
                 className='launch-history'
                 style={{ textDecoration: "none" }}

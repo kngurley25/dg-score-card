@@ -366,74 +366,6 @@ code {
   text-decoration: underline !important;
 }
 
-/* .button-next {
-  display: inline-block;
-  text-decoration: none;
-  height: 75px;
-  color: #fff;
-  font-weight: bold;
-  background-color: #5fbe53;
-  padding: 20px 70px;
-  font-size: 24px;
-  border: 1px solid #46982d;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(91, 180, 73) 0%,
-    rgb(97, 203, 97) 100%
-  );
-
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0, rgb(91, 180, 73)),
-    color-stop(1, rgb(97, 203, 97))
-  );
-  border-radius: 10px;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 15px 0px #378f2b, 0px 3px 15px rgba(0, 0, 0, 0.4),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.3),
-    inset 0px 0px 3px rgba(255, 255, 255, 0.5);
-  -webkit-transform: rotateX(25deg);
-} */
-
-/* .button-next:hover {
-  background-image: linear-gradient(
-    to bottom,
-    rgb(101, 191, 79) 0%,
-    rgb(121, 214, 102) 100%
-  );
-
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0, rgb(101, 191, 79)),
-    color-stop(1, rgb(121, 214, 102))
-  );
-} */
-
-/* .button-next:active {
-  background-image: linear-gradient(
-    to bottom,
-    rgb(107, 204, 88) 0%,
-    rgb(108, 199, 90) 100%
-  );
-
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0, rgb(107, 204, 88)),
-    color-stop(1, rgb(108, 199, 90))
-  );
-  box-shadow: 0px 2px 0px #378f2b, 0px 1px 6px rgba(0, 0, 0, 0.4),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.3),
-    inset 0px 0px 3px rgb1a(255, 255, 255, 0.5);
-  transform: translate(0, 4px);
-  transition: all 0.03s ease-in-out;
-} */
-
 /* styles for profile page */
 .favCourse-link {
   text-decoration: underline !important;
@@ -490,7 +422,7 @@ code {
   height: 20px;
   width: 20px;
   left: 20px;
-  opacity: 0;
+  /* opacity: 0; */
   z-index: 5;
   cursor: pointer;
 }
@@ -501,7 +433,6 @@ code {
   border: none;
   padding: 0 !important;
 }
-/* styles for view courses page */
 .courseList input[type="checkbox"]:checked ~ .emptyStar {
   display: none;
 }

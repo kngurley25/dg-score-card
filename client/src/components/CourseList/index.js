@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   MDBCard,
   MDBCardHeader,
   MDBListGroup,
   MDBListGroupItem,
-} from "mdb-react-ui-kit";
-import Auth from "../../utils/auth";
-import { useMutation } from "@apollo/client";
+} from 'mdb-react-ui-kit';
+import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
-import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
-import { ADD_COURSE } from "../../utils/mutations";
-import { QUERY_ME_COURSES } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as starReg } from '@fortawesome/free-regular-svg-icons';
+import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
+import { ADD_COURSE } from '../../utils/mutations';
+import { QUERY_ME_COURSES } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 const CourseList = ({ courses, title, user }) => {
   const [addCourse, { error }] = useMutation(ADD_COURSE, {
@@ -53,6 +53,7 @@ const CourseList = ({ courses, title, user }) => {
           Login or signup to create a course and start playing!
         </h3>
         <div>
+
           <Link to={"/login"} className='mx-4'>
             <button className='button-go justify-content-center'>Login</button>
           </Link>
@@ -67,9 +68,9 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to='/' style={{ textDecoration: "none" }}>
+        <Link to='/' style={{ textDecoration: 'none' }}>
           <div className='d-flex justify-content-center'>
-            <button type='button' className='button-go justify-content-center'>
+            <button type='button' className='button justify-content-center'>
               Go Back
             </button>
           </div>
