@@ -46,6 +46,7 @@ function HistoryTable({ user, FindParTotal }) {
             <th scope='col'>Course Name</th>
             <th scope='col'>Par</th>
             <th scope='col'>Score</th>
+            <th scope='col'>Delete</th>
           </tr>
         </thead>
         <tbody>
