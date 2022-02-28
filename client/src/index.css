@@ -78,6 +78,18 @@ code {
   opacity: 90%;
 }
 
+.alt-sub-heading {
+  margin: 10px 10px;
+  padding: 6px 6px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: large;
+  color: var(--dark);
+  background-color: var(--tertiary);
+  border-color: var(--secondary);
+  border: solid;
+  opacity: 90%;
+}
 .form-input {
   padding: 5px 10px;
   font-size: 14px;
