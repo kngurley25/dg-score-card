@@ -223,6 +223,12 @@ code {
   color: var(--error);
 }
 
+.link-go {
+  color: var(--error);
+  text-decoration: none;
+  text-align: center;
+}
+
 /* styles for button on score page */
 
 .button-stroke {
