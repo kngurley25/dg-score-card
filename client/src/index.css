@@ -235,7 +235,7 @@ code {
 
 /* styles for button on score page */
 .scoreModal {
-  z-index: 999 !important;
+  z-index: 9999 !important;
 }
 
 .button-stroke {
