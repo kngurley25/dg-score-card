@@ -10,8 +10,14 @@ export function validateEmail(email) {
 
 export function dateFormat(date) {
   let month = date.split(' ')[0];
-  const day = date.split(' ')[1].split('t')[0];
+  let day = date.split(' ')[1].split('');
   const year = date.split(' ')[2].split('0')[1];
+
+  if (day[1].match(/[a-z]/i)) {
+    day = day[0];
+  } else {
+    day = day[0] + day[1];
+  }
 
   switch (month) {
     case 'Jan':
@@ -51,7 +57,7 @@ export function dateFormat(date) {
       month = 12;
       break;
     default:
-      month = date.split(' ')[0];;
+      month = date.split(' ')[0];
       break;
   }
   return `${month}/${day}/${year}`;
