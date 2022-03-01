@@ -191,8 +191,8 @@ function ScorePage() {
         onClick={handleDeleteRound}>
           Delete Round
         </button>
-        {error && <div>Something went wront...</div>}
-        {err && <div>Something went wront...</div>}
+        {error && <div>Something went wrong...</div>}
+        {err && <div>Something went wrong...</div>}
       </div>
     </main>
   );

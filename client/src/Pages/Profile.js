@@ -31,22 +31,6 @@ function Profile() {
     return score;
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (Auth.loggedIn() === false) {
-    return (
-      <div className='d-flex flex-column align-items-center'>
-        <h4 className='loginMsg fw-bold'>
-          You need to be logged in to see this page. Use the navigation links
-          above to sign up or log in!
-        </h4>
-        <Link to={'/login'} className='my-2'>
-          <button className='button'>Login</button>
-        </Link>
-      </div>
-    );
-  }
 
   const toggleModal = () => {
     setShow(!show);
@@ -69,6 +53,24 @@ function Profile() {
       }
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (Auth.loggedIn() === false) {
+    return (
+      <div className='d-flex flex-column align-items-center'>
+        <h4 className='loginMsg fw-bold'>
+          You need to be logged in to see this page. Use the navigation links
+          above to sign up or log in!
+        </h4>
+        <Link to={'/login'} className='my-2'>
+          <button className='button'>Login</button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <section className='d-flex justify-content-center'>
       <HistoryModal
