@@ -29,7 +29,7 @@ const CourseList = ({ courses, title, user }) => {
   const myCourses = data?.me || {};
 
   const courseArr = [];
-  if (!loading) {
+  if (!loading && Auth.loggedIn()) {
     for (let i = 0; i < myCourses.courses.length; i++) {
       courseArr.push(myCourses.courses[i]._id);
     }
@@ -135,10 +135,10 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-center'
                 >
-                  {" "}
-                  <input type='checkbox' className='favBtn' />
-                  <FontAwesomeIcon icon={starReg} className='emptyStar' />
-                  <FontAwesomeIcon icon={starSolid} className='solidStar' />
+                  <div className="courseBtn fw-bold">
+                  {course.courseName}, {course.location}
+                  </div>
+                 
                 </MDBListGroupItem>
               ))}
           </MDBListGroup>
