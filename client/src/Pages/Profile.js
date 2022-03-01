@@ -4,13 +4,10 @@ import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import HistoryModal from '../components/HistoryModal';
 import CoursesPlayed from '../components/CoursesPlayed';
-import FavCourses from "../components/FavCourses";
+import FavCourses from '../components/FavCourses';
 import HistoryTable from '../components/HistoryTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faArrowDown,
-  faArrowUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Auth from '../utils/auth';
 
 function Profile() {
@@ -88,8 +85,8 @@ function Profile() {
               Find a New Course
             </button>
           </Link>
-          {user.courses.length === 0 && user.courses.length === 0 ? (
-            <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
+          {user.courses.length === 0 && user.coursesPlayed.length === 0 ? (
+            <div className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
                 <FontAwesomeIcon icon={faArrowUp} />
@@ -97,47 +94,48 @@ function Profile() {
             </div>
           ) : (
             <div className='alt-sub-heading'>
-              <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
+              <h2 className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
 
               <div className='list-go'>
-                {showRecent === false ? (
-                  <FavCourses courses={user.courses} />
-                ) : (
+                {showRecent === true || user.courses.length === 0 ? (
                   <CoursesPlayed
                     courses={user.coursesPlayed}
                     allCourses={allCourses}
                   />
+                ) : (
+                  <FavCourses courses={user.courses} />
                 )}
-                <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
-                  <input
-                    className='form-check-input custom-control-input'
-                    type='checkbox'
-                    role='switch'
-                    id='toggleSwitch'
-                    onClick={() => toggleList()}
-                  />
-                  <label
-                    className='form-check-label custom-control-label'
-                    htmlFor='toggleSwitch'
-                  >
-                    {showRecent === true ? (
-
-                      <h5>Show favorite courses</h5>
-
-                    ) : (
-                      <h5>Show recently played courses</h5>
-                    )}
-                  </label>
-                </div>
+                {user.courses.length === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
+                    <input
+                      className='form-check-input custom-control-input'
+                      type='checkbox'
+                      role='switch'
+                      id='toggleSwitch'
+                      onClick={() => toggleList()}
+                    />
+                    <label
+                      className='form-check-label custom-control-label'
+                      htmlFor='toggleSwitch'
+                    >
+                      {showRecent === true ? (
+                        <h5>Show favorite courses</h5>
+                      ) : (
+                        <h5>Show recently played courses</h5>
+                      )}
+                    </label>
+                  </div>
+                )}
               </div>
             </div>
           )}
 
           <div>
-
             {user.rounds.length === 0 ? (
               <div></div>
             ) : (

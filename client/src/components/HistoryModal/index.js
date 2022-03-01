@@ -8,7 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
+function HistoryModal({ show, handleClose, findScore, FindParTotal }) {
   const { loading, data } = useQuery(QUERY_ME);
   const updatedUser = data?.me || {};
     const [deleteRound, { err }] = useMutation(DELETE_ROUND, {

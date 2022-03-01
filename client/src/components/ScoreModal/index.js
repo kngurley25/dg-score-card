@@ -21,6 +21,7 @@ function ScoreModal({ show, handleClose, round, FindPar }) {
       size='lg'
       aria-labelledby='contained-modal-title-vcenter'
       centered
+      className='scoreModal'
     >
       <Modal.Header closeButton>
         <Modal.Title>Scorecard</Modal.Title>

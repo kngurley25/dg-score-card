@@ -219,6 +219,10 @@ code {
   background-color: var(--error);
 }
 
+.button-delete {
+  background-color: var(--secondary);
+}
+
 .list-go {
   color: var(--error);
 }
@@ -230,6 +234,9 @@ code {
 }
 
 /* styles for button on score page */
+.scoreModal {
+  z-index: 999 !important;
+}
 
 .button-stroke {
   display: inline-block;
@@ -296,7 +303,6 @@ code {
     inset 0px 0px 3px rgba(255, 255, 255, 0.5);
   transform: translate(0, 4px);
   transition: all 0.03s ease-in-out;
-  transform: translate(0, 4px);
 }
 .button-next {
   display: inline-block;
@@ -364,7 +370,6 @@ code {
     inset 0px 0px 3px rgba(255, 255, 255, 0.5);
   transform: translate(0, 4px);
   transition: all 0.03s ease-in-out;
-  transform: translate(0, 4px);
 }
 
 /* styles for profile page */
