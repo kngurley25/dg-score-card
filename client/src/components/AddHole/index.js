@@ -19,23 +19,23 @@ const AddHole = () => {
   //need to get holeCount, courseName out of location
 
   //getcourseId from query
-  const { data } = useQuery(QUERY_ALL_COURSES);
+  const { data, loading} = useQuery(QUERY_ALL_COURSES);
   const courses = data?.courses || [];
-
+  
   const matchingCourse = courses?.find(
-    (course) => course?.courseName === location?.state?.courseName
+    (course) => course.courseName === location.state.courseName
   );
-
+  
   //set holeNumber to 1
   const [holeNumber, setHoleNumber] = useState(1);
   const [par, setPar] = useState(3);
 
   //mutation for addHole
-  const [addHole] = useMutation(ADD_HOLE);
+  const [addHole, { error }] = useMutation(ADD_HOLE);
 
   const handleAddHole = (event) => {
     event.preventDefault();
-
+   
     try {
       //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
       addHole({
@@ -59,7 +59,11 @@ const AddHole = () => {
       console.error(e);
     }
   };
-
+  if (loading) {
+    return (
+    <div>...Loading</div>
+    )
+  }
   return (
     <section>
       <div className='card-heading'>
@@ -74,8 +78,6 @@ const AddHole = () => {
             <label
               htmlFor='par1'
               className='alt-sub-heading d-flex justify-content-center'
-              htmlFor="par1"
-              className="alt-sub-heading d-flex justify-content-center"
             >
               Hole <p className='list-go'>#{holeNumber}</p>
             </label>
@@ -106,6 +108,7 @@ const AddHole = () => {
           </button>
         </div>
       </form>
+      {error && <div>Something went wrong...</div>}
     </section>
   );
 };
