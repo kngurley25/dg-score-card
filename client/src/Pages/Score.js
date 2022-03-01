@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_SCORE, DELETE_ROUND } from '../utils/mutations';
 import { QUERY_ALL_COURSES, QUERY_ROUND } from '../utils/queries';
@@ -24,20 +24,13 @@ function ScorePage() {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
-
-  if (!loading) {
-    setTimeout(() => {
-      setHoleNumber(round.scores.length + 1 || 1);
-      setTotalScore(round.totalScore);
-    }, 30);
-  }
-
-  const [totalScore, setTotalScore] = useState(0);
-  const [holeNumber, setHoleNumber] = useState(1);
+  
+  const [totalScore, setTotalScore] = useState(round.totalScore || 0);
+  const [holeNumber, setHoleNumber] = useState(round.scores?.length + 1 || 1);
   const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
 
-  const toggleModal = (project, i) => {
+  const toggleModal = () => {
     setShow(!show);
   };
 
@@ -128,7 +121,6 @@ function ScorePage() {
     }
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -148,7 +140,6 @@ function ScorePage() {
             Total Score:{' '}
             {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}
           </h3>
-
         </div>
         <button
           className='button-secondary btn-lg my-3'
@@ -161,7 +152,7 @@ function ScorePage() {
           className='button-stroke text-center w-50'
           onClick={addStroke}
         >
-          <FontAwesomeIcon icon={faArrowUp} className='fs-1' />
+          <FontAwesomeIcon icon={faPlus} className='fs-1' />
         </button>
         <div className='d-flex justify-content-center my-1'>
           <input
@@ -180,19 +171,20 @@ function ScorePage() {
           className='button-stroke w-50'
           onClick={removeStroke}
         >
-          <FontAwesomeIcon icon={faArrowDown} className='fs-1' />
+          <FontAwesomeIcon icon={faMinus} className='fs-1' />
         </button>
         <div>
           <button onClick={handleAddScore} className='button-next my-5'>
-            <p>Next Hole</p>
+            {holeNumber === matchingCourse?.holeCount ? (
+              <p>Finish</p>
+            ) : (
+              <p>Next Hole</p>
+            )}
           </button>
         </div>
-        <button
-        onClick={handleDeleteRound}>
-          Delete Round
-        </button>
-        {error && <div>Something went wrong...</div>}
-        {err && <div>Something went wrong...</div>}
+        <button className='button-secondary button-delete' onClick={handleDeleteRound}>Delete Round</button>
+        {error && <div>Something went wront...</div>}
+        {err && <div>Something went wront...</div>}
       </div>
     </main>
   );
