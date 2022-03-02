@@ -15,17 +15,18 @@ const AddHole = () => {
   //information from the createCourse form is stored in [location]
   const location = useLocation();
   useEffect(() => {}, [location]);
+  console.log(location);
 
   //need to get holeCount, courseName out of location
 
   //getcourseId from query
-  const { data, loading} = useQuery(QUERY_ALL_COURSES);
+  const { data, loading } = useQuery(QUERY_ALL_COURSES);
   const courses = data?.courses || [];
-  
+
   const matchingCourse = courses?.find(
     (course) => course.courseName === location.state.courseName
   );
-  
+
   //set holeNumber to 1
   const [holeNumber, setHoleNumber] = useState(1);
   const [par, setPar] = useState(3);
@@ -35,7 +36,7 @@ const AddHole = () => {
 
   const handleAddHole = (event) => {
     event.preventDefault();
-   
+
     try {
       //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
       addHole({
@@ -60,9 +61,7 @@ const AddHole = () => {
     }
   };
   if (loading) {
-    return (
-    <div>...Loading</div>
-    )
+    return <div>...Loading</div>;
   }
   return (
     <section>

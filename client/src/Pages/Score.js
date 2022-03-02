@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useMutation, useQuery } from '@apollo/client';
-import { ADD_SCORE, DELETE_ROUND } from '../utils/mutations';
-import { QUERY_ALL_COURSES, QUERY_ROUND } from '../utils/queries';
-import ScoreModal from '../components/ScoreModal';
-import { useParams, useNavigate } from 'react-router-dom';
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faArrowDown,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_SCORE, DELETE_ROUND } from "../utils/mutations";
+import { QUERY_ALL_COURSES, QUERY_ROUND } from "../utils/queries";
+import ScoreModal from "../components/ScoreModal";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ScorePage() {
   const navigate = useNavigate();
@@ -35,13 +40,13 @@ function ScorePage() {
   };
 
   const addStroke = () => {
-    let score = document.getElementById('strokeTotal').value;
+    let score = document.getElementById("strokeTotal").value;
     let newScore = ++score;
     return setStroke(newScore);
   };
 
   const removeStroke = () => {
-    let score = document.getElementById('strokeTotal').value;
+    let score = document.getElementById("strokeTotal").value;
     if (score <= 1) {
       score = 1;
       return;
@@ -137,14 +142,11 @@ function ScorePage() {
           <h1 className='alt-heading'>Hole #{holeNumber}</h1>
           <h2 className='alt-sub-heading'>{round.courseName}</h2>
           <h3 className='alt-sub-heading'>
-            Total Score:{' '}
+            Total Score:{" "}
             {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}
           </h3>
         </div>
-        <button
-          className='button-secondary btn-lg my-3'
-          onClick={() => toggleModal()}
-        >
+        <button className='button-go btn-lg my-3' onClick={() => toggleModal()}>
           View Score Card
         </button>
         <button
@@ -182,9 +184,18 @@ function ScorePage() {
             )}
           </button>
         </div>
-        <button className='button-secondary button-delete' onClick={handleDeleteRound}>Delete Round</button>
-        {error && <div>Something went wront...</div>}
-        {err && <div>Something went wront...</div>}
+
+        <button id='button-delete' onClick={handleDeleteRound}>
+          <FontAwesomeIcon
+            icon={faTrash}
+            className='fatrash'
+            size='2x'
+            style={{ color: "red" }}
+          />
+        </button>
+        {error && <div>Something went wrong...</div>}
+        {err && <div>Something went wrong...</div>}
+
       </div>
     </main>
   );

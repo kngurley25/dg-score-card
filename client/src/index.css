@@ -65,6 +65,17 @@ code {
   font-weight: bold;
 }
 
+.button-go {
+  background-color: var(--error);
+  margin: 15px 15px;
+  color: var(--tertiary);
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
 .sub-heading {
   margin: 10px 10px;
   padding: 6px 6px;
@@ -172,18 +183,6 @@ code {
   font-size: 20px;
   text-align: center;
   padding: 10px 10px 10px 10px;
-}
-
-.button-go {
-  background-color: var(--error);
-  margin: 15px 15px;
-  color: var(--tertiary);
-  text-decoration: none;
-  border-radius: 14px;
-  font-size: 20px;
-  text-align: center;
-  padding: 10px 10px 10px 10px;
-  opacity: 80%;
 }
 
 .launch-history {
