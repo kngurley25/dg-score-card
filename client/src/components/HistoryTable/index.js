@@ -1,47 +1,39 @@
 import React, { useState } from 'react';
 import { dateFormat } from '../../utils/helpers';
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from '@apollo/client';
 import { DELETE_ROUND } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash} from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function HistoryTable({ user, FindParTotal, findScore }) {
-    const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');
 
-    const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME);
   const updatedUser = data?.me || {};
-    const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
-      refetchQueries: [
-        QUERY_ME
-      ],
-    });
+  const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
+    refetchQueries: [QUERY_ME],
+  });
 
-    const handleDeleteRound = (id) =>(e) => {
-      e.preventDefault();
-      try {
-        console.log(id);
-        deleteRound({
-          variables: { roundId: id },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const handleDeleteRound = (id) => (e) => {
+    e.preventDefault();
+    try {
+      console.log(id);
+      deleteRound({
+        variables: { roundId: id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-      if (loading) {
-        return (
-          <div className='d-flex justify-content-center'>
-              Loading...
-          </div>
-        );
-      }
+  if (loading) {
+    return <div className='d-flex justify-content-center'>Loading...</div>;
+  }
 
   return (
     <div className='d-flex flex-column align-items-center'>
-      <h3 className='alt-sub-heading text-center'>
-        Round History
-      </h3>
+      <h3 className='alt-sub-heading text-center'>Round History</h3>
 
       <input
         className='w-75 rounded text-center'
@@ -61,14 +53,12 @@ function HistoryTable({ user, FindParTotal, findScore }) {
         <tbody>
           {updatedUser.rounds
             .filter((rounds) => {
-              if (query === "") {
+              if (query === '') {
                 return rounds;
               } else if (
                 rounds.courseName.toLowerCase().includes(query.toLowerCase())
-              ) {
+              )
                 return rounds;
-              }
-              return rounds;
             })
             .slice(0)
             .reverse()
@@ -81,10 +71,13 @@ function HistoryTable({ user, FindParTotal, findScore }) {
                 <td>
                   {findScore(round.totalScore, FindParTotal(round.courseName))}
                 </td>
-                
+
                 <td>
-                  <div style={{ color: "red", cursor: "pointer" }} onClick={handleDeleteRound(round._id)}>
-                    <FontAwesomeIcon icon={faTrash}/>
+                  <div
+                    style={{ color: 'red', cursor: 'pointer' }}
+                    onClick={handleDeleteRound(round._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
                   </div>
                 </td>
               </tr>
