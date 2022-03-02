@@ -8,7 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
+function HistoryModal({ show, handleClose, findScore, FindParTotal }) {
   const { loading, data } = useQuery(QUERY_ME);
   const updatedUser = data?.me || {};
     const [deleteRound, { err }] = useMutation(DELETE_ROUND, {
@@ -29,9 +29,15 @@ function HistoryModal({ show, handleClose, user, findScore, FindParTotal }) {
       }
     };
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+      if (loading) {
+        return (
+          <div className='d-flex justify-content-center'>
+            <h1 className='alt-heading animate__animated  animate__bounce'>
+              Loading...
+            </h1>
+          </div>
+        );
+      }
 
   return (
     <div>

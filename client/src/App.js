@@ -18,9 +18,9 @@ import Footer from "./components/Footer";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import ViewCourses from "./Pages/ViewCourses";
-import background from "./assets/images/dg-basket.png";
-import CourseForm from "./components/CreateCourse";
+import CourseForm from "./components/CourseForm";
 import AddHole from "./components/AddHole";
+import NoMatch from "../src/Pages/NoMatch";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -56,7 +56,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
+      <div className='flex-column justify-flex-start min-100-vh'>
         <Router>
           <Header></Header>
           <main>
@@ -71,6 +71,7 @@ function App() {
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />
               <Route exact path="/scorepage" element={<ScorePage />} />
+              <Route path="*"  element={<NoMatch />} />
             </Routes>
           </main>
           <Footer></Footer>

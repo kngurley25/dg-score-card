@@ -10,6 +10,7 @@ const CourseForm = () => {
     holeCount: "",
     isSubmitted: false,
   });
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const CourseForm = () => {
           holeCount: parseInt(formState.holeCount),
         },
       });
+
       navigate("/addhole", { state: { ...formState } });
     } catch (e) {
       console.error(e);
@@ -67,6 +69,7 @@ const CourseForm = () => {
             value={formState.courseName}
             name='courseName'
             type='text'
+            required
             className='form-input col-10 offset-1'
             onBlur={handleChange}
             onChange={handleChange}
@@ -78,6 +81,7 @@ const CourseForm = () => {
             className='form-input col-6 offset-1'
             name='location'
             type='text'
+            required
             onBlur={handleChange}
             onChange={handleChange}
           ></textarea>
@@ -87,6 +91,7 @@ const CourseForm = () => {
             value={formState.holeCount}
             name='holeCount'
             type='number'
+            required
             pattern='[0-9]*'
             className='form-input col-4'
             onBlur={handleChange}
@@ -120,6 +125,7 @@ const CourseForm = () => {
           </div>
         </Link>
       </form>
+      {error && <div>Something went wrong...</div>}
     </div>
   );
 };

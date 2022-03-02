@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "apollo-server-express": "^3.6.3",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
@@ -22,7 +23,6 @@
     "mongoose": "^6.2.2"
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.0.0-alpha.7",
     "nodemon": "^2.0.15"
   }
 }

@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   MDBCard,
   MDBCardHeader,
   MDBListGroup,
   MDBListGroupItem,
-} from 'mdb-react-ui-kit';
-import Auth from '../../utils/auth';
-import { useMutation } from '@apollo/client';
+} from "mdb-react-ui-kit";
+import Auth from "../../utils/auth";
+import { useMutation } from "@apollo/client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as starReg } from "@fortawesome/free-regular-svg-icons";
@@ -15,21 +15,19 @@ import { faStar as starSolid } from "@fortawesome/free-solid-svg-icons";
 import { ADD_COURSE, REMOVE_COURSE } from "../../utils/mutations";
 import { QUERY_ME_COURSES } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
-        
+
 const CourseList = ({ courses, title, user }) => {
   const [addCourse, { error }] = useMutation(ADD_COURSE, {
     refetchQueries: [QUERY_ME_COURSES],
   });
   const [removeCourse, { err }] = useMutation(REMOVE_COURSE, {
-    refetchQueries: [
-      QUERY_ME_COURSES
-    ],
+    refetchQueries: [QUERY_ME_COURSES],
   });
   const { loading, data } = useQuery(QUERY_ME_COURSES);
   const myCourses = data?.me || {};
 
   const courseArr = [];
-  if (!loading) {
+  if (!loading && Auth.loggedIn()) {
     for (let i = 0; i < myCourses.courses.length; i++) {
       courseArr.push(myCourses.courses[i]._id);
     }
@@ -46,7 +44,7 @@ const CourseList = ({ courses, title, user }) => {
     }
   };
 
-  const handleRemoveCourse = (id) =>(e) => {
+  const handleRemoveCourse = (id) => (e) => {
     e.preventDefault();
     try {
       removeCourse({
@@ -58,15 +56,20 @@ const CourseList = ({ courses, title, user }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className='d-flex justify-content-center'>
+        <h1 className='alt-heading animate__animated  animate__bounce'>
+          Loading...
+        </h1>
+      </div>
+    );
   }
 
   if (!courses.length) {
     return (
-      <div className="d-flex flex-column align-items-center">
-        <h3 className="bg-white mt-5">No Courses Yet</h3>
+      <div className='d-flex flex-column align-items-center'>
+        <h3 className='bg-white mt-5'>No Courses Yet</h3>
         <div>
-
           <Link to={"/login"} className='mx-4'>
             <button className='button-go justify-content-center'>Login</button>
           </Link>
@@ -81,7 +84,6 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-
         <Link to='/' style={{ textDecoration: "none" }}>
           <div className='d-flex justify-content-center'>
             <button type='button' className='button-go justify-content-center'>
@@ -106,28 +108,25 @@ const CourseList = ({ courses, title, user }) => {
                     style={{ color: "inherit", textDecoration: "inherit" }}
                     className='courseBtn fw-bold'
                   >
-                  {course.courseName}, {course.location}
-                </Link>
-                
-                
-                { courseArr.includes(course._id) ? (
-                  <div onClick={handleRemoveCourse(course._id)} >
-                  <FontAwesomeIcon icon={starSolid}  />
-                  </div>
-                ) : (
-                  // eslint-disable-next-line no-restricted-globals
-                  <div onClick={handleAddCourse(course._id)} >
-                    <FontAwesomeIcon icon={starReg} />
-                  </div>
-                )}
-                
-              </MDBListGroupItem>
-            ))}
-        </MDBListGroup>
-         ) : (
+                    {course.courseName}, {course.location}
+                  </Link>
+                  {courseArr.includes(course._id) ? (
+                    <div onClick={handleRemoveCourse(course._id)}>
+                      <FontAwesomeIcon icon={starSolid} />
+                    </div>
+                  ) : (
+                    // eslint-disable-next-line no-restricted-globals
+                    <div onClick={handleAddCourse(course._id)}>
+                      <FontAwesomeIcon icon={starReg} />
+                    </div>
+                  )}
+                </MDBListGroupItem>
+              ))}
+          </MDBListGroup>
+        ) : (
           <MDBListGroup flush>
-            <Link to='/'>
-              <h6>Sign up or log in to keep your score!</h6>
+            <Link to='/' style={{ textDecoration: "none" }}>
+              <h6 className='link-go'>Sign up or log in to keep your score!</h6>
             </Link>
             {courses &&
               courses.map((course) => (
@@ -135,10 +134,9 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-center'
                 >
-                  {" "}
-                  <input type='checkbox' className='favBtn' />
-                  <FontAwesomeIcon icon={starReg} className='emptyStar' />
-                  <FontAwesomeIcon icon={starSolid} className='solidStar' />
+                  <div className='courseBtn fw-bold'>
+                    {course.courseName}, {course.location}
+                  </div>
                 </MDBListGroupItem>
               ))}
           </MDBListGroup>
