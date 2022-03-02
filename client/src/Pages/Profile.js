@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { QUERY_ME, QUERY_ALL_COURSES } from '../utils/queries';
-import { useQuery } from '@apollo/client';
-import HistoryModal from '../components/HistoryModal';
-import CoursesPlayed from '../components/CoursesPlayed';
-import FavCourses from '../components/FavCourses';
-import HistoryTable from '../components/HistoryTable';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { QUERY_ME, QUERY_ALL_COURSES } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+import HistoryModal from "../components/HistoryModal";
+import CoursesPlayed from "../components/CoursesPlayed";
+import FavCourses from "../components/FavCourses";
+import HistoryTable from "../components/HistoryTable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import Auth from "../utils/auth";
 
 function Profile() {
   const [show, setShow] = useState(false);
@@ -60,7 +60,7 @@ function Profile() {
           You need to be logged in to see this page. Use the navigation links
           above to sign up or log in!
         </h4>
-        <Link to={'/login'} className='my-2'>
+        <Link to={"/login"} className='my-2'>
           <button className='button-go'>Login</button>
         </Link>
       </div>
@@ -80,22 +80,22 @@ function Profile() {
       <div className='flex-column'>
         <div className='card-heading d-flex flex-column align-items-center'>
           <h1 className='alt-heading'>🥏 Welcome {user.username}!</h1>
-          <Link to={'/viewcourses'}>
-            <button className='button-go my-4' as={NavLink} to={'/'}>
+          <Link to={"/viewcourses"}>
+            <button className='button-go my-4' as={NavLink} to={"/"}>
               Find a New Course
             </button>
           </Link>
           {user.courses.length === 0 && user.coursesPlayed.length === 0 ? (
             <div className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
-                <FontAwesomeIcon icon={faArrowUp} /> start playing now{' '}
+                <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
                 <FontAwesomeIcon icon={faArrowUp} />
               </h2>
             </div>
           ) : (
             <div className='alt-sub-heading'>
               <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
-                <FontAwesomeIcon icon={faArrowDown} /> replay a course{' '}
+                <FontAwesomeIcon icon={faArrowDown} /> replay a course{" "}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
 
@@ -104,11 +104,16 @@ function Profile() {
                   <CoursesPlayed
                     courses={user.coursesPlayed}
                     allCourses={allCourses}
+                    style={{ textDecoration: "none" }}
                   />
                 ) : (
-                  <FavCourses courses={user.courses} />
+                  <FavCourses
+                    courses={user.courses}
+                    style={{ textDecoration: "none" }}
+                  />
                 )}
-                {user.courses.length === 0 || user.coursesPlayed.length === 0 ? (
+                {user.courses.length === 0 ||
+                user.coursesPlayed.length === 0 ? (
                   <div></div>
                 ) : (
                   <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
@@ -145,13 +150,12 @@ function Profile() {
                   FindParTotal={FindParTotal}
                   findScore={findScore}
                 />
-                <h3
-                  className='launch-history'
-                  style={{ textDecoration: 'none' }}
+                <button
+                  className='button-go offset-3'
                   onClick={() => toggleModal()}
                 >
                   View more history
-                </h3>
+                </button>
               </div>
             )}
           </div>
