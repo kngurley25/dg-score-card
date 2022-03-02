@@ -91,6 +91,7 @@ const AddHole = () => {
         <div className='col d-flex justify-content-center'>
           <input
             type='par'
+            required
             className='hole-form col col-form-label m-4 p-4'
             id='par'
             placeholder='Par'
