@@ -94,7 +94,7 @@ function Profile() {
             </div>
           ) : (
             <div className='alt-sub-heading'>
-              <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
+              <h2 className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a course{' '}
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>

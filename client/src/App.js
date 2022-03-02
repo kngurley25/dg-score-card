@@ -21,6 +21,7 @@ import ViewCourses from "./Pages/ViewCourses";
 import background from "./assets/images/dg-basket.png";
 import CourseForm from "./components/CreateCourse";
 import AddHole from "./components/AddHole";
+import NoMatch from "../src/Pages/NoMatch";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -71,6 +72,7 @@ function App() {
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />
               <Route exact path="/scorepage" element={<ScorePage />} />
+              <Route path="*"  element={<NoMatch />} />
             </Routes>
           </main>
           <Footer></Footer>
