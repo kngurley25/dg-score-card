@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { QUERY_ME, QUERY_ALL_COURSES } from "../utils/queries";
@@ -85,8 +86,8 @@ function Profile() {
               Find a New Course
             </button>
           </Link>
-          {user.courses.length === 0 && user.courses.length === 0 ? (
-            <div className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
+          {user.courses.length === 0 && user.coursesPlayed.length === 0 ? (
+            <div className='text-center animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
               <h2>
                 <FontAwesomeIcon icon={faArrowUp} /> start playing now{" "}
                 <FontAwesomeIcon icon={faArrowUp} />
@@ -94,19 +95,44 @@ function Profile() {
             </div>
           ) : (
             <div className='alt-sub-heading'>
+
               <h2 className='text-center bg-white animate__animated animate__shakeY animate__delay-3s animate__slower 3s'>
                 <FontAwesomeIcon icon={faArrowDown} /> replay a course{" "}
+
                 <FontAwesomeIcon icon={faArrowDown} />
               </h2>
 
               <div className='list-go'>
-                {showRecent === false ? (
-                  <FavCourses courses={user.courses} />
-                ) : (
+                {showRecent === true || user.courses.length === 0 ? (
                   <CoursesPlayed
                     courses={user.coursesPlayed}
                     allCourses={allCourses}
                   />
+                ) : (
+                  <FavCourses courses={user.courses} />
+                )}
+                {user.courses.length === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
+                    <input
+                      className='form-check-input custom-control-input'
+                      type='checkbox'
+                      role='switch'
+                      id='toggleSwitch'
+                      onClick={() => toggleList()}
+                    />
+                    <label
+                      className='form-check-label custom-control-label'
+                      htmlFor='toggleSwitch'
+                    >
+                      {showRecent === true ? (
+                        <h5>Show favorite courses</h5>
+                      ) : (
+                        <h5>Show recently played courses</h5>
+                      )}
+                    </label>
+                  </div>
                 )}
                 <div className='toggle d-flex flex-column align-items-center form-check form-switch'>
                   <input

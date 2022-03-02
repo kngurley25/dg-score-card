@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,20 +29,13 @@ function ScorePage() {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
-
-  if (!loading) {
-    setTimeout(() => {
-      setHoleNumber(round.scores.length + 1 || 1);
-      setTotalScore(round.totalScore);
-    }, 30);
-  }
-
-  const [totalScore, setTotalScore] = useState(0);
-  const [holeNumber, setHoleNumber] = useState(1);
+  
+  const [totalScore, setTotalScore] = useState(round.totalScore || 0);
+  const [holeNumber, setHoleNumber] = useState(round.scores?.length + 1 || 1);
   const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
 
-  const toggleModal = (project, i) => {
+  const toggleModal = () => {
     setShow(!show);
   };
 
@@ -160,7 +154,7 @@ function ScorePage() {
           className='button-stroke text-center w-50'
           onClick={addStroke}
         >
-          <FontAwesomeIcon icon={faArrowUp} className='fs-1' />
+          <FontAwesomeIcon icon={faPlus} className='fs-1' />
         </button>
         <div className='d-flex justify-content-center my-1'>
           <input
@@ -179,11 +173,15 @@ function ScorePage() {
           className='button-stroke w-50'
           onClick={removeStroke}
         >
-          <FontAwesomeIcon icon={faArrowDown} className='fs-1' />
+          <FontAwesomeIcon icon={faMinus} className='fs-1' />
         </button>
         <div>
           <button onClick={handleAddScore} className='button-next my-5'>
-            <p>Next Hole</p>
+            {holeNumber === matchingCourse?.holeCount ? (
+              <p>Finish</p>
+            ) : (
+              <p>Next Hole</p>
+            )}
           </button>
         </div>
 
@@ -195,9 +193,9 @@ function ScorePage() {
             style={{ color: "red" }}
           />
         </button>
-
         {error && <div>Something went wrong...</div>}
         {err && <div>Something went wrong...</div>}
+
       </div>
     </main>
   );
