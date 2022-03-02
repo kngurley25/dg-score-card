@@ -150,11 +150,7 @@ function ScorePage() {
         <button className='button-go btn-lg my-3' onClick={() => toggleModal()}>
           View Score Card
         </button>
-        <button
-          id='addBtn'
-          className='button-stroke text-center w-50'
-          onClick={addStroke}
-        >
+        <button id='addBtn' className='button w-50' onClick={addStroke}>
           <FontAwesomeIcon icon={faPlus} className='fs-1' />
         </button>
         <div className='d-flex justify-content-center my-1'>
@@ -169,15 +165,11 @@ function ScorePage() {
             onChange={(e) => setStroke(e.target.value)}
           />
         </div>
-        <button
-          id='subtractBtn'
-          className='button-stroke w-50'
-          onClick={removeStroke}
-        >
+        <button id='subtractBtn' className='button w-50' onClick={removeStroke}>
           <FontAwesomeIcon icon={faMinus} className='fs-1' />
         </button>
         <div>
-          <button onClick={handleAddScore} className='button-next my-5'>
+          <button onClick={handleAddScore} className='button-go my-5'>
             {holeNumber === matchingCourse?.holeCount ? (
               <p>Finish</p>
             ) : (
