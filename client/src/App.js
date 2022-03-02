@@ -20,6 +20,7 @@ import Signup from "./Pages/Signup";
 import ViewCourses from "./Pages/ViewCourses";
 import CourseForm from "./components/CourseForm";
 import AddHole from "./components/AddHole";
+import NoMatch from "../src/Pages/NoMatch";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -60,16 +61,17 @@ function App() {
           <Header></Header>
           <main>
             <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route exact path='/profile' element={<Profile />} />
-              <Route exact path='/login' element={<Login />} />
-              <Route exact path='/signup' element={<Signup />} />
-              <Route exact path='/newround/:courseId' element={<NewRound />} />
-              <Route exact path='/score/:roundId' element={<ScorePage />} />
-              <Route exact path='/viewcourses' element={<ViewCourses />} />
-              <Route exact path='/courseform' element={<CourseForm />} />
-              <Route exact path='/addhole' element={<AddHole />} />
-              <Route exact path='/scorepage' element={<ScorePage />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/newround/:courseId" element={<NewRound />} />
+              <Route exact path="/score/:roundId" element={<ScorePage />} />
+              <Route exact path="/viewcourses" element={<ViewCourses />} />
+              <Route exact path="/courseform" element={<CourseForm />} />
+              <Route exact path="/addhole" element={<AddHole />} />
+              <Route exact path="/scorepage" element={<ScorePage />} />
+              <Route path="*"  element={<NoMatch />} />
             </Routes>
           </main>
           <Footer></Footer>
