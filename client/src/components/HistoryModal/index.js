@@ -29,9 +29,15 @@ function HistoryModal({ show, handleClose, findScore, FindParTotal }) {
       }
     };
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+      if (loading) {
+        return (
+          <div className='d-flex justify-content-center'>
+            <h1 className='alt-heading animate__animated  animate__bounce'>
+              Loading...
+            </h1>
+          </div>
+        );
+      }
 
   return (
     <div>
