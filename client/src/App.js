@@ -18,8 +18,7 @@ import Footer from "./components/Footer";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import ViewCourses from "./Pages/ViewCourses";
-import background from "./assets/images/dg-basket.png";
-import CourseForm from "./components/CreateCourse";
+import CourseForm from "./components/CourseForm";
 import AddHole from "./components/AddHole";
 
 const httpLink = createHttpLink({
@@ -56,21 +55,21 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
+      <div className='flex-column justify-flex-start min-100-vh'>
         <Router>
           <Header></Header>
           <main>
             <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/profile" element={<Profile />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/signup" element={<Signup />} />
-              <Route exact path="/newround/:courseId" element={<NewRound />} />
-              <Route exact path="/score/:roundId" element={<ScorePage />} />
-              <Route exact path="/viewcourses" element={<ViewCourses />} />
-              <Route exact path="/courseform" element={<CourseForm />} />
-              <Route exact path="/addhole" element={<AddHole />} />
-              <Route exact path="/scorepage" element={<ScorePage />} />
+              <Route exact path='/' element={<Home />} />
+              <Route exact path='/profile' element={<Profile />} />
+              <Route exact path='/login' element={<Login />} />
+              <Route exact path='/signup' element={<Signup />} />
+              <Route exact path='/newround/:courseId' element={<NewRound />} />
+              <Route exact path='/score/:roundId' element={<ScorePage />} />
+              <Route exact path='/viewcourses' element={<ViewCourses />} />
+              <Route exact path='/courseform' element={<CourseForm />} />
+              <Route exact path='/addhole' element={<AddHole />} />
+              <Route exact path='/scorepage' element={<ScorePage />} />
             </Routes>
           </main>
           <Footer></Footer>
