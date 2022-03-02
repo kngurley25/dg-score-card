@@ -29,9 +29,13 @@ function HistoryTable({ user, FindParTotal, findScore }) {
       }
     };
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+      if (loading) {
+        return (
+          <div className='d-flex justify-content-center'>
+              Loading...
+          </div>
+        );
+      }
 
   return (
     <div className='d-flex flex-column align-items-center'>

@@ -15,7 +15,11 @@ const ViewCourses = () => {
   return (
     <main>
       {courseQuery.loading || userQuery.loading ? (
-        <div>Loading. . .</div>
+        <div className='d-flex justify-content-center'>
+          <h1 className='alt-heading animate__animated  animate__bounce'>
+            Loading...
+          </h1>
+        </div>
       ) : (
         <div className='d-flex justify-content-center'>
           <CourseList
@@ -29,7 +33,7 @@ const ViewCourses = () => {
       )}
       {Auth.loggedIn() && (
         <div className='d-flex justify-content-center mb-1'>
-          <Link to='/courseform' style={{ textDecoration: "none" }}>
+          <Link to='/courseform' style={{ textDecoration: 'none' }}>
             <button
               type='button'
               className='button-go d-flex justify-content-center m-4'

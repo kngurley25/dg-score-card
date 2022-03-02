@@ -51,7 +51,13 @@ function Profile() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className='d-flex justify-content-center'>
+        <h1 className='alt-heading animate__animated  animate__bounce'>
+          Loading...
+        </h1>
+      </div>
+    );
   }
   if (Auth.loggedIn() === false) {
     return (

@@ -30,7 +30,11 @@ function FavCourses({ courses }) {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className='d-flex justify-content-center'>
+          Loading...
+      </div>
+    );
   }
   return (
     <ul className="d-flex align-items-center list-group list-group-flush text-center mt-3">
