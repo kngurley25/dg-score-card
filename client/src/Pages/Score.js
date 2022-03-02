@@ -1,11 +1,6 @@
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUp,
-  faArrowDown,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_SCORE, DELETE_ROUND } from "../utils/mutations";
 import { QUERY_ALL_COURSES, QUERY_ROUND } from "../utils/queries";
@@ -29,7 +24,7 @@ function ScorePage() {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
-  
+
   const [totalScore, setTotalScore] = useState(round.totalScore || 0);
   const [holeNumber, setHoleNumber] = useState(round.scores?.length + 1 || 1);
   const [stroke, setStroke] = useState(3);
@@ -195,7 +190,6 @@ function ScorePage() {
         </button>
         {error && <div>Something went wrong...</div>}
         {err && <div>Something went wrong...</div>}
-
       </div>
     </main>
   );
