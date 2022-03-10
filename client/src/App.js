@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import ViewCourses from "./Pages/ViewCourses";
+import SearchCourses from "./Pages/SearchCourses";
 import CourseForm from "./components/CourseForm";
 import AddHole from "./components/AddHole";
 import NoMatch from "../src/Pages/NoMatch";
@@ -68,6 +69,7 @@ function App() {
               <Route exact path="/newround/:courseId" element={<NewRound />} />
               <Route exact path="/score/:roundId" element={<ScorePage />} />
               <Route exact path="/viewcourses" element={<ViewCourses />} />
+              <Route exact path="/searchcourses" element={<SearchCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />
               <Route exact path="/scorepage" element={<ScorePage />} />
