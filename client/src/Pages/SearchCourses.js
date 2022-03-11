@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 
 const SearchCourses = () => {
-    const [zip, setZip] = useState();
+    const [zip, setZip] = useState(0);
 
     const handleChange = (event) => {
-        const { value } = event.target;
+        const { value }  = event.target;
+        console.log(value);
 
-        setZip({ value })
+        setZip(value)
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const courseData = await fetch(`/weather`, {
+        const response = await fetch(`http://localhost:3001/weather`, {
             method: 'POST',
             body: JSON.stringify({
-                zip
+                searchzip: zip
             }),
             headers: {
                 'Content-Type': 'application/json' 
             }
         });
-        if (courseData.ok) {
-            console.log(courseData)
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            const park0 = data[0];
+            console.log(park0.name)
         } else {
-            console.log(courseData.statusText);
+            console.log(response.statusText);
         }
     }
       

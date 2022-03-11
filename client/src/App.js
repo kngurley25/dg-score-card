@@ -68,7 +68,7 @@ function App() {
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/newround/:courseId" element={<NewRound />} />
               <Route exact path="/score/:roundId" element={<ScorePage />} />
-              <Route exact path="/viewcourses" element={<ViewCourses />} />
+              <Route exact path="/viewcourses" element={<ViewCourses />} />c
               <Route exact path="/searchcourses" element={<SearchCourses />} />
               <Route exact path="/courseform" element={<CourseForm />} />
               <Route exact path="/addhole" element={<AddHole />} />

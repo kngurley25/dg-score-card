@@ -51,7 +51,7 @@ const Home = (props) => {
             type='button'
             className='button-go d-flex justify-content-center m-4'
           >
-            View our Courses
+            Search Courses by Zip Code
           </button>
         </Link>
       </div>
