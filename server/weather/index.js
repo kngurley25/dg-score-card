@@ -15,7 +15,7 @@ const fetchCoursesZip = async (searchzip) => {
     const courseJson = await courseStream.json();
     return courseJson;
   } catch (err) {
-    return { Error: err.stack};
+    return { Error: err.type };
   }
 
 }

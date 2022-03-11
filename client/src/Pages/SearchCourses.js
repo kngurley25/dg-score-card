@@ -31,8 +31,12 @@ const SearchCourses = () => {
         });
         if (response.ok) {
             const data = await response.json();
-            setSearchedCourses(data);
-            console.log(searchedCourses);
+
+            if (Object.keys(data)[0] === "0") {
+                setSearchedCourses(data);
+            } else {
+                setSearchedCourses(["Bad Request"]);
+            }
         } else {
             console.log(response.statusText);
         }
@@ -46,6 +50,7 @@ const SearchCourses = () => {
         </form>
         <MDBCard style={{ width: "18rem" }} className='course-list'>
         <MDBCardHeader className='text-center'>Courses near {zip}</MDBCardHeader>
+        {searchedCourses[0] === "Bad Request" ? (<h6 style={{color: "red"}}>No Courses Found</h6>) : (
         <MDBListGroup flush>
             {searchedCourses &&
               searchedCourses.map((course) => (
@@ -54,7 +59,7 @@ const SearchCourses = () => {
                   className='list d-flex justify-content-between'
                 >
                   {" "}
-                 <h6>{course.name}</h6>
+                 <h6 className="searched_course_link" >{course.name}</h6>
                  <div>
                  {course.city}, {course.state} - {course.holes} holes - Rating: <img alt="rating" src={course.rating_img_small} />
 
@@ -62,6 +67,7 @@ const SearchCourses = () => {
                 </MDBListGroupItem>
               ))}
           </MDBListGroup>
+          )}
         </MDBCard>
 
       </div>
