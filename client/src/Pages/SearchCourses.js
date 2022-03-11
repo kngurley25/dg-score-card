@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import {
+    MDBCard,
+    MDBCardHeader,
+    MDBListGroup,
+    MDBListGroupItem,
+  } from "mdb-react-ui-kit";
+  import { useNavigate } from "react-router-dom";
 
 const SearchCourses = () => {
     const [zip, setZip] = useState(0);
+    const [searchedCourses, setSearchedCourses] = useState([]);
 
     const handleChange = (event) => {
         const { value }  = event.target;
@@ -23,9 +31,8 @@ const SearchCourses = () => {
         });
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
-            const park0 = data[0];
-            console.log(park0.name)
+            setSearchedCourses(data);
+            console.log(searchedCourses);
         } else {
             console.log(response.statusText);
         }
@@ -37,6 +44,26 @@ const SearchCourses = () => {
           <input value={zip} onChange={handleChange}></input>
           <button>Submit</button>
         </form>
+        <MDBCard style={{ width: "18rem" }} className='course-list'>
+        <MDBCardHeader className='text-center'>Courses near {zip}</MDBCardHeader>
+        <MDBListGroup flush>
+            {searchedCourses &&
+              searchedCourses.map((course) => (
+                <MDBListGroupItem
+                  key={course.course_id}
+                  className='list d-flex justify-content-between'
+                >
+                  {" "}
+                 <h6>{course.name}</h6>
+                 <div>
+                 {course.city}, {course.state} - {course.holes} holes - Rating: <img alt="rating" src={course.rating_img_small} />
+
+                 </div>
+                </MDBListGroupItem>
+              ))}
+          </MDBListGroup>
+        </MDBCard>
+
       </div>
     );
 
