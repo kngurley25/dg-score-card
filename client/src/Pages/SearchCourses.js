@@ -6,6 +6,7 @@ import {
     MDBListGroupItem,
   } from "mdb-react-ui-kit";
   import { useNavigate } from "react-router-dom";
+  import { organizeHoleData } from "../utils/data/organizeHoleData";
 
 const SearchCourses = () => {
     const [zip, setZip] = useState(0);
@@ -42,9 +43,22 @@ const SearchCourses = () => {
         }
     }
 
-    const handleCourseClick = (dgcr_id) => (e) => {
+    const handleCourseClick = (dgcr_id) => async (e) => {
         e.preventDefault();
-        console.log(dgcr_id)
+        const response = await fetch(`http://localhost:3001/dgcr_api/hole/${dgcr_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json' 
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            const holeData= organizeHoleData(data);
+            console.log(holeData);
+
+        } else {
+            console.log(response.statusText)
+        }
 
     }
       
