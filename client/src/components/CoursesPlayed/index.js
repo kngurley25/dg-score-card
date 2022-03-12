@@ -15,7 +15,7 @@ function CoursesPlayed({ courses, allCourses }) {
     }
   };
   return (
-    <ul className='d-flex align-items-center list-group list-group-flush text-center mt-3 list-go'>
+    <ul className='d-flex align-items-center list-group list-group-flush text-center mt-3'>
       <h2 className='fw-bold bg-white text-decoration-underline'>
         Recently Played Courses
       </h2>
@@ -24,19 +24,21 @@ function CoursesPlayed({ courses, allCourses }) {
         .reverse()
         .slice(0, 5)
         .map((course, i) => (
-          <div key={i}>
+          <div
+            key={i}
+            className='d-flex align-items-center animate__animated animate__fadeIn animate__slow'
+          >
             <Link to={`/newround/${FindCourseId(course)}`}>
               <button
-                className='list-group-item fs-5 my-2 fw-bold animate__animated animate__fadeIn animate__delay-1s'
+                className='favCourse-link list-group-item fs-5 my-2 fw-bold justify-content-between'
                 datatype={FindCourseId(course)}
-                style={{ color: 'inherit', textDecoration: 'none' }}
               >
                 {course}
                 <FontAwesomeIcon icon={faArrowRight} className='ps-2' />
               </button>
             </Link>
           </div>
-           ))}
+        ))}
     </ul>
   );
 }

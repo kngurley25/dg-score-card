@@ -124,7 +124,7 @@ function ScorePage() {
   if (loading) {
     return (
       <div className='d-flex justify-content-center'>
-        <h1 className='alt-heading animate__animated  animate__bounce'>
+        <h1 className='alt-heading animate__animated animate__bounce animate__infinite'>
           Loading...
         </h1>
       </div>
@@ -160,28 +160,26 @@ function ScorePage() {
             id='strokeTotal'
             min={1}
             step='1'
-            className='text-center w-50 fs-1 mt-3'
             value={stroke}
             onChange={(e) => setStroke(e.target.value)}
+            disabled
           />
         </div>
         <button id='subtractBtn' className='button w-50' onClick={removeStroke}>
           <FontAwesomeIcon icon={faMinus} className='fs-1' />
         </button>
-        <div>
-          <button onClick={handleAddScore} className='button-go my-5'>
+        {/* <div> */}
+          <button onClick={handleAddScore} className='button-go'>
             {holeNumber === matchingCourse?.holeCount ? (
               <p>Finish</p>
             ) : (
               <p>Next Hole</p>
             )}
           </button>
-        </div>
-
-        <button id='button-delete' onClick={handleDeleteRound}>
+        {/* </div> */}
+        <button id='button-delete' className='fatrash mt-5' onClick={handleDeleteRound}>
           <FontAwesomeIcon
             icon={faTrash}
-            className='fatrash'
             size='2x'
             style={{ color: "red" }}
           />

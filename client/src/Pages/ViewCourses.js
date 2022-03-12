@@ -10,20 +10,18 @@ const ViewCourses = () => {
   const courses = courseQuery.data?.courses || [];
   const userQuery = useQuery(QUERY_ME);
   const user = userQuery.data?.me || {};
-  // const length = user.courses.length;
 
   return (
     <main>
       {courseQuery.loading || userQuery.loading ? (
         <div className='d-flex justify-content-center'>
-          <h1 className='alt-heading animate__animated  animate__bounce'>
+          <h1 className='alt-heading animate__animated animate__bounce animate__infinite'>
             Loading...
           </h1>
         </div>
       ) : (
         <div className='d-flex justify-content-center'>
           <CourseList
-            // length={length}
             user={user}
             courses={courses}
             className='heading'

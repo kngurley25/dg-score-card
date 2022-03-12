@@ -6,7 +6,7 @@ import { QUERY_ME } from '../../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-function HistoryTable({ user, FindParTotal, findScore }) {
+function HistoryTable({ FindParTotal, findScore }) {
   const [query, setQuery] = useState('');
 
   const { loading, data } = useQuery(QUERY_ME);
@@ -18,7 +18,6 @@ function HistoryTable({ user, FindParTotal, findScore }) {
   const handleDeleteRound = (id) => (e) => {
     e.preventDefault();
     try {
-      console.log(id);
       deleteRound({
         variables: { roundId: id },
       });
@@ -55,10 +54,10 @@ function HistoryTable({ user, FindParTotal, findScore }) {
             .filter((rounds) => {
               if (query === '') {
                 return rounds;
-              } else if (
-                rounds.courseName.toLowerCase().includes(query.toLowerCase())
-              )
-                return rounds;
+              }
+              return rounds.courseName
+                .toLowerCase()
+                .includes(query.toLowerCase());
             })
             .slice(0)
             .reverse()

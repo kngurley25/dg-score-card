@@ -53,7 +53,7 @@ function Profile() {
   if (loading) {
     return (
       <div className='d-flex justify-content-center'>
-        <h1 className='alt-heading animate__animated  animate__bounce'>
+        <h1 className='alt-heading animate__animated animate__bounce animate__infinite'>
           Loading...
         </h1>
       </div>

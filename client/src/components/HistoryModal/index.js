@@ -20,7 +20,6 @@ function HistoryModal({ show, handleClose, findScore, FindParTotal }) {
     const handleDeleteRound = (id) =>(e) => {
       e.preventDefault();
       try {
-        console.log(id);
         deleteRound({
           variables: { roundId: id },
         });
