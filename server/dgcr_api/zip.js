@@ -20,15 +20,19 @@ const fetchCoursesZip = async (searchzip) => {
 
 }
 
+
+
 router.get("/", (req, res) => {
     res.json({ success: "Hello Weather!"});
 });
+
 
 router.get("/:searchzip", async (req, res) => {
   const searchzip = req.params.searchzip;
   const data = await fetchCoursesZip(searchzip);
   res.json(data);
 });
+
 
 router.post("/", async (req, res) => {
   const searchzip = req.body.searchzip;

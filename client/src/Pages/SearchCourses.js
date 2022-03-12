@@ -20,7 +20,7 @@ const SearchCourses = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch(`http://localhost:3001/weather`, {
+        const response = await fetch(`http://localhost:3001/dgcr_api/zip/`, {
             method: 'POST',
             body: JSON.stringify({
                 searchzip: zip
@@ -41,6 +41,12 @@ const SearchCourses = () => {
             console.log(response.statusText);
         }
     }
+
+    const handleCourseClick = (dgcr_id) => (e) => {
+        e.preventDefault();
+        console.log(dgcr_id)
+
+    }
       
     return (
       <div>
@@ -59,7 +65,7 @@ const SearchCourses = () => {
                   className='list d-flex justify-content-between'
                 >
                   {" "}
-                 <h6 className="searched_course_link" >{course.name}</h6>
+                 <h6 onClick={handleCourseClick(course.course_id)} className="searched_course_link" >{course.name}</h6>
                  <div>
                  {course.city}, {course.state} - {course.holes} holes - Rating: <img alt="rating" src={course.rating_img_small} />
 
