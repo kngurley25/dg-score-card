@@ -1,193 +1,54 @@
-.navbar {
-  background-color: var(--tertiary);
-}
-
-.disc-icon {
-  height: 20px;
-}
-
-.dropdown-icon {
-  color: #fff;
-  width: 30px;
-}
-
-.container {
-  max-width: 1050px;
-  width: 90%;
-  margin: auto;
-}
-
-.navbar {
-  width: 100%;
-  box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 62px;
-}
-
-.navbar .menu-items {
-  display: flex;
-  background-color: var(--dark);
-}
-
-.navbar .nav-container li {
-  list-style: none;
-}
-
-.logo {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  font-size: 1.2rem;
-  color: #0e2431;
-}
-
-.navbar .nav-container button {
-  text-decoration: none;
-  color: #fff !important;
-  font-weight: 300;
-  font-size: 1.5rem;
-  padding-left: 0.7rem;
-  border-style: none;
-  background-color: transparent;
-}
-
-.navbar .nav-container a {
-  text-decoration: none;
-  color: #fff !important;
-  font-weight: 300;
-  font-size: 1.5rem;
-  padding-left: 0.7rem;
-  border-style: none;
-  background-color: transparent;
-}
-
-.navbar .nav-container button:hover {
-  font-weight: 900;
-  color: #fff !important;
-}
-
-.nav-container {
-  display: block;
-  position: relative;
-  height: 60px;
-}
-
-.nav-container .checkbox {
-  position: absolute;
-  display: block;
-  height: 32px;
-  width: 32px;
-  top: 20px;
-  left: 20px;
-  z-index: 5;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.nav-container .hamburger-lines {
-  display: block;
-  height: 26px;
-  width: 32px;
-  position: absolute;
-  top: 17px;
-  left: 20px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.nav-container .hamburger-lines .line {
-  display: block;
-  height: 4px;
-  width: 100%;
-  border-radius: 10px;
-  background: #0e2431;
-}
-
-.nav-container .hamburger-lines .line1 {
-  transform-origin: 0% 0%;
-  transition: transform 0.4s ease-in-out;
-}
-
-.nav-container .hamburger-lines .line2 {
-  transition: transform 0.2s ease-in-out;
-}
-
-.nav-container .hamburger-lines .line3 {
-  transform-origin: 0% 100%;
-  transition: transform 0.4s ease-in-out;
-}
-
-.navbar .menu-items {
-  padding-top: 100px;
-  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
-  height: 45vh;
-  width: 200px;
-  transform: translate(-150%);
-  display: flex;
-  flex-direction: column;
-  margin-left: -72px;
-  margin-top: -25px;
-  padding-left: 50px;
-  transition: transform 0.3s ease-in-out;
-  border-radius: 0 15px 15px 0;
-  z-index: 1;
-}
-
-.navbar .menu-items li {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-.nav-container input[type="checkbox"]:checked ~ .menu-items {
-  transform: translateX(0);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
-  transform: rotate(45deg);
-  background: #fff;
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
-  transform: scaleY(0);
-  background: #fff;
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
-  transform: rotate(-45deg);
-  background: #fff;
-}
-
-.logoutBtn {
-  text-decoration: none;
-  color: #fff !important;
-  font-weight: 300;
-  font-size: 1.5rem;
-  padding-left: 0rem;
-  border-style: none;
-  background-color: transparent;
-}
-@media (max-width: 992px) {
-  .navbar .menu-items {
-    margin-left: -28px;
+  .navbar {
+    background-color: var(--dark);
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
   }
-}
 
-@media (max-width: 768px) {
-  .navbar .menu-items {
-    margin-left: -36px;
+  .nav-container {
+    display: flex;
+    height: 62px;
   }
-}
 
-@media (max-width: 576px) {
-  .navbar .menu-items {
-    margin-left: -40px;
+  .logo {
+    color: var(--tertiary);
+    font-size: 2.5rem;
+  }
+
+  .disc-icon {
+    color: var(--tertiary);
+    height: 2rem;
+  }
+
+  .large-nav {
+    display: flex;
+    align-items: center;
+    background-color: var(--dark);
+    height: 4rem;
+  }
+
+  .nav-item {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--tertiary);
+  }
+
+  .nav-item:hover {
+    color: var(--error);
+  }
+
+  .logout-btn {
+    color: var(--tertiary);
+    border: none;
+    background-color: transparent;
+  }
+
+@media only screen and (max-width: 600px) {
+  .nav-container {
+    justify-content: center !important;
+  }
+
+  .large-nav {
+    display: none;
   }
 }

@@ -1,98 +1,75 @@
-import React, { useState, useRef, useEffect } from "react";
-import HeaderClasses from "./Header.css";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Auth from "../../utils/auth";
+import React from 'react';
+import HeaderClasses from './Header.css';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Auth from '../../utils/auth';
 import {
   faHouse,
   faUser,
   faArrowRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+  faArrowRightToBracket,
+} from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
-  const menu = useRef();
-
-  const [checked, setChecked] = useState(false);
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
 
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
-      if (checked && menu.current && !menu.current.contains(e.target)) {
-        setChecked(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [checked]);
-
   return (
     <header className={HeaderClasses.Header}>
       <nav>
-        <div className="navbar">
-          <div ref={menu} className="container nav-container" id="menu">
-            <input
-              checked={checked}
-              className="checkbox"
-              type="checkbox"
-              onChange={() => setChecked(!checked)}
-            />
-            <div className="hamburger-lines">
-              <span className="line line1"></span>
-              <span className="line line2"></span>
-              <span className="line line3"></span>
+        <div className='navbar'>
+          <div className='container nav-container'>
+            <div className='large-nav'>
+              <div>
+                <Link to={'/'} className='d-flex flex-column nav-item'>
+                  <FontAwesomeIcon icon={faHouse} className='fs-4 mb-2' />
+                  <h6>Home</h6>
+                </Link>
+              </div>
+              <div>
+                <Link to={'/profile'} className='d-flex flex-column nav-item'>
+                  <FontAwesomeIcon icon={faUser} className='fs-4 mb-2' />
+                  <h6>Profile</h6>
+                </Link>
+              </div>
+              {Auth.loggedIn() ? (
+                <div className=''>
+                  <a
+                    href='/'
+                    onClick={logout}
+                    className='d-flex flex-column nav-item'
+                  >
+                    <FontAwesomeIcon
+                      icon={faArrowRightFromBracket}
+                      className='fs-2 mb-1'
+                    />
+                    <button className='logout-btn'>Logout</button>
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <Link to={'/login'} className='d-flex flex-column nav-item'>
+                    <FontAwesomeIcon
+                      icon={faArrowRightToBracket}
+                      className='fs-4 mb-2'
+                    />
+                    <h6>Login</h6>
+                  </Link>
+                </div>
+              )}
             </div>
-            <div className="logo">
-              <h1>
+            <div>
+              <h1 className='logo'>
                 DG-Sc
                 <img
-                  src={require("../../assets/images/favicon.png")}
-                  className="disc-icon"
-                  alt="disc icon"
+                  src={require('../../assets/images/disc-logo.png')}
+                  className='disc-icon'
+                  alt='disc icon'
                 />
                 recard
               </h1>
-            </div>
-            <div className="menu-items">
-              <li>
-                <FontAwesomeIcon className="dropdown-icon" icon={faHouse} />
-                <Link to="/">
-                  <button onClick={() => setChecked(false)}>Home</button>
-                </Link>
-              </li>
-              <li>
-                <FontAwesomeIcon className="dropdown-icon" icon={faUser} />
-                <Link to="/profile">
-                  <button onClick={() => setChecked(false)}>Profile</button>
-                </Link>
-              </li>
-              {Auth.loggedIn() ? (
-                <li>
-                  <FontAwesomeIcon
-                    className="dropdown-icon"
-                    icon={faArrowRightFromBracket}
-                  />
-                  <a href="/" onClick={logout}>
-                    <button onClick={() => setChecked(false)}>Logout</button>
-                  </a>
-                </li>
-              ) : (
-                <li>
-                  <FontAwesomeIcon className="dropdown-icon" icon={faUser} />
-                  <Link to="/login">
-                    <button onClick={() => setChecked(false)}>Login</button>
-                  </Link>
-                </li>
-              )}
             </div>
           </div>
         </div>
