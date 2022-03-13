@@ -58,7 +58,7 @@ const CourseList = ({ courses, title, user }) => {
   if (loading) {
     return (
       <div className='d-flex justify-content-center'>
-        <h1 className='alt-heading animate__animated  animate__bounce'>
+        <h1 className='alt-heading animate__animated animate__bounce animate__infinite'>
           Loading...
         </h1>
       </div>
@@ -84,7 +84,7 @@ const CourseList = ({ courses, title, user }) => {
   return (
     <section>
       <div>
-        <Link to='/' style={{ textDecoration: "none" }}>
+        <Link to='/' style={{ textDecoration: 'none' }}>
           <div className='d-flex justify-content-center'>
             <button type='button' className='button-go justify-content-center'>
               Go Back
@@ -92,7 +92,7 @@ const CourseList = ({ courses, title, user }) => {
           </div>
         </Link>
       </div>
-      <MDBCard style={{ width: "18rem" }} className='course-list'>
+      <MDBCard style={{ width: '18rem' }} className='course-list'>
         <MDBCardHeader className='text-center'>{title}</MDBCardHeader>
         {Auth.loggedIn() ? (
           <MDBListGroup flush>
@@ -102,22 +102,21 @@ const CourseList = ({ courses, title, user }) => {
                   key={course._id}
                   className='list d-flex justify-content-between'
                 >
-                  {" "}
                   <Link
                     to={`/newround/${course._id}`}
-                    style={{ color: "inherit", textDecoration: "inherit" }}
+                    style={{ color: 'inherit', textDecoration: 'inherit' }}
                     className='courseBtn fw-bold'
                   >
                     {course.courseName}, {course.location}
                   </Link>
                   {courseArr.includes(course._id) ? (
                     <div onClick={handleRemoveCourse(course._id)}>
-                      <FontAwesomeIcon icon={starSolid} />
+                      <FontAwesomeIcon icon={starSolid} className='favStar'/>
                     </div>
                   ) : (
                     // eslint-disable-next-line no-restricted-globals
                     <div onClick={handleAddCourse(course._id)}>
-                      <FontAwesomeIcon icon={starReg} />
+                      <FontAwesomeIcon icon={starReg} className='favStar'/>
                     </div>
                   )}
                 </MDBListGroupItem>
@@ -125,7 +124,7 @@ const CourseList = ({ courses, title, user }) => {
           </MDBListGroup>
         ) : (
           <MDBListGroup flush>
-            <Link to='/' style={{ textDecoration: "none" }}>
+            <Link to='/' style={{ textDecoration: 'none' }}>
               <h6 className='link-go'>Sign up or log in to keep your score!</h6>
             </Link>
             {courses &&

@@ -36,7 +36,7 @@ function Header() {
   }, [checked]);
 
   return (
-    <section className={HeaderClasses.Header}>
+    <header className={HeaderClasses.Header}>
       <nav>
         <div className="navbar">
           <div ref={menu} className="container nav-container" id="menu">
@@ -97,7 +97,7 @@ function Header() {
           </div>
         </div>
       </nav>
-    </section>
+    </header>
   );
 }
 

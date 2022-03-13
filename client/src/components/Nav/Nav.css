@@ -1,0 +1,23 @@
+.mobile-nav {
+  background-color: var(--dark);
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--tertiary);
+}
+
+.nav-item:hover {
+    color: var(--error);
+}
+
+.logout-btn {
+    color: var(--tertiary);
+    border: none;
+    background-color: transparent;
+}
