@@ -21,6 +21,7 @@ import ViewCourses from "./Pages/ViewCourses";
 import CourseForm from "./components/CourseForm";
 import AddHole from "./components/AddHole";
 import NoMatch from "../src/Pages/NoMatch";
+import Nav from "./components/Nav";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -56,7 +57,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className='flex-column justify-flex-start min-100-vh'>
+      <div className='flex-column justify-flex-start min-100-vh mb-5 pb-2'>
         <Router>
           <Header></Header>
           <main>
@@ -74,7 +75,7 @@ function App() {
               <Route path="*"  element={<NoMatch />} />
             </Routes>
           </main>
-          <Footer></Footer>
+          <Nav></Nav>
         </Router>
       </div>
     </ApolloProvider>
