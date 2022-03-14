@@ -27,6 +27,7 @@ export const QUERY_ALL_COURSES = gql`
         _id
         holeNumber
         par
+        length
       }
     }
   }

@@ -23,6 +23,7 @@ const typeDefs = gql`
     _id: ID
     holeNumber: Int
     par: Int
+    length: String
   }
   type Round {
     _id: ID
@@ -59,7 +60,7 @@ const typeDefs = gql`
       location: String!
       holeCount: Int!
     ): Course
-    addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
+    addHole(courseId: ID!, holeNumber: Int!, par: Int!, length: String): Course
     addScore(roundId: ID!, holeNumber: Int!, stroke: Int!): Round
   }
   type Auth {

@@ -151,11 +151,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addHole: async (parent, { courseId, holeNumber, par }, context) => {
+    addHole: async (parent, { courseId, holeNumber, par, length }, context) => {
       if (context.user) {
         const updatedCourse = await Course.findOneAndUpdate(
           { _id: courseId },
-          { $push: { holes: { holeNumber, par } } },
+          { $push: { holes: { holeNumber, par, length } } },
           { new: true, runValidators: true }
         );
 
