@@ -40,11 +40,11 @@ const resolvers = {
       return Course.findOne(params).sort({ courseName: 1 });
     },
     rounds: async () => {
-      return Round.find();
+      return Round.find().sort({ createAt: -1 });
     },
-    round: async (parent, { roundId }) => {
-      const params = roundId ? { roundId } : {};
-      return Round.findOne(params).sort({ createAt: -1 });
+    round: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return Round.findById(params);
     },
   },
   Mutation: {

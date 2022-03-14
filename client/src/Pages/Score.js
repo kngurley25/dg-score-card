@@ -24,9 +24,8 @@ function ScorePage() {
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
-
-  const [totalScore, setTotalScore] = useState(round.totalScore || 0);
-  const [holeNumber, setHoleNumber] = useState(round.scores?.length + 1 || 1);
+  const [totalScore, setTotalScore] = useState(0);
+  const [holeNumber, setHoleNumber] = useState(1);
   const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
 
@@ -51,21 +50,21 @@ function ScorePage() {
   };
   let total;
 
-  const handleAddScore = (event) => {
+  const handleAddScore =  async (event) => {
     event.preventDefault();
     total = totalScore + stroke;
 
     try {
-      addScore({
+      const updatedRound = await addScore({
         variables: { roundId: roundParam, holeNumber, stroke },
       });
-
+      const newTotalScore = updatedRound.data.addScore.totalScore;
       setStroke(3);
       if (holeNumber === matchingCourse.holeCount) {
         navigate(`/profile`);
       } else {
         setHoleNumber(holeNumber + 1);
-        setTotalScore(total);
+        setTotalScore(newTotalScore);
       }
     } catch (e) {
       console.error(e);

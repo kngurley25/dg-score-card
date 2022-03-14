@@ -45,7 +45,7 @@ const typeDefs = gql`
     courses: [Course]
     course(_id: ID!): Course
     rounds: [Round]
-    round(roundId: ID!): Round
+    round(_id: ID!): Round
   }
   type Mutation {
     login(email: String!, password: String!): Auth

@@ -69,10 +69,9 @@ const SearchCourses = () => {
         if (response.ok) {
             const data = await response.json();
             const holeData= organizeHoleData(data);
-            console.log(parseInt(holes));
 
             const matchingCourse = mongoCourseData.find(
-              (course) => course.courseName === data[0].name
+              (course) => course.courseName === data[0].name.trim()
             );
           
               console.log(matchingCourse)
@@ -139,7 +138,11 @@ const SearchCourses = () => {
                   className='list d-flex justify-content-between'
                 >
                   {" "}
+                  {Auth.loggedIn() ? (
                  <h6 onClick={handleCourseClick(course.course_id, course.holes)} className="searched_course_link" >{course.name}</h6>
+                 ) : (
+                  <h6>{course.name}</h6>
+                  )}
                  <div>
                  {course.city}, {course.state} - {course.holes} holes - Rating: <img alt="rating" src={course.rating_img_small} />
 
