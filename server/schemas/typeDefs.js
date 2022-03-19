@@ -20,7 +20,7 @@ const typeDefs = gql`
     parTotal: Int
   }
   type Hole {
-    _id: ID
+    _id: ID!
     holeNumber: Int
     par: Int
     length: String

@@ -19,15 +19,23 @@ function ScorePage() {
   });
   const round = data?.round || {};
 
-  const { data: courseData } = useQuery(QUERY_ALL_COURSES);
+  const { courseLoading, data: courseData } = useQuery(QUERY_ALL_COURSES);
   const courses = courseData?.courses || [];
   const matchingCourse = courses?.find(
     (course) => course?.courseName === round.courseName
   );
+
+  
+  console.log(matchingCourse);
+
   const [totalScore, setTotalScore] = useState(0);
   const [holeNumber, setHoleNumber] = useState(1);
+  const [holePar, setHolePar] = useState(matchingCourse?.holes[0].par || 3);
+  const [holeLength, setHoleLength] = useState(matchingCourse?.holes[0].length || '-');
   const [stroke, setStroke] = useState(3);
   const [show, setShow] = useState(false);
+  const [index, setIndex] = useState(1);
+  
 
   const toggleModal = () => {
     setShow(!show);
@@ -48,23 +56,25 @@ function ScorePage() {
     let newScore = --score;
     return setStroke(newScore);
   };
-  let total;
-
   const handleAddScore =  async (event) => {
     event.preventDefault();
-    total = totalScore + stroke;
-
+   
     try {
       const updatedRound = await addScore({
         variables: { roundId: roundParam, holeNumber, stroke },
       });
       const newTotalScore = updatedRound.data.addScore.totalScore;
       setStroke(3);
+      
       if (holeNumber === matchingCourse.holeCount) {
         navigate(`/profile`);
       } else {
         setHoleNumber(holeNumber + 1);
+        setHolePar(matchingCourse.holes[index].par);
+        setHoleLength(matchingCourse.holes[index].length);
         setTotalScore(newTotalScore);
+        setIndex(index + 1);
+       
       }
     } catch (e) {
       console.error(e);
@@ -119,8 +129,9 @@ function ScorePage() {
       console.error(err);
     }
   };
+ 
 
-  if (loading) {
+  if (loading || courseLoading) {
     return (
       <div className='d-flex justify-content-center'>
         <h1 className='alt-heading animate__animated  animate__bounce'>
@@ -141,6 +152,9 @@ function ScorePage() {
         <div className='card-heading text-center'>
           <h1 className='alt-heading'>Hole #{holeNumber}</h1>
           <h2 className='alt-sub-heading'>{round.courseName}</h2>
+          <h2 className='alt-sub-heading'>Par: {holePar}</h2>
+          <h2 className='alt-sub-heading'>Length: {holeLength} ft</h2>
+
           <h3 className='alt-sub-heading'>
             Total Score:{" "}
             {findScore(FindParTotal(round.courseName, holeNumber), totalScore)}

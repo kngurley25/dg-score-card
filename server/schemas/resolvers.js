@@ -33,11 +33,12 @@ const resolvers = {
         .populate('rounds');
     },
     courses: async () => {
-      return Course.find();
+      return Course.find()
+    
     },
     course: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
-      return Course.findOne(params).sort({ courseName: 1 });
+      return Course.findOne(params);
     },
     rounds: async () => {
       return Round.find().sort({ createAt: -1 });
