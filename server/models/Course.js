@@ -11,6 +11,10 @@ const holeSchema = new Schema(
             required: true,
             default: 3
         },
+        length: {
+            type: String,
+            default: '-' 
+        }
     },
 );
 

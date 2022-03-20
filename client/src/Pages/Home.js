@@ -46,6 +46,14 @@ const Home = (props) => {
             View our Courses
           </button>
         </Link>
+        <Link to='/searchcourses' style={{ textDecoration: "none" }}>
+          <button
+            type='button'
+            className='button-go d-flex justify-content-center m-4'
+          >
+            Search Courses by Zip Code
+          </button>
+        </Link>
       </div>
     </section>
   );

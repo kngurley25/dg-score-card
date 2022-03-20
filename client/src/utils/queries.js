@@ -27,6 +27,7 @@ export const QUERY_ALL_COURSES = gql`
         _id
         holeNumber
         par
+        length
       }
     }
   }
@@ -49,7 +50,7 @@ export const QUERY_COURSE = gql`
 
 export const QUERY_ROUND = gql`
   query round($roundId: ID!) {
-    round(roundId: $roundId) {
+    round(_id: $roundId) {
       _id
       totalScore
       courseName
@@ -114,10 +115,6 @@ export const QUERY_ME = gql`
           holeNumber
           stroke
         }
-      }
-      friends {
-        _id
-        username
       }
     }
   }

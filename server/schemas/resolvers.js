@@ -33,18 +33,19 @@ const resolvers = {
         .populate('rounds');
     },
     courses: async () => {
-      return Course.find();
+      return Course.find()
+    
     },
     course: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
-      return Course.findOne(params).sort({ courseName: 1 });
+      return Course.findOne(params);
     },
     rounds: async () => {
-      return Round.find();
+      return Round.find().sort({ createAt: -1 });
     },
-    round: async (parent, { roundId }) => {
-      const params = roundId ? { roundId } : {};
-      return Round.findOne(params).sort({ createAt: -1 });
+    round: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return Round.findById(params);
     },
   },
   Mutation: {
@@ -151,11 +152,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addHole: async (parent, { courseId, holeNumber, par }, context) => {
+    addHole: async (parent, { courseId, holeNumber, par, length }, context) => {
       if (context.user) {
         const updatedCourse = await Course.findOneAndUpdate(
           { _id: courseId },
-          { $push: { holes: { holeNumber, par } } },
+          { $push: { holes: { holeNumber, par, length } } },
           { new: true, runValidators: true }
         );
 

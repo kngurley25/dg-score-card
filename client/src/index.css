@@ -462,4 +462,13 @@ code {
   animation: heartBeat;
   animation-duration: 1s;
 }
+
+.searched_course_link {
+  color: black;
+  cursor: pointer;
+}
+.searched_course_link:hover {
+  color: orange;
+  cursor: pointer;
+}
 /* styles for view courses page */

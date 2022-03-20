@@ -20,9 +20,10 @@ const typeDefs = gql`
     parTotal: Int
   }
   type Hole {
-    _id: ID
+    _id: ID!
     holeNumber: Int
     par: Int
+    length: String
   }
   type Round {
     _id: ID
@@ -44,7 +45,7 @@ const typeDefs = gql`
     courses: [Course]
     course(_id: ID!): Course
     rounds: [Round]
-    round(roundId: ID!): Round
+    round(_id: ID!): Round
   }
   type Mutation {
     login(email: String!, password: String!): Auth
@@ -59,7 +60,7 @@ const typeDefs = gql`
       location: String!
       holeCount: Int!
     ): Course
-    addHole(courseId: ID!, holeNumber: Int!, par: Int!): Course
+    addHole(courseId: ID!, holeNumber: Int!, par: Int!, length: String): Course
     addScore(roundId: ID!, holeNumber: Int!, stroke: Int!): Round
   }
   type Auth {

@@ -63,14 +63,15 @@ export const CREATE_COURSE = gql`
 `;
 
 export const ADD_HOLE = gql`
-  mutation addHole($courseId: ID!, $holeNumber: Int!, $par: Int!) {
-    addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par) {
+  mutation addHole($courseId: ID!, $holeNumber: Int!, $par: Int!, $length: String) {
+    addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par, length: $length) {
       _id
       holeCount
       holes {
         _id
         holeNumber
         par
+        length
       }
     }
   }

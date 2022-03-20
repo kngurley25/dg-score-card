@@ -38,6 +38,9 @@ const AddHole = () => {
     event.preventDefault();
 
     try {
+     
+      console.log(matchingCourse._id);
+      console.log(matchingCourse?._id);
       //add holes takes addHole(courseId: $courseId, holeNumber: $holeNumber, par: $par)
       addHole({
         variables: {
